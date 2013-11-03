@@ -1,0 +1,15 @@
+digraph name {
+914 [label="914: SEQSCAN" ];
+917 [label="917: HASHAGGREGATE" ];
+917 -> 914;
+915 [label="915: SEND" fontcolor="white" style="filled" fillcolor="black"];
+915 -> 917;
+916 [label="916: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+916 -> 915;
+918 [label="918: HASHAGGREGATE" ];
+918 -> 916;
+919 [label="919: SEND" fontcolor="white" style="filled" fillcolor="black"];
+919 -> 918;
+
+}
+

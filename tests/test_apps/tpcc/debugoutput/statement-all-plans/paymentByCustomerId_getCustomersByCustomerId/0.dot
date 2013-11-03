@@ -1,0 +1,15 @@
+digraph name {
+489 [label="489: SEQSCAN" ];
+489 -> 490;
+490 [label="490: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+491 [label="491: SEND" fontcolor="white" style="filled" fillcolor="black"];
+491 -> 489;
+492 [label="492: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+492 -> 491;
+505 [label="505: PROJECTION" ];
+505 -> 492;
+506 [label="506: SEND" fontcolor="white" style="filled" fillcolor="black"];
+506 -> 505;
+
+}
+

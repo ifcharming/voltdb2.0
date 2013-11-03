@@ -1,0 +1,175 @@
+SQL: DELETE FROM ORDERS WHERE O_W_ID = ? AND O_ID > ?;
+COST: 1996.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        899,
+        905
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [899],
+            "ID": 905,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "DELETE",
+            "TARGET_TABLE_NAME": "ORDERS",
+            "TRUNCATE": false
+        },
+        {
+            "CHILDREN_IDS": [],
+            "END_EXPRESSION": {
+                "LEFT": {
+                    "COLUMN_ALIAS": "O_W_ID",
+                    "COLUMN_IDX": 2,
+                    "COLUMN_NAME": "O_W_ID",
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                "RIGHT": {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                "TYPE": "COMPARE_EQUAL",
+                "VALUE_SIZE": 8,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "ID": 899,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 906,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [{
+                    "COLUMN_ALIAS": "tuple_address",
+                    "COLUMN_NAME": "tuple_address",
+                    "EXPRESSION": {
+                        "TYPE": "VALUE_TUPLE_ADDRESS",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "BIGINT"
+                }],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "KEY_ITERATE": false,
+            "LOOKUP_TYPE": "GT",
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "tuple_address",
+                "COLUMN_NAME": "tuple_address",
+                "EXPRESSION": {
+                    "TYPE": "VALUE_TUPLE_ADDRESS",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [905],
+            "PLAN_NODE_TYPE": "INDEXSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "O_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "TYPE": "COMPARE_GREATERTHAN",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "O_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "O_W_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 0,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_W_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SEARCHKEY_EXPRESSIONS": [{
+                "PARAM_IDX": 0,
+                "TYPE": "VALUE_PARAMETER",
+                "VALUE_SIZE": 2,
+                "VALUE_TYPE": "SMALLINT"
+            }],
+            "SORT_DIRECTION": "INVALID",
+            "TARGET_INDEX_NAME": "SYS_IDX_SYS_CT_10050_10052",
+            "TARGET_TABLE_NAME": "ORDERS"
+        }
+    ]
+}

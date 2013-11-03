@@ -1,0 +1,17 @@
+digraph name {
+335 [label="335: INDEXSCAN" ];
+335 -> 336;
+336 [label="336: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+337 [label="337: SEND" fontcolor="white" style="filled" fillcolor="black"];
+337 -> 335;
+338 [label="338: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+338 -> 337;
+348 [label="348: ORDERBY" ];
+348 -> 338;
+349 [label="349: PROJECTION" ];
+349 -> 348;
+350 [label="350: SEND" fontcolor="white" style="filled" fillcolor="black"];
+350 -> 349;
+
+}
+

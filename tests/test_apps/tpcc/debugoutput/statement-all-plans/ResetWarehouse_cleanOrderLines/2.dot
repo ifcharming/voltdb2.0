@@ -1,0 +1,9 @@
+digraph name {
+887 [label="887: INDEXSCAN" ];
+887 -> 893;
+893 [label="893: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+892 [label="892: DELETE" ];
+892 -> 887;
+
+}
+

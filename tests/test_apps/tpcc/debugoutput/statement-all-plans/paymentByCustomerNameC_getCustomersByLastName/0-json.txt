@@ -1,0 +1,1677 @@
+SQL: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE, C_ZIP, C_PHONE, C_SINCE, C_CREDIT, C_CREDIT_LIM, C_DISCOUNT, C_BALANCE, C_YTD_PAYMENT, C_PAYMENT_CNT, C_DATA FROM CUSTOMER WHERE C_LAST = ? AND C_D_ID = ? AND C_W_ID = ? ORDER BY C_FIRST;
+COST: 4000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        375,
+        383,
+        384,
+        385
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [384],
+            "ID": 385,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "C_ID",
+                    "COLUMN_NAME": "C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "C_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_NAME": "C_FIRST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_FIRST",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "C_FIRST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_MIDDLE",
+                    "COLUMN_NAME": "C_MIDDLE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_MIDDLE",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "C_MIDDLE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_LAST",
+                    "COLUMN_NAME": "C_LAST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "C_LAST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_1",
+                    "COLUMN_NAME": "C_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_1",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "C_STREET_1",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_2",
+                    "COLUMN_NAME": "C_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_2",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "C_STREET_2",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CITY",
+                    "COLUMN_NAME": "C_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CITY",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "C_CITY",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STATE",
+                    "COLUMN_NAME": "C_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STATE",
+                        "COLUMN_IDX": 7,
+                        "COLUMN_NAME": "C_STATE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_ZIP",
+                    "COLUMN_NAME": "C_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ZIP",
+                        "COLUMN_IDX": 8,
+                        "COLUMN_NAME": "C_ZIP",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PHONE",
+                    "COLUMN_NAME": "C_PHONE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PHONE",
+                        "COLUMN_IDX": 9,
+                        "COLUMN_NAME": "C_PHONE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_SINCE",
+                    "COLUMN_NAME": "C_SINCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_SINCE",
+                        "COLUMN_IDX": 10,
+                        "COLUMN_NAME": "C_SINCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT",
+                    "COLUMN_NAME": "C_CREDIT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT",
+                        "COLUMN_IDX": 11,
+                        "COLUMN_NAME": "C_CREDIT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT_LIM",
+                    "COLUMN_NAME": "C_CREDIT_LIM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT_LIM",
+                        "COLUMN_IDX": 12,
+                        "COLUMN_NAME": "C_CREDIT_LIM",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DISCOUNT",
+                    "COLUMN_NAME": "C_DISCOUNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DISCOUNT",
+                        "COLUMN_IDX": 13,
+                        "COLUMN_NAME": "C_DISCOUNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_BALANCE",
+                    "COLUMN_NAME": "C_BALANCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_BALANCE",
+                        "COLUMN_IDX": 14,
+                        "COLUMN_NAME": "C_BALANCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                    "COLUMN_NAME": "C_YTD_PAYMENT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                        "COLUMN_IDX": 15,
+                        "COLUMN_NAME": "C_YTD_PAYMENT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                    "COLUMN_NAME": "C_PAYMENT_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                        "COLUMN_IDX": 16,
+                        "COLUMN_NAME": "C_PAYMENT_CNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DATA",
+                    "COLUMN_NAME": "C_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DATA",
+                        "COLUMN_IDX": 17,
+                        "COLUMN_NAME": "C_DATA",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 500,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 500,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [383],
+            "ID": 384,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "C_ID",
+                    "COLUMN_NAME": "C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "C_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_NAME": "C_FIRST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_FIRST",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "C_FIRST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_MIDDLE",
+                    "COLUMN_NAME": "C_MIDDLE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_MIDDLE",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "C_MIDDLE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_LAST",
+                    "COLUMN_NAME": "C_LAST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "C_LAST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_1",
+                    "COLUMN_NAME": "C_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_1",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "C_STREET_1",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_2",
+                    "COLUMN_NAME": "C_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_2",
+                        "COLUMN_IDX": 7,
+                        "COLUMN_NAME": "C_STREET_2",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CITY",
+                    "COLUMN_NAME": "C_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CITY",
+                        "COLUMN_IDX": 8,
+                        "COLUMN_NAME": "C_CITY",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STATE",
+                    "COLUMN_NAME": "C_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STATE",
+                        "COLUMN_IDX": 9,
+                        "COLUMN_NAME": "C_STATE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_ZIP",
+                    "COLUMN_NAME": "C_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ZIP",
+                        "COLUMN_IDX": 10,
+                        "COLUMN_NAME": "C_ZIP",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PHONE",
+                    "COLUMN_NAME": "C_PHONE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PHONE",
+                        "COLUMN_IDX": 11,
+                        "COLUMN_NAME": "C_PHONE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_SINCE",
+                    "COLUMN_NAME": "C_SINCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_SINCE",
+                        "COLUMN_IDX": 12,
+                        "COLUMN_NAME": "C_SINCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT",
+                    "COLUMN_NAME": "C_CREDIT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT",
+                        "COLUMN_IDX": 13,
+                        "COLUMN_NAME": "C_CREDIT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT_LIM",
+                    "COLUMN_NAME": "C_CREDIT_LIM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT_LIM",
+                        "COLUMN_IDX": 14,
+                        "COLUMN_NAME": "C_CREDIT_LIM",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DISCOUNT",
+                    "COLUMN_NAME": "C_DISCOUNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DISCOUNT",
+                        "COLUMN_IDX": 15,
+                        "COLUMN_NAME": "C_DISCOUNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_BALANCE",
+                    "COLUMN_NAME": "C_BALANCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_BALANCE",
+                        "COLUMN_IDX": 16,
+                        "COLUMN_NAME": "C_BALANCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                    "COLUMN_NAME": "C_YTD_PAYMENT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                        "COLUMN_IDX": 17,
+                        "COLUMN_NAME": "C_YTD_PAYMENT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                    "COLUMN_NAME": "C_PAYMENT_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                        "COLUMN_IDX": 18,
+                        "COLUMN_NAME": "C_PAYMENT_CNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DATA",
+                    "COLUMN_NAME": "C_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DATA",
+                        "COLUMN_IDX": 19,
+                        "COLUMN_NAME": "C_DATA",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 500,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 500,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [385],
+            "PLAN_NODE_TYPE": "PROJECTION"
+        },
+        {
+            "CHILDREN_IDS": [375],
+            "ID": 383,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "C_ID",
+                    "COLUMN_NAME": "C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "C_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_D_ID",
+                    "COLUMN_NAME": "C_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "C_D_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_W_ID",
+                    "COLUMN_NAME": "C_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "C_W_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_NAME": "C_FIRST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_FIRST",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "C_FIRST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_MIDDLE",
+                    "COLUMN_NAME": "C_MIDDLE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_MIDDLE",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "C_MIDDLE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_LAST",
+                    "COLUMN_NAME": "C_LAST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "C_LAST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_1",
+                    "COLUMN_NAME": "C_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_1",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "C_STREET_1",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_2",
+                    "COLUMN_NAME": "C_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_2",
+                        "COLUMN_IDX": 7,
+                        "COLUMN_NAME": "C_STREET_2",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CITY",
+                    "COLUMN_NAME": "C_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CITY",
+                        "COLUMN_IDX": 8,
+                        "COLUMN_NAME": "C_CITY",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STATE",
+                    "COLUMN_NAME": "C_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STATE",
+                        "COLUMN_IDX": 9,
+                        "COLUMN_NAME": "C_STATE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_ZIP",
+                    "COLUMN_NAME": "C_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ZIP",
+                        "COLUMN_IDX": 10,
+                        "COLUMN_NAME": "C_ZIP",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PHONE",
+                    "COLUMN_NAME": "C_PHONE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PHONE",
+                        "COLUMN_IDX": 11,
+                        "COLUMN_NAME": "C_PHONE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_SINCE",
+                    "COLUMN_NAME": "C_SINCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_SINCE",
+                        "COLUMN_IDX": 12,
+                        "COLUMN_NAME": "C_SINCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT",
+                    "COLUMN_NAME": "C_CREDIT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT",
+                        "COLUMN_IDX": 13,
+                        "COLUMN_NAME": "C_CREDIT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT_LIM",
+                    "COLUMN_NAME": "C_CREDIT_LIM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT_LIM",
+                        "COLUMN_IDX": 14,
+                        "COLUMN_NAME": "C_CREDIT_LIM",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DISCOUNT",
+                    "COLUMN_NAME": "C_DISCOUNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DISCOUNT",
+                        "COLUMN_IDX": 15,
+                        "COLUMN_NAME": "C_DISCOUNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_BALANCE",
+                    "COLUMN_NAME": "C_BALANCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_BALANCE",
+                        "COLUMN_IDX": 16,
+                        "COLUMN_NAME": "C_BALANCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                    "COLUMN_NAME": "C_YTD_PAYMENT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                        "COLUMN_IDX": 17,
+                        "COLUMN_NAME": "C_YTD_PAYMENT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                    "COLUMN_NAME": "C_PAYMENT_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                        "COLUMN_IDX": 18,
+                        "COLUMN_NAME": "C_PAYMENT_CNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DATA",
+                    "COLUMN_NAME": "C_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DATA",
+                        "COLUMN_IDX": 19,
+                        "COLUMN_NAME": "C_DATA",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 500,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 500,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [384],
+            "PLAN_NODE_TYPE": "ORDERBY",
+            "SORT_COLUMNS": [{
+                "SORT_DIRECTION": "ASC",
+                "SORT_EXPRESSION": {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_IDX": 3,
+                    "COLUMN_NAME": "C_FIRST",
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 32,
+                    "VALUE_TYPE": "STRING"
+                }
+            }]
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 375,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 376,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "C_ID",
+                        "COLUMN_NAME": "C_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "C_ID",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_D_ID",
+                        "COLUMN_NAME": "C_D_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "C_D_ID",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "SIZE": 1,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "TINYINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_W_ID",
+                        "COLUMN_NAME": "C_W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "C_W_ID",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_FIRST",
+                        "COLUMN_NAME": "C_FIRST",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_FIRST",
+                            "COLUMN_IDX": 3,
+                            "COLUMN_NAME": "C_FIRST",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_MIDDLE",
+                        "COLUMN_NAME": "C_MIDDLE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_MIDDLE",
+                            "COLUMN_IDX": 4,
+                            "COLUMN_NAME": "C_MIDDLE",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_NAME": "C_LAST",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_LAST",
+                            "COLUMN_IDX": 5,
+                            "COLUMN_NAME": "C_LAST",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_STREET_1",
+                        "COLUMN_NAME": "C_STREET_1",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_STREET_1",
+                            "COLUMN_IDX": 6,
+                            "COLUMN_NAME": "C_STREET_1",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_STREET_2",
+                        "COLUMN_NAME": "C_STREET_2",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_STREET_2",
+                            "COLUMN_IDX": 7,
+                            "COLUMN_NAME": "C_STREET_2",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_CITY",
+                        "COLUMN_NAME": "C_CITY",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_CITY",
+                            "COLUMN_IDX": 8,
+                            "COLUMN_NAME": "C_CITY",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_STATE",
+                        "COLUMN_NAME": "C_STATE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_STATE",
+                            "COLUMN_IDX": 9,
+                            "COLUMN_NAME": "C_STATE",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_ZIP",
+                        "COLUMN_NAME": "C_ZIP",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_ZIP",
+                            "COLUMN_IDX": 10,
+                            "COLUMN_NAME": "C_ZIP",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 9,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 9,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_PHONE",
+                        "COLUMN_NAME": "C_PHONE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_PHONE",
+                            "COLUMN_IDX": 11,
+                            "COLUMN_NAME": "C_PHONE",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_SINCE",
+                        "COLUMN_NAME": "C_SINCE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_SINCE",
+                            "COLUMN_IDX": 12,
+                            "COLUMN_NAME": "C_SINCE",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "TIMESTAMP"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "TIMESTAMP"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_CREDIT",
+                        "COLUMN_NAME": "C_CREDIT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_CREDIT",
+                            "COLUMN_IDX": 13,
+                            "COLUMN_NAME": "C_CREDIT",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_CREDIT_LIM",
+                        "COLUMN_NAME": "C_CREDIT_LIM",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_CREDIT_LIM",
+                            "COLUMN_IDX": 14,
+                            "COLUMN_NAME": "C_CREDIT_LIM",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_DISCOUNT",
+                        "COLUMN_NAME": "C_DISCOUNT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_DISCOUNT",
+                            "COLUMN_IDX": 15,
+                            "COLUMN_NAME": "C_DISCOUNT",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_BALANCE",
+                        "COLUMN_NAME": "C_BALANCE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_BALANCE",
+                            "COLUMN_IDX": 16,
+                            "COLUMN_NAME": "C_BALANCE",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                        "COLUMN_NAME": "C_YTD_PAYMENT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                            "COLUMN_IDX": 17,
+                            "COLUMN_NAME": "C_YTD_PAYMENT",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                        "COLUMN_NAME": "C_PAYMENT_CNT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                            "COLUMN_IDX": 18,
+                            "COLUMN_NAME": "C_PAYMENT_CNT",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "C_DATA",
+                        "COLUMN_NAME": "C_DATA",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "C_DATA",
+                            "COLUMN_IDX": 20,
+                            "COLUMN_NAME": "C_DATA",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 500,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 500,
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "STRING"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "C_ID",
+                    "COLUMN_NAME": "C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "C_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_D_ID",
+                    "COLUMN_NAME": "C_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "C_D_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_W_ID",
+                    "COLUMN_NAME": "C_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "C_W_ID",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_NAME": "C_FIRST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_FIRST",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "C_FIRST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_MIDDLE",
+                    "COLUMN_NAME": "C_MIDDLE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_MIDDLE",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "C_MIDDLE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_LAST",
+                    "COLUMN_NAME": "C_LAST",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "C_LAST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_1",
+                    "COLUMN_NAME": "C_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_1",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "C_STREET_1",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_2",
+                    "COLUMN_NAME": "C_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STREET_2",
+                        "COLUMN_IDX": 7,
+                        "COLUMN_NAME": "C_STREET_2",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CITY",
+                    "COLUMN_NAME": "C_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CITY",
+                        "COLUMN_IDX": 8,
+                        "COLUMN_NAME": "C_CITY",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STATE",
+                    "COLUMN_NAME": "C_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_STATE",
+                        "COLUMN_IDX": 9,
+                        "COLUMN_NAME": "C_STATE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_ZIP",
+                    "COLUMN_NAME": "C_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_ZIP",
+                        "COLUMN_IDX": 10,
+                        "COLUMN_NAME": "C_ZIP",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PHONE",
+                    "COLUMN_NAME": "C_PHONE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PHONE",
+                        "COLUMN_IDX": 11,
+                        "COLUMN_NAME": "C_PHONE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_SINCE",
+                    "COLUMN_NAME": "C_SINCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_SINCE",
+                        "COLUMN_IDX": 12,
+                        "COLUMN_NAME": "C_SINCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT",
+                    "COLUMN_NAME": "C_CREDIT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT",
+                        "COLUMN_IDX": 13,
+                        "COLUMN_NAME": "C_CREDIT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT_LIM",
+                    "COLUMN_NAME": "C_CREDIT_LIM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_CREDIT_LIM",
+                        "COLUMN_IDX": 14,
+                        "COLUMN_NAME": "C_CREDIT_LIM",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DISCOUNT",
+                    "COLUMN_NAME": "C_DISCOUNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DISCOUNT",
+                        "COLUMN_IDX": 15,
+                        "COLUMN_NAME": "C_DISCOUNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_BALANCE",
+                    "COLUMN_NAME": "C_BALANCE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_BALANCE",
+                        "COLUMN_IDX": 16,
+                        "COLUMN_NAME": "C_BALANCE",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                    "COLUMN_NAME": "C_YTD_PAYMENT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                        "COLUMN_IDX": 17,
+                        "COLUMN_NAME": "C_YTD_PAYMENT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                    "COLUMN_NAME": "C_PAYMENT_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                        "COLUMN_IDX": 18,
+                        "COLUMN_NAME": "C_PAYMENT_CNT",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DATA",
+                    "COLUMN_NAME": "C_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "C_DATA",
+                        "COLUMN_IDX": 20,
+                        "COLUMN_NAME": "C_DATA",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 500,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 500,
+                    "TABLE_NAME": "CUSTOMER",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [383],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "C_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "C_W_ID",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 2,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "C_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "C_D_ID",
+                            "TABLE_NAME": "CUSTOMER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "C_LAST",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "C_LAST",
+                        "TABLE_NAME": "CUSTOMER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1048576,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "CUSTOMER"
+        }
+    ]
+}

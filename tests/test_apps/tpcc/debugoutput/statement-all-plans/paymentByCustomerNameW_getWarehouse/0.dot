@@ -1,0 +1,9 @@
+digraph name {
+401 [label="401: SEQSCAN" ];
+401 -> 405;
+405 [label="405: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+406 [label="406: SEND" fontcolor="white" style="filled" fillcolor="black"];
+406 -> 401;
+
+}
+

@@ -1,0 +1,70 @@
+{
+    "EXECUTE_LIST": [
+        2,
+        1
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [2],
+            "ID": 1,
+            "INLINE_NODES": [],
+            "MULTI_PARTITION": false,
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "INSERT",
+            "TARGET_TABLE_NAME": "TEST1"
+        },
+        {
+            "BATCHED": false,
+            "CHILDREN_IDS": [],
+            "ID": 2,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "TEST1_ID",
+                    "COLUMN_NAME": "TEST1_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "TEST1_ITEM",
+                    "COLUMN_NAME": "TEST1_ITEM",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [1],
+            "PLAN_NODE_TYPE": "MATERIALIZE"
+        }
+    ]
+}

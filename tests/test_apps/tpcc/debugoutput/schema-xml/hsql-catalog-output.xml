@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE databaseschema [
+  <!ELEMENT databaseschema (table*)>
+  <!ELEMENT table (columns,indexes,constraints)>
+  <!ATTLIST table
+    name CDATA #REQUIRED
+    query CDATA #IMPLIED>
+  <!ELEMENT columns (column*)>
+  <!ELEMENT indexes (index*)>
+  <!ELEMENT constraints (constraint*)>
+  <!ELEMENT column (default?)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED
+    nullable CDATA #REQUIRED
+    size CDATA #REQUIRED>
+  <!ELEMENT default ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT index ANY>
+  <!ATTLIST index
+    name CDATA #REQUIRED
+    unique CDATA #REQUIRED
+    columns CDATA #REQUIRED>
+  <!ELEMENT constraint ANY>
+  <!ATTLIST constraint
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED
+    index CDATA #IMPLIED
+    foreignkeytable CDATA #IMPLIED>
+  <!ELEMENT reference ANY>
+  <!ATTLIST reference
+    from CDATA #REQUIRED
+    to CDATA #REQUIRED>
+]>
+<databaseschema>
+  <table name='WAREHOUSE'>
+    <columns>
+      <column name='W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="540941256" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='W_NAME' type='VARCHAR' nullable='true' size='16'>
+        <default>
+          <value id="707866992" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_STREET_1' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="61130164" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_STREET_2' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="917483082" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_CITY' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1205573714" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_STATE' type='VARCHAR' nullable='true' size='2'>
+        <default>
+          <value id="569201753" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_ZIP' type='VARCHAR' nullable='true' size='9'>
+        <default>
+          <value id="1681698933" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='W_TAX' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="1281688764" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='W_YTD' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="2082077138" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_W_PK_TREE_10018' columns='W_ID' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='W_PK_TREE' type='PRIMARY_KEY' index='SYS_IDX_W_PK_TREE_10018' />
+    </constraints>
+  </table>
+  <table name='DISTRICT'>
+    <columns>
+      <column name='D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="224430501" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='D_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="1022146175" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='D_NAME' type='VARCHAR' nullable='true' size='16'>
+        <default>
+          <value id="1489070872" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_STREET_1' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="39723566" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_STREET_2' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1914043192" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_CITY' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="18895884" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_STATE' type='VARCHAR' nullable='true' size='2'>
+        <default>
+          <value id="1903026279" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_ZIP' type='VARCHAR' nullable='true' size='9'>
+        <default>
+          <value id="1688716382" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='D_TAX' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="1112353522" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='D_YTD' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="1480497119" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='D_NEXT_O_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1969544891" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_SYS_PK_10021_10022' columns='D_W_ID,D_ID' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='SYS_PK_10021' type='PRIMARY_KEY' index='SYS_IDX_SYS_PK_10021_10022' />
+    </constraints>
+  </table>
+  <table name='ITEM'>
+    <columns>
+      <column name='I_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="828048179" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='I_IM_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1311711893" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='I_NAME' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="2022149196" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='I_PRICE' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="185339750" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='I_DATA' type='VARCHAR' nullable='true' size='64'>
+        <default>
+          <value id="1153890100" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_I_PK_TREE_10024' columns='I_ID' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='I_PK_TREE' type='PRIMARY_KEY' index='SYS_IDX_I_PK_TREE_10024' />
+    </constraints>
+  </table>
+  <table name='CUSTOMER'>
+    <columns>
+      <column name='C_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="1653578290" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='C_D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="1104444203" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='C_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="1692558800" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='C_FIRST' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1267363438" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_MIDDLE' type='VARCHAR' nullable='true' size='2'>
+        <default>
+          <value id="1834491520" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_LAST' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="876256661" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_STREET_1' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1950333948" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_STREET_2' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="72276228" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_CITY' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1418303441" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_STATE' type='VARCHAR' nullable='true' size='2'>
+        <default>
+          <value id="357451187" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_ZIP' type='VARCHAR' nullable='true' size='9'>
+        <default>
+          <value id="1170339250" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_PHONE' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1089051877" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_SINCE' type='TIMESTAMP' nullable='false' size='8'>
+        <default>
+          <function name='CURRENT_TIMESTAMP' type='TIMESTAMP'>
+          </function>
+        </default>
+      </column>
+      <column name='C_CREDIT' type='VARCHAR' nullable='true' size='2'>
+        <default>
+          <value id="691773358" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_CREDIT_LIM' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="158363048" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='C_DISCOUNT' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="875509103" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='C_BALANCE' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="123544877" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='C_YTD_PAYMENT' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="1949544737" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='C_PAYMENT_CNT' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1840392480" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='C_DELIVERY_CNT' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1269443619" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='C_DATA' type='VARCHAR' nullable='true' size='500' />
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_SYS_PK_10029_10031' columns='C_W_ID,C_D_ID,C_ID' unique='true'>
+      </index>
+      <index name='SYS_IDX_SYS_CT_10030_10032' columns='C_W_ID,C_D_ID,C_LAST,C_FIRST' unique='true'>
+      </index>
+      <index name='IDX_CUSTOMER' columns='C_W_ID,C_D_ID,C_LAST' unique='false'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='SYS_PK_10029' type='PRIMARY_KEY' index='SYS_IDX_SYS_PK_10029_10031' />
+      <constraint name='SYS_CT_10030' type='UNIQUE' index='SYS_IDX_SYS_CT_10030_10032' />
+    </constraints>
+  </table>
+  <table name='CUSTOMER_NAME'>
+    <columns>
+      <column name='C_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="288871588" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='C_D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="1751737296" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='C_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="1595417149" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='C_FIRST' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="695206801" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='C_LAST' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="2029664727" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_10036' columns='' unique='true'>
+      </index>
+      <index name='IDX_CUSTOMER_NAME' columns='C_W_ID,C_D_ID,C_LAST' unique='false'>
+      </index>
+    </indexes>
+    <constraints>
+    </constraints>
+  </table>
+  <table name='HISTORY'>
+    <columns>
+      <column name='H_C_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1944817741" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='H_C_D_ID' type='TINYINT' nullable='true' size='1'>
+        <default>
+          <value id="1850665647" type="TINYINT" value="NULL" />
+        </default>
+      </column>
+      <column name='H_C_W_ID' type='SMALLINT' nullable='true' size='2'>
+        <default>
+          <value id="2131869628" type="SMALLINT" value="NULL" />
+        </default>
+      </column>
+      <column name='H_D_ID' type='TINYINT' nullable='true' size='1'>
+        <default>
+          <value id="1715671248" type="TINYINT" value="NULL" />
+        </default>
+      </column>
+      <column name='H_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="1023736867" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='H_DATE' type='TIMESTAMP' nullable='false' size='8'>
+        <default>
+          <function name='CURRENT_TIMESTAMP' type='TIMESTAMP'>
+          </function>
+        </default>
+      </column>
+      <column name='H_AMOUNT' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="306543905" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='H_DATA' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="270142182" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_10039' columns='' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+    </constraints>
+  </table>
+  <table name='STOCK'>
+    <columns>
+      <column name='S_I_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="499223116" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='S_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="224301783" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='S_QUANTITY' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="1006266396" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='S_DIST_01' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="885597447" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_02' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="27134372" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_03' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="780857040" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_04' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="591704463" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_05' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1927624031" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_06' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="638790375" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_07' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="879081272" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_08' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="31447144" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_09' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="251172046" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DIST_10' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="1643210767" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+      <column name='S_YTD' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="803660549" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='S_ORDER_CNT' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1598191060" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='S_REMOTE_CNT' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="71688744" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='S_DATA' type='VARCHAR' nullable='true' size='64'>
+        <default>
+          <value id="134394441" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_SYS_PK_10043_10044' columns='S_W_ID,S_I_ID' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='SYS_PK_10043' type='PRIMARY_KEY' index='SYS_IDX_SYS_PK_10043_10044' />
+    </constraints>
+  </table>
+  <table name='ORDERS'>
+    <columns>
+      <column name='O_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="1762056890" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='O_D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="1090658100" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='O_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="1917759555" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='O_C_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="202783062" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='O_ENTRY_D' type='TIMESTAMP' nullable='false' size='8'>
+        <default>
+          <function name='CURRENT_TIMESTAMP' type='TIMESTAMP'>
+          </function>
+        </default>
+      </column>
+      <column name='O_CARRIER_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="118375245" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='O_OL_CNT' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="962885593" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='O_ALL_LOCAL' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1928881406" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_SYS_PK_10049_10051' columns='O_W_ID,O_D_ID,O_ID' unique='true'>
+      </index>
+      <index name='SYS_IDX_SYS_CT_10050_10052' columns='O_W_ID,O_D_ID,O_C_ID,O_ID' unique='true'>
+      </index>
+      <index name='IDX_ORDERS' columns='O_W_ID,O_D_ID,O_C_ID' unique='false'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='SYS_PK_10049' type='PRIMARY_KEY' index='SYS_IDX_SYS_PK_10049_10051' />
+      <constraint name='SYS_CT_10050' type='UNIQUE' index='SYS_IDX_SYS_CT_10050_10052' />
+    </constraints>
+  </table>
+  <table name='NEW_ORDER'>
+    <columns>
+      <column name='NO_O_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="296655530" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='NO_D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="1579948023" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='NO_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="551127406" type="SMALLINT" value="0" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_NO_PK_TREE_10056' columns='NO_D_ID,NO_W_ID,NO_O_ID' unique='true'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='NO_PK_TREE' type='PRIMARY_KEY' index='SYS_IDX_NO_PK_TREE_10056' />
+    </constraints>
+  </table>
+  <table name='ORDER_LINE'>
+    <columns>
+      <column name='OL_O_ID' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="701343131" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='OL_D_ID' type='TINYINT' nullable='false' size='1'>
+        <default>
+          <value id="2083747981" type="TINYINT" value="0" />
+        </default>
+      </column>
+      <column name='OL_W_ID' type='SMALLINT' nullable='false' size='2'>
+        <default>
+          <value id="389001391" type="SMALLINT" value="0" />
+        </default>
+      </column>
+      <column name='OL_NUMBER' type='INTEGER' nullable='false' size='4'>
+        <default>
+          <value id="1006157069" type="INTEGER" value="0" />
+        </default>
+      </column>
+      <column name='OL_I_ID' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="1195622205" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='OL_SUPPLY_W_ID' type='SMALLINT' nullable='true' size='2'>
+        <default>
+          <value id="817914456" type="SMALLINT" value="NULL" />
+        </default>
+      </column>
+      <column name='OL_DELIVERY_D' type='TIMESTAMP' nullable='true' size='8'>
+        <default>
+          <value id="645437545" type="TIMESTAMP" value="NULL" />
+        </default>
+      </column>
+      <column name='OL_QUANTITY' type='INTEGER' nullable='true' size='4'>
+        <default>
+          <value id="928917818" type="INTEGER" value="NULL" />
+        </default>
+      </column>
+      <column name='OL_AMOUNT' type='FLOAT' nullable='true' size='8'>
+        <default>
+          <value id="115653436" type="FLOAT" value="NULL" />
+        </default>
+      </column>
+      <column name='OL_DIST_INFO' type='VARCHAR' nullable='true' size='32'>
+        <default>
+          <value id="314598317" type="VARCHAR" value="NULL" />
+        </default>
+      </column>
+    </columns>
+    <indexes>
+      <index name='SYS_IDX_SYS_PK_10061_10062' columns='OL_W_ID,OL_D_ID,OL_O_ID,OL_NUMBER' unique='true'>
+      </index>
+      <index name='IDX_ORDER_LINE_TREE' columns='OL_W_ID,OL_D_ID,OL_O_ID' unique='false'>
+      </index>
+    </indexes>
+    <constraints>
+      <constraint name='SYS_PK_10061' type='PRIMARY_KEY' index='SYS_IDX_SYS_PK_10061_10062' />
+    </constraints>
+  </table>
+</databaseschema>
+

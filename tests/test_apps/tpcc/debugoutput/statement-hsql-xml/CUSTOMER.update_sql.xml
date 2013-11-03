@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <update table="CUSTOMER">
+        <columns>
+            <column table="CUSTOMER" name="C_BALANCE">
+                <value id="1887707310" type="FLOAT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_CITY">
+                <value id="1920842039" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_CREDIT">
+                <value id="470484122" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_CREDIT_LIM">
+                <value id="391850200" type="FLOAT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_DATA">
+                <value id="1641449698" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_DELIVERY_CNT">
+                <value id="1270144924" type="INTEGER" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_DISCOUNT">
+                <value id="1338286488" type="FLOAT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_D_ID">
+                <value id="1984768785" type="TINYINT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_FIRST">
+                <value id="1145480644" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_ID">
+                <value id="2049772000" type="INTEGER" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_LAST">
+                <value id="585338826" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_MIDDLE">
+                <value id="167061675" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_PAYMENT_CNT">
+                <value id="1044445096" type="INTEGER" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_PHONE">
+                <value id="457397894" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_SINCE">
+                <value id="1642431845" type="TIMESTAMP" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_STATE">
+                <value id="597220377" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_STREET_1">
+                <value id="144310161" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_STREET_2">
+                <value id="911838464" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_W_ID">
+                <value id="825759456" type="SMALLINT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_YTD_PAYMENT">
+                <value id="1499850078" type="FLOAT" isparam="true" />
+            </column>
+            <column table="CUSTOMER" name="C_ZIP">
+                <value id="817212460" type="VARCHAR" isparam="true" />
+            </column>
+        </columns>
+        <parameters>
+            <parameter index='0' id='1887707310' type='FLOAT' />
+            <parameter index='1' id='1920842039' type='VARCHAR' />
+            <parameter index='2' id='470484122' type='VARCHAR' />
+            <parameter index='3' id='391850200' type='FLOAT' />
+            <parameter index='4' id='1641449698' type='VARCHAR' />
+            <parameter index='5' id='1270144924' type='INTEGER' />
+            <parameter index='6' id='1338286488' type='FLOAT' />
+            <parameter index='7' id='1984768785' type='TINYINT' />
+            <parameter index='8' id='1145480644' type='VARCHAR' />
+            <parameter index='9' id='2049772000' type='INTEGER' />
+            <parameter index='10' id='585338826' type='VARCHAR' />
+            <parameter index='11' id='167061675' type='VARCHAR' />
+            <parameter index='12' id='1044445096' type='INTEGER' />
+            <parameter index='13' id='457397894' type='VARCHAR' />
+            <parameter index='14' id='1642431845' type='TIMESTAMP' />
+            <parameter index='15' id='597220377' type='VARCHAR' />
+            <parameter index='16' id='144310161' type='VARCHAR' />
+            <parameter index='17' id='911838464' type='VARCHAR' />
+            <parameter index='18' id='825759456' type='SMALLINT' />
+            <parameter index='19' id='1499850078' type='FLOAT' />
+            <parameter index='20' id='817212460' type='VARCHAR' />
+            <parameter index='21' id='1731892655' type='TINYINT' />
+            <parameter index='22' id='926501147' type='INTEGER' />
+            <parameter index='23' id='300853232' type='SMALLINT' />
+        </parameters>
+        <tablescan type="sequential" table="CUSTOMER">
+            <postexp>
+                <operation id="-784341138" type="and">
+                    <operation id="1012185004" type="and">
+                        <operation id="-299299209" type="equal">
+                            <columnref id="1263765186" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+                            <value id="300853232" type="SMALLINT" isparam="true" />
+                        </operation>
+                        <operation id="1130143782" type="equal">
+                            <columnref id="1488212272" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+                            <value id="1731892655" type="TINYINT" isparam="true" />
+                        </operation>
+                    </operation>
+                    <operation id="-1635232463" type="equal">
+                        <columnref id="641618895" table="CUSTOMER" column="C_ID" alias="C_ID" />
+                        <value id="926501147" type="INTEGER" isparam="true" />
+                    </operation>
+                </operation>
+            </postexp>
+        </tablescan>
+        <condition>
+            <operation id="-784341138" type="and">
+                <operation id="1012185004" type="and">
+                    <operation id="-299299209" type="equal">
+                        <columnref id="1263765186" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+                        <value id="300853232" type="SMALLINT" isparam="true" />
+                    </operation>
+                    <operation id="1130143782" type="equal">
+                        <columnref id="1488212272" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+                        <value id="1731892655" type="TINYINT" isparam="true" />
+                    </operation>
+                </operation>
+                <operation id="-1635232463" type="equal">
+                    <columnref id="641618895" table="CUSTOMER" column="C_ID" alias="C_ID" />
+                    <value id="926501147" type="INTEGER" isparam="true" />
+                </operation>
+            </operation>
+        </condition>
+    </update>
+</statement>
+

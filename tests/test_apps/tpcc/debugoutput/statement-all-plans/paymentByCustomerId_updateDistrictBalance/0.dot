@@ -1,0 +1,17 @@
+digraph name {
+513 [label="513: SEQSCAN" ];
+513 -> 520;
+520 [label="520: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+519 [label="519: UPDATE" ];
+519 -> 513;
+514 [label="514: SEND" fontcolor="white" style="filled" fillcolor="black"];
+514 -> 519;
+515 [label="515: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+515 -> 514;
+521 [label="521: AGGREGATE" ];
+521 -> 515;
+522 [label="522: SEND" fontcolor="white" style="filled" fillcolor="black"];
+522 -> 521;
+
+}
+

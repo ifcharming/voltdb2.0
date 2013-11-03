@@ -1,0 +1,9 @@
+digraph name {
+587 [label="587: INDEXSCAN" ];
+587 -> 595;
+595 [label="595: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+596 [label="596: SEND" fontcolor="white" style="filled" fillcolor="black"];
+596 -> 587;
+
+}
+

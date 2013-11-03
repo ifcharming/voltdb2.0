@@ -1,0 +1,11 @@
+digraph name {
+178 [label="178: INDEXSCAN" ];
+178 -> 179;
+179 [label="179: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+185 [label="185: HASHAGGREGATE" ];
+185 -> 178;
+187 [label="187: SEND" fontcolor="white" style="filled" fillcolor="black"];
+187 -> 185;
+
+}
+

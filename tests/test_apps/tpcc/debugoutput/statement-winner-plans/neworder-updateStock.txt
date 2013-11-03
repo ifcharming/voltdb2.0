@@ -1,0 +1,7 @@
+SQL: UPDATE STOCK SET S_QUANTITY = ?, S_YTD = ?, S_ORDER_CNT = ?, S_REMOTE_CNT = ? WHERE S_I_ID = ? AND S_W_ID = ?;
+COST: 6.0
+PLAN:
+
+UPDATE
+ INDEX SCAN of "STOCK" using "SYS_IDX_SYS_PK_10043_10044" (unique-scan covering)
+

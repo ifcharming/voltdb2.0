@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<project>
+    <database name='database'>
+        <schemas>
+            <schema path='test1-ddl.sql' />
+        </schemas>
+        <procedures>
+            <procedure class='org.procedures.Insert' />
+            <procedure class='org.procedures.Delete' />
+            <procedure class='org.procedures.Select' />
+        </procedures>
+        <partitions>
+            <partition table='TEST1' column='TEST1_ID' />
+        </partitions>
+    </database>
+</project>

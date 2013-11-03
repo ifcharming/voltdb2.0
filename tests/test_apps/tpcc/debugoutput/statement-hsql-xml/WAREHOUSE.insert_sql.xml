@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <insert table="WAREHOUSE">
+        <columns>
+            <column table="WAREHOUSE" name="W_ID">
+                <value id="1213649225" type="SMALLINT" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_NAME">
+                <value id="1002845369" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_STREET_1">
+                <value id="1370455127" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_STREET_2">
+                <value id="1477205414" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_CITY">
+                <value id="332950131" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_STATE">
+                <value id="1697951282" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_ZIP">
+                <value id="1704495238" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_TAX">
+                <value id="19614086" type="FLOAT" isparam="true" />
+            </column>
+            <column table="WAREHOUSE" name="W_YTD">
+                <value id="1088945411" type="FLOAT" isparam="true" />
+            </column>
+        </columns>
+        <parameters>
+            <parameter index='0' id='1213649225' type='SMALLINT' />
+            <parameter index='1' id='1002845369' type='VARCHAR' />
+            <parameter index='2' id='1370455127' type='VARCHAR' />
+            <parameter index='3' id='1477205414' type='VARCHAR' />
+            <parameter index='4' id='332950131' type='VARCHAR' />
+            <parameter index='5' id='1697951282' type='VARCHAR' />
+            <parameter index='6' id='1704495238' type='VARCHAR' />
+            <parameter index='7' id='19614086' type='FLOAT' />
+            <parameter index='8' id='1088945411' type='FLOAT' />
+        </parameters>
+    </insert>
+</statement>
+

@@ -1,0 +1,15 @@
+digraph name {
+223 [label="223: SEQSCAN" ];
+223 -> 224;
+224 [label="224: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+225 [label="225: SEND" fontcolor="white" style="filled" fillcolor="black"];
+225 -> 223;
+226 [label="226: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+226 -> 225;
+231 [label="231: PROJECTION" ];
+231 -> 226;
+232 [label="232: SEND" fontcolor="white" style="filled" fillcolor="black"];
+232 -> 231;
+
+}
+

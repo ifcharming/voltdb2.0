@@ -1,0 +1,183 @@
+SQL: DELETE FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+COST: 6.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        1091,
+        1094
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [1091],
+            "ID": 1094,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "DELETE",
+            "TARGET_TABLE_NAME": "STOCK",
+            "TRUNCATE": false
+        },
+        {
+            "CHILDREN_IDS": [],
+            "END_EXPRESSION": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_I_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "ID": 1091,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 1095,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [{
+                    "COLUMN_ALIAS": "tuple_address",
+                    "COLUMN_NAME": "tuple_address",
+                    "EXPRESSION": {
+                        "TYPE": "VALUE_TUPLE_ADDRESS",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "BIGINT"
+                }],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "KEY_ITERATE": false,
+            "LOOKUP_TYPE": "EQ",
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "tuple_address",
+                "COLUMN_NAME": "tuple_address",
+                "EXPRESSION": {
+                    "TYPE": "VALUE_TUPLE_ADDRESS",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [1094],
+            "PLAN_NODE_TYPE": "INDEXSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_I_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SEARCHKEY_EXPRESSIONS": [
+                {
+                    "PARAM_IDX": 1,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                }
+            ],
+            "SORT_DIRECTION": "INVALID",
+            "TARGET_INDEX_NAME": "SYS_IDX_SYS_PK_10043_10044",
+            "TARGET_TABLE_NAME": "STOCK"
+        }
+    ]
+}

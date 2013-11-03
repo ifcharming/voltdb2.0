@@ -1,0 +1,17 @@
+digraph name {
+467 [label="467: INDEXSCAN" ];
+467 -> 482;
+482 [label="482: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+481 [label="481: UPDATE" ];
+481 -> 467;
+468 [label="468: SEND" fontcolor="white" style="filled" fillcolor="black"];
+468 -> 481;
+469 [label="469: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+469 -> 468;
+483 [label="483: AGGREGATE" ];
+483 -> 469;
+484 [label="484: SEND" fontcolor="white" style="filled" fillcolor="black"];
+484 -> 483;
+
+}
+

@@ -1,0 +1,9 @@
+digraph name {
+733 [label="733: SEQSCAN" ];
+733 -> 737;
+737 [label="737: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+738 [label="738: SEND" fontcolor="white" style="filled" fillcolor="black"];
+738 -> 733;
+
+}
+

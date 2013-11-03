@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------------
+                  stats : 
+       display-interval : 30
+               duration : 120
+                servers : localhost
+                   port : 21212
+            contestants : 6
+              max-votes : 2
+             rate-limit : 100000
+              auto-tune : false
+         latency-target : 50.0
+-------------------------------------------------------------------------------------
+Connecting to servers: localhost at port: 21212
+Connected.  Starting benchmark.
+Exception: org.voltdb.client.NoConnectionsException: No connections.

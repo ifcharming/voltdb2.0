@@ -1,0 +1,189 @@
+SQL: SELECT D_NEXT_O_ID FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+COST: 6.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        879,
+        884
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [879],
+            "ID": 884,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "D_NEXT_O_ID",
+                "COLUMN_NAME": "D_NEXT_O_ID",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "D_NEXT_O_ID",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "D_NEXT_O_ID",
+                    "TABLE_NAME": "DISTRICT",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "SIZE": 4,
+                "TABLE_NAME": "DISTRICT",
+                "TYPE": "INTEGER"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "END_EXPRESSION": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "D_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "D_W_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "ID": 879,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 883,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [{
+                    "COLUMN_ALIAS": "D_NEXT_O_ID",
+                    "COLUMN_NAME": "D_NEXT_O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "D_NEXT_O_ID",
+                        "COLUMN_IDX": 10,
+                        "COLUMN_NAME": "D_NEXT_O_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "DISTRICT",
+                    "TYPE": "INTEGER"
+                }],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "KEY_ITERATE": false,
+            "LOOKUP_TYPE": "EQ",
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "D_NEXT_O_ID",
+                "COLUMN_NAME": "D_NEXT_O_ID",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "D_NEXT_O_ID",
+                    "COLUMN_IDX": 10,
+                    "COLUMN_NAME": "D_NEXT_O_ID",
+                    "TABLE_NAME": "DISTRICT",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "SIZE": 4,
+                "TABLE_NAME": "DISTRICT",
+                "TYPE": "INTEGER"
+            }],
+            "PARENT_IDS": [884],
+            "PLAN_NODE_TYPE": "INDEXSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "D_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "D_W_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SEARCHKEY_EXPRESSIONS": [
+                {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                {
+                    "PARAM_IDX": 1,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 1,
+                    "VALUE_TYPE": "TINYINT"
+                }
+            ],
+            "SORT_DIRECTION": "INVALID",
+            "TARGET_INDEX_NAME": "SYS_IDX_SYS_PK_10021_10022",
+            "TARGET_TABLE_NAME": "DISTRICT"
+        }
+    ]
+}

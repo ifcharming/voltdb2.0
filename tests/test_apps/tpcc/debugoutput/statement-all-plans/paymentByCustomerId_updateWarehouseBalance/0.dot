@@ -1,0 +1,17 @@
+digraph name {
+435 [label="435: SEQSCAN" ];
+435 -> 442;
+442 [label="442: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+441 [label="441: UPDATE" ];
+441 -> 435;
+436 [label="436: SEND" fontcolor="white" style="filled" fillcolor="black"];
+436 -> 441;
+437 [label="437: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+437 -> 436;
+443 [label="443: AGGREGATE" ];
+443 -> 437;
+444 [label="444: SEND" fontcolor="white" style="filled" fillcolor="black"];
+444 -> 443;
+
+}
+

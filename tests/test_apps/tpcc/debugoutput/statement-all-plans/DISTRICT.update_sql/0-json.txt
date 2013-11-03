@@ -1,0 +1,410 @@
+SQL: UPDATE DISTRICT SET D_CITY = ?, D_ID = ?, D_NAME = ?, D_NEXT_O_ID = ?, D_STATE = ?, D_STREET_1 = ?, D_STREET_2 = ?, D_TAX = ?, D_W_ID = ?, D_YTD = ?, D_ZIP = ? WHERE (D_ID = ?) AND (D_W_ID = ?);
+COST: 2000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        978,
+        980
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [978],
+            "ID": 980,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "UPDATE",
+            "TARGET_TABLE_NAME": "DISTRICT",
+            "UPDATES_INDEXES": true
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 978,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 981,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "tuple_address",
+                        "COLUMN_NAME": "tuple_address",
+                        "EXPRESSION": {
+                            "TYPE": "VALUE_TUPLE_ADDRESS",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "BIGINT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "BIGINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_CITY",
+                        "COLUMN_NAME": "D_CITY",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 0,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_ID",
+                        "COLUMN_NAME": "D_ID",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "SIZE": 1,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "TINYINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_NAME",
+                        "COLUMN_NAME": "D_NAME",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 2,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 16,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 16,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_NEXT_O_ID",
+                        "COLUMN_NAME": "D_NEXT_O_ID",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 3,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_STATE",
+                        "COLUMN_NAME": "D_STATE",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 4,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_STREET_1",
+                        "COLUMN_NAME": "D_STREET_1",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 5,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_STREET_2",
+                        "COLUMN_NAME": "D_STREET_2",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 6,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_TAX",
+                        "COLUMN_NAME": "D_TAX",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 7,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_W_ID",
+                        "COLUMN_NAME": "D_W_ID",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 8,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_YTD",
+                        "COLUMN_NAME": "D_YTD",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 9,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "D_ZIP",
+                        "COLUMN_NAME": "D_ZIP",
+                        "EXPRESSION": {
+                            "PARAM_IDX": 10,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 9,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 9,
+                        "TABLE_NAME": "VOLT_TEMP_TABLE",
+                        "TYPE": "STRING"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "tuple_address",
+                    "COLUMN_NAME": "tuple_address",
+                    "EXPRESSION": {
+                        "TYPE": "VALUE_TUPLE_ADDRESS",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "BIGINT"
+                },
+                {
+                    "COLUMN_ALIAS": "D_CITY",
+                    "COLUMN_NAME": "D_CITY",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "D_ID",
+                    "COLUMN_NAME": "D_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "D_NAME",
+                    "COLUMN_NAME": "D_NAME",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 2,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "D_NEXT_O_ID",
+                    "COLUMN_NAME": "D_NEXT_O_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 3,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "D_STATE",
+                    "COLUMN_NAME": "D_STATE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 4,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "D_STREET_1",
+                    "COLUMN_NAME": "D_STREET_1",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 5,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "D_STREET_2",
+                    "COLUMN_NAME": "D_STREET_2",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 6,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "D_TAX",
+                    "COLUMN_NAME": "D_TAX",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 7,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "D_W_ID",
+                    "COLUMN_NAME": "D_W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 8,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "D_YTD",
+                    "COLUMN_NAME": "D_YTD",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 9,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "D_ZIP",
+                    "COLUMN_NAME": "D_ZIP",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 10,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [980],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "D_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 11,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "D_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "D_W_ID",
+                        "TABLE_NAME": "DISTRICT",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 12,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "DISTRICT"
+        }
+    ]
+}

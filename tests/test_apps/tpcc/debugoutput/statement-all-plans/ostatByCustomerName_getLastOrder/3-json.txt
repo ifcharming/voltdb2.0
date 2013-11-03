@@ -1,0 +1,650 @@
+SQL: SELECT O_ID, O_CARRIER_ID, O_ENTRY_D FROM ORDERS WHERE O_W_ID = ? AND O_D_ID = ? AND O_C_ID = ? ORDER BY O_ID DESC LIMIT 1
+COST: 4940.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        29,
+        46,
+        47,
+        49,
+        50
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [49],
+            "ID": 50,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_NAME": "O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "O_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_CARRIER_ID",
+                    "COLUMN_NAME": "O_CARRIER_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_ENTRY_D",
+                    "COLUMN_NAME": "O_ENTRY_D",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TIMESTAMP"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [47],
+            "ID": 49,
+            "INLINE_NODES": [],
+            "LIMIT": 1,
+            "LIMIT_PARAM_IDX": -1,
+            "OFFSET": 0,
+            "OFFSET_PARAM_IDX": -1,
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_NAME": "O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "O_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_CARRIER_ID",
+                    "COLUMN_NAME": "O_CARRIER_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_ENTRY_D",
+                    "COLUMN_NAME": "O_ENTRY_D",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TIMESTAMP"
+                }
+            ],
+            "PARENT_IDS": [50],
+            "PLAN_NODE_TYPE": "LIMIT"
+        },
+        {
+            "CHILDREN_IDS": [46],
+            "ID": 47,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_NAME": "O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "O_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_CARRIER_ID",
+                    "COLUMN_NAME": "O_CARRIER_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_ENTRY_D",
+                    "COLUMN_NAME": "O_ENTRY_D",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TIMESTAMP"
+                }
+            ],
+            "PARENT_IDS": [49],
+            "PLAN_NODE_TYPE": "PROJECTION"
+        },
+        {
+            "CHILDREN_IDS": [29],
+            "ID": 46,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_NAME": "O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "O_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_D_ID",
+                    "COLUMN_NAME": "O_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "O_D_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "O_W_ID",
+                    "COLUMN_NAME": "O_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_W_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "O_C_ID",
+                    "COLUMN_NAME": "O_C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_C_ID",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "O_C_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_ENTRY_D",
+                    "COLUMN_NAME": "O_ENTRY_D",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "O_CARRIER_ID",
+                    "COLUMN_NAME": "O_CARRIER_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [47],
+            "PLAN_NODE_TYPE": "ORDERBY",
+            "SORT_COLUMNS": [{
+                "SORT_DIRECTION": "DESC",
+                "SORT_EXPRESSION": {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "O_ID",
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                }
+            }]
+        },
+        {
+            "CHILDREN_IDS": [],
+            "END_EXPRESSION": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "O_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "O_D_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_W_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "ID": 29,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 30,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_NAME": "O_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "O_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "O_D_ID",
+                        "COLUMN_NAME": "O_D_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "O_D_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "SIZE": 1,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "TINYINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_NAME": "O_W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "O_W_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "O_C_ID",
+                        "COLUMN_NAME": "O_C_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_C_ID",
+                            "COLUMN_IDX": 3,
+                            "COLUMN_NAME": "O_C_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_ENTRY_D",
+                            "COLUMN_IDX": 4,
+                            "COLUMN_NAME": "O_ENTRY_D",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "TIMESTAMP"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "TIMESTAMP"
+                    },
+                    {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "O_CARRIER_ID",
+                            "COLUMN_IDX": 5,
+                            "COLUMN_NAME": "O_CARRIER_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "INTEGER"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "KEY_ITERATE": false,
+            "LOOKUP_TYPE": "GT",
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "O_ID",
+                    "COLUMN_NAME": "O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "O_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_D_ID",
+                    "COLUMN_NAME": "O_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "O_D_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "O_W_ID",
+                    "COLUMN_NAME": "O_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_W_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "O_C_ID",
+                    "COLUMN_NAME": "O_C_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_C_ID",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "O_C_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "O_ENTRY_D",
+                    "COLUMN_NAME": "O_ENTRY_D",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_ENTRY_D",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "O_ENTRY_D",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "O_CARRIER_ID",
+                    "COLUMN_NAME": "O_CARRIER_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "O_CARRIER_ID",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "O_CARRIER_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDERS",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [46],
+            "PLAN_NODE_TYPE": "INDEXSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "O_C_ID",
+                            "COLUMN_IDX": 3,
+                            "COLUMN_NAME": "O_C_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 2,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "O_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "O_D_ID",
+                            "TABLE_NAME": "ORDERS",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "O_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "O_W_ID",
+                        "TABLE_NAME": "ORDERS",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SEARCHKEY_EXPRESSIONS": [
+                {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                {
+                    "PARAM_IDX": 1,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 1,
+                    "VALUE_TYPE": "TINYINT"
+                }
+            ],
+            "SORT_DIRECTION": "INVALID",
+            "TARGET_INDEX_NAME": "SYS_IDX_SYS_PK_10049_10051",
+            "TARGET_TABLE_NAME": "ORDERS"
+        }
+    ]
+}

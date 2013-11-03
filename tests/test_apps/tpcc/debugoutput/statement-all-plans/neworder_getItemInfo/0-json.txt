@@ -1,0 +1,203 @@
+SQL: SELECT I_PRICE, I_NAME, I_DATA FROM ITEM WHERE I_ID = ?;
+COST: 2000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        649,
+        654
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [649],
+            "ID": 654,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "I_PRICE",
+                    "COLUMN_NAME": "I_PRICE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_PRICE",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "I_PRICE",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "I_NAME",
+                    "COLUMN_NAME": "I_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_NAME",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "I_NAME",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "I_DATA",
+                    "COLUMN_NAME": "I_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_DATA",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "I_DATA",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 64,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 64,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 649,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 653,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "I_PRICE",
+                        "COLUMN_NAME": "I_PRICE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "I_PRICE",
+                            "COLUMN_IDX": 3,
+                            "COLUMN_NAME": "I_PRICE",
+                            "TABLE_NAME": "ITEM",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "FLOAT"
+                        },
+                        "SIZE": 8,
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "FLOAT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "I_NAME",
+                        "COLUMN_NAME": "I_NAME",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "I_NAME",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "I_NAME",
+                            "TABLE_NAME": "ITEM",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "I_DATA",
+                        "COLUMN_NAME": "I_DATA",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "I_DATA",
+                            "COLUMN_IDX": 4,
+                            "COLUMN_NAME": "I_DATA",
+                            "TABLE_NAME": "ITEM",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 64,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 64,
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "STRING"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "I_PRICE",
+                    "COLUMN_NAME": "I_PRICE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_PRICE",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "I_PRICE",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "I_NAME",
+                    "COLUMN_NAME": "I_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_NAME",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "I_NAME",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "I_DATA",
+                    "COLUMN_NAME": "I_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "I_DATA",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "I_DATA",
+                        "TABLE_NAME": "ITEM",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 64,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 64,
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [654],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "COLUMN_ALIAS": "I_ID",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "I_ID",
+                    "TABLE_NAME": "ITEM",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "RIGHT": {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "TYPE": "COMPARE_EQUAL",
+                "VALUE_SIZE": 8,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "ITEM"
+        }
+    ]
+}

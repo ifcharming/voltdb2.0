@@ -1,0 +1,9 @@
+digraph name {
+139 [label="139: SEQSCAN" ];
+139 -> 143;
+143 [label="143: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+142 [label="142: UPDATE" ];
+142 -> 139;
+
+}
+

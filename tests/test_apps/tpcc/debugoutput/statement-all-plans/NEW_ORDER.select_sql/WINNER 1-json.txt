@@ -1,0 +1,347 @@
+SQL: SELECT * FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+COST: 6.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        986,
+        991
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [986],
+            "ID": 991,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "NO_O_ID",
+                    "COLUMN_NAME": "NO_O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "NO_O_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_D_ID",
+                    "COLUMN_NAME": "NO_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "NO_D_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_W_ID",
+                    "COLUMN_NAME": "NO_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "NO_W_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "SMALLINT"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "END_EXPRESSION": {
+                "LEFT": {
+                    "LEFT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "NO_O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "NO_O_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "NO_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "NO_W_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 2,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "NO_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "NO_D_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "ID": 986,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 990,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "NO_O_ID",
+                        "COLUMN_NAME": "NO_O_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "NO_O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "NO_O_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "NO_D_ID",
+                        "COLUMN_NAME": "NO_D_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "NO_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "NO_D_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "SIZE": 1,
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "TINYINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "NO_W_ID",
+                        "COLUMN_NAME": "NO_W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "NO_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "NO_W_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "SMALLINT"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "KEY_ITERATE": false,
+            "LOOKUP_TYPE": "EQ",
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "NO_O_ID",
+                    "COLUMN_NAME": "NO_O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "NO_O_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_D_ID",
+                    "COLUMN_NAME": "NO_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "NO_D_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_W_ID",
+                    "COLUMN_NAME": "NO_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "NO_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "NO_W_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "NEW_ORDER",
+                    "TYPE": "SMALLINT"
+                }
+            ],
+            "PARENT_IDS": [991],
+            "PLAN_NODE_TYPE": "INDEXSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "NO_O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "NO_O_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 1,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "NO_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "NO_W_ID",
+                            "TABLE_NAME": "NEW_ORDER",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 2,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "NO_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "NO_D_ID",
+                        "TABLE_NAME": "NEW_ORDER",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SEARCHKEY_EXPRESSIONS": [
+                {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 1,
+                    "VALUE_TYPE": "TINYINT"
+                },
+                {
+                    "PARAM_IDX": 2,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                {
+                    "PARAM_IDX": 1,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                }
+            ],
+            "SORT_DIRECTION": "INVALID",
+            "TARGET_INDEX_NAME": "SYS_IDX_NO_PK_TREE_10056",
+            "TARGET_TABLE_NAME": "NEW_ORDER"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+digraph name {
+176 [label="176: SEQSCAN" ];
+176 -> 177;
+177 [label="177: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+182 [label="182: HASHAGGREGATE" ];
+182 -> 176;
+184 [label="184: SEND" fontcolor="white" style="filled" fillcolor="black"];
+184 -> 182;
+
+}
+

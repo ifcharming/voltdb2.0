@@ -1,0 +1,17 @@
+digraph name {
+854 [label="854: INDEXSCAN" ];
+854 -> 855;
+855 [label="855: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+858 [label="858: NESTLOOPINDEX" ];
+858 -> 856;
+856 [label="856: INDEXSCAN" fontcolor="white" style="filled" fillcolor="red"];
+856 -> 857;
+857 [label="857: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+858 -> 854;
+874 [label="874: HASHAGGREGATE" ];
+874 -> 858;
+876 [label="876: SEND" fontcolor="white" style="filled" fillcolor="black"];
+876 -> 874;
+
+}
+

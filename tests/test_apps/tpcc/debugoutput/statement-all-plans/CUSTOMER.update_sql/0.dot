@@ -1,0 +1,9 @@
+digraph name {
+950 [label="950: SEQSCAN" ];
+950 -> 955;
+955 [label="955: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+954 [label="954: UPDATE" ];
+954 -> 950;
+
+}
+

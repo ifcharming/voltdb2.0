@@ -1,0 +1,56 @@
+Chaomins-MacBook-Pro:voter chaominy$ ./run.sh client
+-------------------------------------------------------------------------------------
+                  stats :
+                         display-interval : 30
+                                        duration : 120
+                                                        servers : localhost
+                                                                           port : 21212
+                                                                                       contestants : 6
+                                                                                                     max-votes : 2
+                                                                                                                  rate-limit : 100000
+                                                                                                                                auto-tune : false
+                                                                                                                                         latency-target : 50.0
+                                                                                                                                         -------------------------------------------------------------------------------------
+                                                                                                                                         Connecting to servers: localhost at port: 21212
+                                                                                                                                         No logging configuration supplied via -Dlog4j.configuration. Supplying default config that logs INFO or higher to STDOUT
+                                                                                                                                         Connected.  Starting benchmark.
+                                                                                                                                         00:00:30 | Txn.:   2,218,465 @    73,911.9 TPS | Lat. =       5 <    39.95 <     244
+                                                                                                                                         00:01:00 | Txn.:   4,510,753 @    75,183.0 TPS | Lat. =       3 <    39.52 <     244
+                                                                                                                                         00:01:30 | Txn.:   6,802,920 @    75,590.5 TPS | Lat. =       3 <    39.41 <     244
+                                                                                                                                         00:02:00 | Txn.:   9,103,374 @    75,863.3 TPS | Lat. =       2 <    39.31 <     244
+                                                                                                                                         -------------------------------------------------------------------------------------
+                                                                                                                                          Voting Results
+                                                                                                                                          -------------------------------------------------------------------------------------
+
+                                                                                                                                          A total of 9103426 votes was received...
+                                                                                                                                           - 9,012,287 Accepted
+                                                                                                                                            -    91,122 Rejected (Invalid Contestant)
+                                                                                                                                             -        25 Rejected (Maximum Vote Count Reached)
+                                                                                                                                              -         0 Failed (Transaction Error)
+
+
+                                                                                                                                              -------------------------------------------------------------------------------------
+                                                                                                                                              Contestant Name       Votes Received
+                                                                                                                                              Edwina Burnam          2,521,604
+                                                                                                                                              Jessie Eichman             1,853,634
+                                                                                                                                              Alana Bregman          1,265,879
+                                                                                                                                              Kelly Clauss           1,154,576
+                                                                                                                                              Tabatha Gehling            1,121,254
+                                                                                                                                              Jessie Alloway             1,098,300
+
+
+                                                                                                                                              The Winner is: Edwina Burnam
+                                                                                                                                              -------------------------------------------------------------------------------------
+
+
+                                                                                                                                              -------------------------------------------------------------------------------------
+                                                                                                                                               System Statistics
+                                                                                                                                               -------------------------------------------------------------------------------------
+
+
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               Final:   | Txn.:   9,106,417 @    75,841.3 TPS | Lat. =       2 <    39.31 <     244
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               Lat.:     25 <     50 <     75 <    100 <    150 <    200 <    250 <    300 <    300+
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               %      36.23 |  38.07 |  13.19 |   8.99 |   3.40 |   0.08 |   0.04 |   0.00 |   0.00

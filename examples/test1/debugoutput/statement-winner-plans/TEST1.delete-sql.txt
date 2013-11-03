@@ -1,0 +1,7 @@
+SQL: DELETE FROM TEST1 WHERE (TEST1_ID = ?);
+COST: 6.0
+PLAN:
+
+DELETE
+ INDEX SCAN of "TEST1" using "SYS_IDX_SYS_PK_10018_10019" (unique-scan covering)
+

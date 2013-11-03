@@ -1,0 +1,86 @@
+SQL: INSERT INTO NEW_ORDER (NO_O_ID, NO_D_ID, NO_W_ID) VALUES (?, ?, ?);
+COST: 0.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        668,
+        667
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [668],
+            "ID": 667,
+            "INLINE_NODES": [],
+            "MULTI_PARTITION": false,
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "INSERT",
+            "TARGET_TABLE_NAME": "NEW_ORDER"
+        },
+        {
+            "BATCHED": false,
+            "CHILDREN_IDS": [],
+            "ID": 668,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "NO_O_ID",
+                    "COLUMN_NAME": "NO_O_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_D_ID",
+                    "COLUMN_NAME": "NO_D_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "NO_W_ID",
+                    "COLUMN_NAME": "NO_W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 2,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                }
+            ],
+            "PARENT_IDS": [667],
+            "PLAN_NODE_TYPE": "MATERIALIZE"
+        }
+    ]
+}

@@ -1,0 +1,419 @@
+INFO  20:29:30,453   [main] COMPILER: Path to catalog tpcc-ddl.sql
+INFO  20:29:31,301   [main] COMPILER: [project.xml]: Created index: SYS_IDX_W_PK_TREE_10018 on table: WAREHOUSE of type: BALANCED_TREE
+INFO  20:29:31,316   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_PK_10021_10022 on table: DISTRICT of type: BALANCED_TREE
+INFO  20:29:31,318   [main] COMPILER: [project.xml]: Created index: SYS_IDX_I_PK_TREE_10024 on table: ITEM of type: BALANCED_TREE
+INFO  20:29:31,324   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_PK_10029_10031 on table: CUSTOMER of type: BALANCED_TREE
+INFO  20:29:31,325   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_CT_10030_10032 on table: CUSTOMER of type: BALANCED_TREE
+INFO  20:29:31,325   [main] COMPILER: [project.xml]: Created index: IDX_CUSTOMER on table: CUSTOMER of type: BALANCED_TREE
+INFO  20:29:31,328   [main] COMPILER: [project.xml]: Created index: IDX_CUSTOMER_NAME on table: CUSTOMER_NAME of type: BALANCED_TREE
+INFO  20:29:31,335   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_PK_10043_10044 on table: STOCK of type: BALANCED_TREE
+INFO  20:29:31,338   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_PK_10049_10051 on table: ORDERS of type: BALANCED_TREE
+INFO  20:29:31,338   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_CT_10050_10052 on table: ORDERS of type: BALANCED_TREE
+INFO  20:29:31,338   [main] COMPILER: [project.xml]: Created index: IDX_ORDERS on table: ORDERS of type: BALANCED_TREE
+INFO  20:29:31,340   [main] COMPILER: [project.xml]: Created index: SYS_IDX_NO_PK_TREE_10056 on table: NEW_ORDER of type: BALANCED_TREE
+INFO  20:29:31,343   [main] COMPILER: [project.xml]: Created index: SYS_IDX_SYS_PK_10061_10062 on table: ORDER_LINE of type: BALANCED_TREE
+INFO  20:29:31,344   [main] COMPILER: [project.xml]: Created index: IDX_ORDER_LINE_TREE on table: ORDER_LINE of type: BALANCED_TREE
+INFO  20:29:31,396   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM CUSTOMER WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?); for CUSTOMER with partitioning: CUSTOMER.C_W_ID:2
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); for CUSTOMER with partitioning: CUSTOMER.C_W_ID:18
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE CUSTOMER SET C_BALANCE = ?, C_CITY = ?, C_CREDIT = ?, C_CREDIT_LIM = ?, C_DATA = ?, C_DELIVERY_CNT = ?, C_DISCOUNT = ?, C_D_ID = ?, C_FIRST = ?, C_ID = ?, C_LAST = ?, C_MIDDLE = ?, C_PAYMENT_CNT = ?, C_PHONE = ?, C_SINCE = ?, C_STATE = ?, C_STREET_1 = ?, C_STREET_2 = ?, C_W_ID = ?, C_YTD_PAYMENT = ?, C_ZIP = ? WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?); for CUSTOMER with partitioning: CUSTOMER.C_W_ID:23
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM DISTRICT WHERE (D_ID = ?) AND (D_W_ID = ?); for DISTRICT with partitioning: DISTRICT.D_W_ID:1
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO DISTRICT VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); for DISTRICT with partitioning: DISTRICT.D_W_ID:8
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE DISTRICT SET D_CITY = ?, D_ID = ?, D_NAME = ?, D_NEXT_O_ID = ?, D_STATE = ?, D_STREET_1 = ?, D_STREET_2 = ?, D_TAX = ?, D_W_ID = ?, D_YTD = ?, D_ZIP = ? WHERE (D_ID = ?) AND (D_W_ID = ?); for DISTRICT with partitioning: DISTRICT.D_W_ID:12
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?); for NEW_ORDER with partitioning: NEW_ORDER.NO_W_ID:2
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO NEW_ORDER VALUES (?, ?, ?); for NEW_ORDER with partitioning: NEW_ORDER.NO_W_ID:2
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE NEW_ORDER SET NO_D_ID = ?, NO_O_ID = ?, NO_W_ID = ? WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?); for NEW_ORDER with partitioning: NEW_ORDER.NO_W_ID:5
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM ORDERS WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?); for ORDERS with partitioning: ORDERS.O_W_ID:2
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO ORDERS VALUES (?, ?, ?, ?, ?, ?, ?, ?); for ORDERS with partitioning: ORDERS.O_W_ID:7
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE ORDERS SET O_ALL_LOCAL = ?, O_CARRIER_ID = ?, O_C_ID = ?, O_D_ID = ?, O_ENTRY_D = ?, O_ID = ?, O_OL_CNT = ?, O_W_ID = ? WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?); for ORDERS with partitioning: ORDERS.O_W_ID:10
+INFO  20:29:31,397   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM ORDER_LINE WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?); for ORDER_LINE with partitioning: ORDER_LINE.OL_W_ID:3
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO ORDER_LINE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?); for ORDER_LINE with partitioning: ORDER_LINE.OL_W_ID:9
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE ORDER_LINE SET OL_AMOUNT = ?, OL_DELIVERY_D = ?, OL_DIST_INFO = ?, OL_D_ID = ?, OL_I_ID = ?, OL_NUMBER = ?, OL_O_ID = ?, OL_QUANTITY = ?, OL_SUPPLY_W_ID = ?, OL_W_ID = ? WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?); for ORDER_LINE with partitioning: ORDER_LINE.OL_W_ID:13
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?); for STOCK with partitioning: STOCK.S_W_ID:1
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO STOCK VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); for STOCK with partitioning: STOCK.S_W_ID:15
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE STOCK SET S_DATA = ?, S_DIST_01 = ?, S_DIST_02 = ?, S_DIST_03 = ?, S_DIST_04 = ?, S_DIST_05 = ?, S_DIST_06 = ?, S_DIST_07 = ?, S_DIST_08 = ?, S_DIST_09 = ?, S_DIST_10 = ?, S_I_ID = ?, S_ORDER_CNT = ?, S_QUANTITY = ?, S_REMOTE_CNT = ?, S_W_ID = ?, S_YTD = ? WHERE (S_I_ID = ?) AND (S_W_ID = ?); for STOCK with partitioning: STOCK.S_W_ID:18
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM WAREHOUSE WHERE (W_ID = ?); for WAREHOUSE with partitioning: WAREHOUSE.W_ID:0
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in INSERT procedure: INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?); for WAREHOUSE with partitioning: WAREHOUSE.W_ID:1
+INFO  20:29:31,398   [main] COMPILER: Synthesized built-in UPDATE procedure: UPDATE WAREHOUSE SET W_CITY = ?, W_ID = ?, W_NAME = ?, W_STATE = ?, W_STREET_1 = ?, W_STREET_2 = ?, W_TAX = ?, W_YTD = ?, W_ZIP = ? WHERE (W_ID = ?); for WAREHOUSE with partitioning: WAREHOUSE.W_ID:9
+INFO  20:29:31,426   [main] COMPILER: [LoadWarehouse.class]: Compiling Statement: INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:31,528   [main] COMPILER: [LoadWarehouseReplicated.class]: Compiling Statement: INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:31,572   [main] COMPILER: [LoadWarehouseReplicated.class]: Compiling Statement: SELECT * FROM ITEM LIMIT 1
+INFO  20:29:31,619   [main] COMPILER: [ostatByCustomerName.class]: Compiling Statement: SELECT OL_SUPPLY_W_ID, OL_I_ID, OL_QUANTITY, OL_AMOUNT, OL_DELIVERY_D FROM ORDER_LINE WHERE OL_W_ID = ? AND OL_O_ID = ? AND OL_D_ID = ?
+INFO  20:29:31,690   [main] COMPILER: [ostatByCustomerName.class]: Compiling Statement: SELECT O_ID, O_CARRIER_ID, O_ENTRY_D FROM ORDERS WHERE O_W_ID = ? AND O_D_ID = ? AND O_C_ID = ? ORDER BY O_ID DESC LIMIT 1
+INFO  20:29:31,773   [main] COMPILER: [ostatByCustomerName.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_BALANCE FROM CUSTOMER WHERE C_W_ID = ? AND C_D_ID = ? AND C_LAST = ? ORDER BY C_FIRST;
+INFO  20:29:31,856   [main] COMPILER: [ostatByCustomerId.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_BALANCE FROM CUSTOMER WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:31,904   [main] COMPILER: [ostatByCustomerId.class]: Compiling Statement: SELECT OL_SUPPLY_W_ID, OL_I_ID, OL_QUANTITY, OL_AMOUNT, OL_DELIVERY_D FROM ORDER_LINE WHERE OL_W_ID = ? AND OL_O_ID = ? AND OL_D_ID = ?
+INFO  20:29:31,944   [main] COMPILER: [ostatByCustomerId.class]: Compiling Statement: SELECT O_ID, O_CARRIER_ID, O_ENTRY_D FROM ORDERS WHERE O_W_ID = ? AND O_D_ID = ? AND O_C_ID = ? ORDER BY O_ID DESC LIMIT 1
+INFO  20:29:32,008   [main] COMPILER: [delivery.class]: Compiling Statement: UPDATE ORDERS SET O_CARRIER_ID = ? WHERE O_ID = ? AND O_D_ID = ? AND O_W_ID = ?;
+INFO  20:29:32,036   [main] COMPILER: [delivery.class]: Compiling Statement: UPDATE ORDER_LINE SET OL_DELIVERY_D = ? WHERE OL_O_ID = ? AND OL_D_ID = ? AND OL_W_ID = ?;
+INFO  20:29:32,059   [main] COMPILER: [delivery.class]: Compiling Statement: SELECT O_C_ID FROM ORDERS WHERE O_ID = ? AND O_D_ID = ? AND O_W_ID = ?;
+INFO  20:29:32,086   [main] COMPILER: [delivery.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = C_BALANCE + ? WHERE C_ID = ? AND C_D_ID = ? AND C_W_ID = ?;
+INFO  20:29:32,114   [main] COMPILER: [delivery.class]: Compiling Statement: SELECT SUM(OL_AMOUNT) FROM ORDER_LINE WHERE OL_O_ID = ? AND OL_D_ID = ? AND OL_W_ID = ?;
+INFO  20:29:32,146   [main] COMPILER: [delivery.class]: Compiling Statement: DELETE FROM NEW_ORDER WHERE NO_D_ID = ? AND NO_W_ID = ? AND NO_O_ID = ?;
+INFO  20:29:32,165   [main] COMPILER: [delivery.class]: Compiling Statement: SELECT NO_O_ID FROM NEW_ORDER WHERE NO_D_ID = ? AND NO_W_ID = ? AND NO_O_ID > -1 LIMIT 1;
+INFO  20:29:32,188   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+INFO  20:29:32,209   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHERE W_ID = ?;
+INFO  20:29:32,241   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,275   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,294   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,326   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,359   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:32,396   [main] COMPILER: [paymentByCustomerName.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE, C_ZIP, C_PHONE, C_SINCE, C_CREDIT, C_CREDIT_LIM, C_DISCOUNT, C_BALANCE, C_YTD_PAYMENT, C_PAYMENT_CNT, C_DATA FROM CUSTOMER WHERE C_LAST = ? AND C_D_ID = ? AND C_W_ID = ? ORDER BY C_FIRST;
+INFO  20:29:32,510   [main] COMPILER: [paymentByCustomerNameC.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,535   [main] COMPILER: [paymentByCustomerNameC.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,557   [main] COMPILER: [paymentByCustomerNameC.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE, C_ZIP, C_PHONE, C_SINCE, C_CREDIT, C_CREDIT_LIM, C_DISCOUNT, C_BALANCE, C_YTD_PAYMENT, C_PAYMENT_CNT, C_DATA FROM CUSTOMER WHERE C_LAST = ? AND C_D_ID = ? AND C_W_ID = ? ORDER BY C_FIRST;
+INFO  20:29:32,639   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+INFO  20:29:32,660   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHERE W_ID = ?;
+INFO  20:29:32,676   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,690   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,708   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:32,719   [main] COMPILER: [paymentByCustomerNameW.class]: Compiling Statement: SELECT C_ID FROM CUSTOMER_NAME WHERE C_LAST = ? AND C_D_ID = ? AND C_W_ID = ? ORDER BY C_FIRST;
+INFO  20:29:32,740   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+INFO  20:29:32,761   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHERE W_ID = ?;
+INFO  20:29:32,791   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,817   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE, C_ZIP, C_PHONE, C_SINCE, C_CREDIT, C_CREDIT_LIM, C_DISCOUNT, C_BALANCE, C_YTD_PAYMENT, C_PAYMENT_CNT, C_DATA FROM CUSTOMER WHERE C_ID = ? AND C_D_ID = ? AND C_W_ID = ?;
+INFO  20:29:32,886   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,901   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,937   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:32,961   [main] COMPILER: [paymentByCustomerId.class]: Compiling Statement: INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:32,974   [main] COMPILER: [paymentByCustomerIdC.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:32,996   [main] COMPILER: [paymentByCustomerIdC.class]: Compiling Statement: SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE, C_ZIP, C_PHONE, C_SINCE, C_CREDIT, C_CREDIT_LIM, C_DISCOUNT, C_BALANCE, C_YTD_PAYMENT, C_PAYMENT_CNT, C_DATA FROM CUSTOMER WHERE C_ID = ? AND C_D_ID = ? AND C_W_ID = ?;
+INFO  20:29:33,040   [main] COMPILER: [paymentByCustomerIdC.class]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:33,061   [main] COMPILER: [paymentByCustomerIdW.class]: Compiling Statement: UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+INFO  20:29:33,073   [main] COMPILER: [paymentByCustomerIdW.class]: Compiling Statement: SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHERE W_ID = ?;
+INFO  20:29:33,089   [main] COMPILER: [paymentByCustomerIdW.class]: Compiling Statement: UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:33,102   [main] COMPILER: [paymentByCustomerIdW.class]: Compiling Statement: SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:33,119   [main] COMPILER: [paymentByCustomerIdW.class]: Compiling Statement: INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,131   [main] COMPILER: [neworder.class]: Compiling Statement: UPDATE STOCK SET S_QUANTITY = ?, S_YTD = ?, S_ORDER_CNT = ?, S_REMOTE_CNT = ? WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,145   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT I_PRICE, I_NAME, I_DATA FROM ITEM WHERE I_ID = ?;
+INFO  20:29:33,157   [main] COMPILER: [neworder.class]: Compiling Statement: INSERT INTO ORDER_LINE (OL_O_ID, OL_D_ID, OL_W_ID, OL_NUMBER, OL_I_ID, OL_SUPPLY_W_ID, OL_DELIVERY_D, OL_QUANTITY, OL_AMOUNT, OL_DIST_INFO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,168   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_07 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,185   [main] COMPILER: [neworder.class]: Compiling Statement: INSERT INTO NEW_ORDER (NO_O_ID, NO_D_ID, NO_W_ID) VALUES (?, ?, ?);
+INFO  20:29:33,193   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_06 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,212   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_09 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,231   [main] COMPILER: [neworder.class]: Compiling Statement: UPDATE DISTRICT SET D_NEXT_O_ID = ? WHERE D_ID = ? AND D_W_ID = ?;
+INFO  20:29:33,249   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_08 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,274   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_03 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,292   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_02 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,314   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_05 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,335   [main] COMPILER: [neworder.class]: Compiling Statement: INSERT INTO ORDERS (O_ID, O_D_ID, O_W_ID, O_C_ID, O_ENTRY_D, O_CARRIER_ID, O_OL_CNT, O_ALL_LOCAL) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,346   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_04 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,368   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT W_TAX FROM WAREHOUSE WHERE W_ID = ?;
+INFO  20:29:33,380   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_01 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,415   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_10 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+INFO  20:29:33,433   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT C_DISCOUNT, C_LAST, C_CREDIT FROM CUSTOMER WHERE C_W_ID = ? AND C_D_ID = ? AND C_ID = ?;
+INFO  20:29:33,454   [main] COMPILER: [neworder.class]: Compiling Statement: SELECT D_TAX, D_NEXT_O_ID FROM DISTRICT WHERE D_ID = ? AND D_W_ID = ?;
+INFO  20:29:33,468   [main] COMPILER: [slev.class]: Compiling Statement: SELECT COUNT(DISTINCT(OL_I_ID)) FROM ORDER_LINE, STOCK WHERE OL_W_ID = ? AND OL_D_ID = ? AND OL_O_ID < ? AND OL_O_ID >= ? AND S_W_ID = ? AND S_I_ID = OL_I_ID AND S_QUANTITY < ?;
+INFO  20:29:33,540   [main] COMPILER: [slev.class]: Compiling Statement: SELECT D_NEXT_O_ID FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+INFO  20:29:33,553   [main] COMPILER: [ResetWarehouse.class]: Compiling Statement: DELETE FROM ORDER_LINE WHERE OL_W_ID = ? AND OL_O_ID > ?;
+INFO  20:29:33,567   [main] COMPILER: [ResetWarehouse.class]: Compiling Statement: DELETE FROM HISTORY;
+INFO  20:29:33,573   [main] COMPILER: [ResetWarehouse.class]: Compiling Statement: DELETE FROM ORDERS WHERE O_W_ID = ? AND O_ID > ?;
+INFO  20:29:33,588   [main] COMPILER: [ResetWarehouse.class]: Compiling Statement: DELETE FROM NEW_ORDER WHERE NO_W_ID = ?;
+INFO  20:29:33,596   [main] COMPILER: [ResetWarehouse.class]: Compiling Statement: INSERT INTO NEW_ORDER VALUES (?, ?, ?);
+INFO  20:29:33,604   [main] COMPILER: [LoadStatus.class]: Compiling Statement: SELECT COUNT (*) FROM WAREHOUSE;
+INFO  20:29:33,615   [main] COMPILER: [CUSTOMER.select]: Compiling Statement: SELECT * FROM CUSTOMER WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?);
+INFO  20:29:33,661   [main] COMPILER: [CUSTOMER.insert]: Compiling Statement: INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,676   [main] COMPILER: [CUSTOMER.delete]: Compiling Statement: DELETE FROM CUSTOMER WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?);
+INFO  20:29:33,692   [main] COMPILER: [CUSTOMER.update]: Compiling Statement: UPDATE CUSTOMER SET C_BALANCE = ?, C_CITY = ?, C_CREDIT = ?, C_CREDIT_LIM = ?, C_DATA = ?, C_DELIVERY_CNT = ?, C_DISCOUNT = ?, C_D_ID = ?, C_FIRST = ?, C_ID = ?, C_LAST = ?, C_MIDDLE = ?, C_PAYMENT_CNT = ?, C_PHONE = ?, C_SINCE = ?, C_STATE = ?, C_STREET_1 = ?, C_STREET_2 = ?, C_W_ID = ?, C_YTD_PAYMENT = ?, C_ZIP = ? WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?);
+INFO  20:29:33,724   [main] COMPILER: [DISTRICT.select]: Compiling Statement: SELECT * FROM DISTRICT WHERE (D_ID = ?) AND (D_W_ID = ?);
+INFO  20:29:33,737   [main] COMPILER: [DISTRICT.insert]: Compiling Statement: INSERT INTO DISTRICT VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,744   [main] COMPILER: [DISTRICT.delete]: Compiling Statement: DELETE FROM DISTRICT WHERE (D_ID = ?) AND (D_W_ID = ?);
+INFO  20:29:33,751   [main] COMPILER: [DISTRICT.update]: Compiling Statement: UPDATE DISTRICT SET D_CITY = ?, D_ID = ?, D_NAME = ?, D_NEXT_O_ID = ?, D_STATE = ?, D_STREET_1 = ?, D_STREET_2 = ?, D_TAX = ?, D_W_ID = ?, D_YTD = ?, D_ZIP = ? WHERE (D_ID = ?) AND (D_W_ID = ?);
+INFO  20:29:33,767   [main] COMPILER: [NEW_ORDER.select]: Compiling Statement: SELECT * FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+INFO  20:29:33,777   [main] COMPILER: [NEW_ORDER.insert]: Compiling Statement: INSERT INTO NEW_ORDER VALUES (?, ?, ?);
+INFO  20:29:33,782   [main] COMPILER: [NEW_ORDER.delete]: Compiling Statement: DELETE FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+INFO  20:29:33,789   [main] COMPILER: [NEW_ORDER.update]: Compiling Statement: UPDATE NEW_ORDER SET NO_D_ID = ?, NO_O_ID = ?, NO_W_ID = ? WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+INFO  20:29:33,798   [main] COMPILER: [ORDERS.select]: Compiling Statement: SELECT * FROM ORDERS WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?);
+INFO  20:29:33,814   [main] COMPILER: [ORDERS.insert]: Compiling Statement: INSERT INTO ORDERS VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,820   [main] COMPILER: [ORDERS.delete]: Compiling Statement: DELETE FROM ORDERS WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?);
+INFO  20:29:33,829   [main] COMPILER: [ORDERS.update]: Compiling Statement: UPDATE ORDERS SET O_ALL_LOCAL = ?, O_CARRIER_ID = ?, O_C_ID = ?, O_D_ID = ?, O_ENTRY_D = ?, O_ID = ?, O_OL_CNT = ?, O_W_ID = ? WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?);
+INFO  20:29:33,843   [main] COMPILER: [ORDER_LINE.select]: Compiling Statement: SELECT * FROM ORDER_LINE WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?);
+INFO  20:29:33,859   [main] COMPILER: [ORDER_LINE.insert]: Compiling Statement: INSERT INTO ORDER_LINE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,865   [main] COMPILER: [ORDER_LINE.delete]: Compiling Statement: DELETE FROM ORDER_LINE WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?);
+INFO  20:29:33,874   [main] COMPILER: [ORDER_LINE.update]: Compiling Statement: UPDATE ORDER_LINE SET OL_AMOUNT = ?, OL_DELIVERY_D = ?, OL_DIST_INFO = ?, OL_D_ID = ?, OL_I_ID = ?, OL_NUMBER = ?, OL_O_ID = ?, OL_QUANTITY = ?, OL_SUPPLY_W_ID = ?, OL_W_ID = ? WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?);
+INFO  20:29:33,887   [main] COMPILER: [STOCK.select]: Compiling Statement: SELECT * FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+INFO  20:29:33,904   [main] COMPILER: [STOCK.insert]: Compiling Statement: INSERT INTO STOCK VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,911   [main] COMPILER: [STOCK.delete]: Compiling Statement: DELETE FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+INFO  20:29:33,918   [main] COMPILER: [STOCK.update]: Compiling Statement: UPDATE STOCK SET S_DATA = ?, S_DIST_01 = ?, S_DIST_02 = ?, S_DIST_03 = ?, S_DIST_04 = ?, S_DIST_05 = ?, S_DIST_06 = ?, S_DIST_07 = ?, S_DIST_08 = ?, S_DIST_09 = ?, S_DIST_10 = ?, S_I_ID = ?, S_ORDER_CNT = ?, S_QUANTITY = ?, S_REMOTE_CNT = ?, S_W_ID = ?, S_YTD = ? WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+INFO  20:29:33,930   [main] COMPILER: [WAREHOUSE.select]: Compiling Statement: SELECT * FROM WAREHOUSE WHERE (W_ID = ?);
+INFO  20:29:33,940   [main] COMPILER: [WAREHOUSE.insert]: Compiling Statement: INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+INFO  20:29:33,946   [main] COMPILER: [WAREHOUSE.delete]: Compiling Statement: DELETE FROM WAREHOUSE WHERE (W_ID = ?);
+INFO  20:29:33,952   [main] COMPILER: [WAREHOUSE.update]: Compiling Statement: UPDATE WAREHOUSE SET W_CITY = ?, W_ID = ?, W_NAME = ?, W_STATE = ?, W_STREET_1 = ?, W_STREET_2 = ?, W_TAX = ?, W_YTD = ?, W_ZIP = ? WHERE (W_ID = ?);
+------------------------------------------
+Successfully created tpcc.jar
+Includes schema: tpcc-ddl.sql
+
+[SP][RW] CUSTOMER.delete
+  DELETE FROM CUSTOMER WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?);
+
+[SP][RW] CUSTOMER.insert
+  INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ...
+
+[SP][RO] CUSTOMER.select
+  SELECT * FROM CUSTOMER WHERE (C_D_ID = ?) AND (C_ID = ?) AND (C_W_ID = ?);
+
+[SP][RW] CUSTOMER.update
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_CITY = ?, C_CREDIT = ?, C_CREDIT_LIM = ?, C...
+
+[SP][RW] DISTRICT.delete
+  DELETE FROM DISTRICT WHERE (D_ID = ?) AND (D_W_ID = ?);
+
+[SP][RW] DISTRICT.insert
+  INSERT INTO DISTRICT VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RO] DISTRICT.select
+  SELECT * FROM DISTRICT WHERE (D_ID = ?) AND (D_W_ID = ?);
+
+[SP][RW] DISTRICT.update
+  UPDATE DISTRICT SET D_CITY = ?, D_ID = ?, D_NAME = ?, D_NEXT_O_ID = ?, D_STATE =...
+
+[MP][RO] LoadStatus
+  SELECT COUNT (*) FROM WAREHOUSE;
+
+[SP][RW] LoadWarehouse
+  INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RW] LoadWarehouseReplicated
+  SELECT * FROM ITEM LIMIT 1
+  INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RW] NEW_ORDER.delete
+  DELETE FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+
+[SP][RW] NEW_ORDER.insert
+  INSERT INTO NEW_ORDER VALUES (?, ?, ?);
+
+[SP][RO] NEW_ORDER.select
+  SELECT * FROM NEW_ORDER WHERE (NO_D_ID = ?) AND (NO_O_ID = ?) AND (NO_W_ID = ?);
+
+[SP][RW] NEW_ORDER.update
+  UPDATE NEW_ORDER SET NO_D_ID = ?, NO_O_ID = ?, NO_W_ID = ? WHERE (NO_D_ID = ?) A...
+
+[SP][RW] ORDERS.delete
+  DELETE FROM ORDERS WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?);
+
+[SP][RW] ORDERS.insert
+  INSERT INTO ORDERS VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RO] ORDERS.select
+  SELECT * FROM ORDERS WHERE (O_D_ID = ?) AND (O_ID = ?) AND (O_W_ID = ?);
+
+[SP][RW] ORDERS.update
+  UPDATE ORDERS SET O_ALL_LOCAL = ?, O_CARRIER_ID = ?, O_C_ID = ?, O_D_ID = ?, O_E...
+
+[SP][RW] ORDER_LINE.delete
+  DELETE FROM ORDER_LINE WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?)...
+
+[SP][RW] ORDER_LINE.insert
+  INSERT INTO ORDER_LINE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RO] ORDER_LINE.select
+  SELECT * FROM ORDER_LINE WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ...
+
+[SP][RW] ORDER_LINE.update
+  UPDATE ORDER_LINE SET OL_AMOUNT = ?, OL_DELIVERY_D = ?, OL_DIST_INFO = ?, OL_D_I...
+
+[SP][RW] ResetWarehouse
+  DELETE FROM HISTORY;
+  DELETE FROM NEW_ORDER WHERE NO_W_ID = ?;
+  DELETE FROM ORDER_LINE WHERE OL_W_ID = ? AND OL_O_ID > ?;
+  DELETE FROM ORDERS WHERE O_W_ID = ? AND O_ID > ?;
+  INSERT INTO NEW_ORDER VALUES (?, ?, ?);
+
+[SP][RW] STOCK.delete
+  DELETE FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+
+[SP][RW] STOCK.insert
+  INSERT INTO STOCK VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RO] STOCK.select
+  SELECT * FROM STOCK WHERE (S_I_ID = ?) AND (S_W_ID = ?);
+
+[SP][RW] STOCK.update
+  UPDATE STOCK SET S_DATA = ?, S_DIST_01 = ?, S_DIST_02 = ?, S_DIST_03 = ?, S_DIST...
+
+[SP][RW] WAREHOUSE.delete
+  DELETE FROM WAREHOUSE WHERE (W_ID = ?);
+
+[SP][RW] WAREHOUSE.insert
+  INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+[SP][RO] WAREHOUSE.select
+  SELECT * FROM WAREHOUSE WHERE (W_ID = ?);
+
+[SP][RW] WAREHOUSE.update
+  UPDATE WAREHOUSE SET W_CITY = ?, W_ID = ?, W_NAME = ?, W_STATE = ?, W_STREET_1 =...
+
+[SP][RW] delivery
+  DELETE FROM NEW_ORDER WHERE NO_D_ID = ? AND NO_W_ID = ? AND NO_O_ID = ?;
+  SELECT O_C_ID FROM ORDERS WHERE O_ID = ? AND O_D_ID = ? AND O_W_ID = ?;
+  SELECT NO_O_ID FROM NEW_ORDER WHERE NO_D_ID = ? AND NO_W_ID = ? AND NO_O_ID > -1...
+  SELECT SUM(OL_AMOUNT) FROM ORDER_LINE WHERE OL_O_ID = ? AND OL_D_ID = ? AND OL_W...
+  UPDATE CUSTOMER SET C_BALANCE = C_BALANCE + ? WHERE C_ID = ? AND C_D_ID = ? AND ...
+  UPDATE ORDER_LINE SET OL_DELIVERY_D = ? WHERE OL_O_ID = ? AND OL_D_ID = ? AND OL...
+  UPDATE ORDERS SET O_CARRIER_ID = ? WHERE O_ID = ? AND O_D_ID = ? AND O_W_ID = ?;
+
+[SP][RW] neworder
+  INSERT INTO NEW_ORDER (NO_O_ID, NO_D_ID, NO_W_ID) VALUES (?, ?, ?);
+  INSERT INTO ORDERS (O_ID, O_D_ID, O_W_ID, O_C_ID, O_ENTRY_D, O_CARRIER_ID, O_OL_...
+  INSERT INTO ORDER_LINE (OL_O_ID, OL_D_ID, OL_W_ID, OL_NUMBER, OL_I_ID, OL_SUPPLY...
+  SELECT C_DISCOUNT, C_LAST, C_CREDIT FROM CUSTOMER WHERE C_W_ID = ? AND C_D_ID = ...
+  SELECT D_TAX, D_NEXT_O_ID FROM DISTRICT WHERE D_ID = ? AND D_W_ID = ?;
+  SELECT I_PRICE, I_NAME, I_DATA FROM ITEM WHERE I_ID = ?;
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_01 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_02 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_03 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_04 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_05 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_06 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_07 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_08 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_09 FROM STOC...
+  SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_10 FROM STOC...
+  SELECT W_TAX FROM WAREHOUSE WHERE W_ID = ?;
+  UPDATE DISTRICT SET D_NEXT_O_ID = ? WHERE D_ID = ? AND D_W_ID = ?;
+  UPDATE STOCK SET S_QUANTITY = ?, S_YTD = ?, S_ORDER_CNT = ?, S_REMOTE_CNT = ? WH...
+
+[SP][RO] ostatByCustomerId
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_BALANCE FROM CUSTOMER WHERE C_W_ID = ?...
+  SELECT O_ID, O_CARRIER_ID, O_ENTRY_D FROM ORDERS WHERE O_W_ID = ? AND O_D_ID = ?...
+  SELECT OL_SUPPLY_W_ID, OL_I_ID, OL_QUANTITY, OL_AMOUNT, OL_DELIVERY_D FROM ORDER...
+
+[SP][RO] ostatByCustomerName
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_BALANCE FROM CUSTOMER WHERE C_W_ID = ?...
+  SELECT O_ID, O_CARRIER_ID, O_ENTRY_D FROM ORDERS WHERE O_W_ID = ? AND O_D_ID = ?...
+  SELECT OL_SUPPLY_W_ID, OL_I_ID, OL_QUANTITY, OL_AMOUNT, OL_DELIVERY_D FROM ORDER...
+
+[MP][RW] paymentByCustomerId
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE,...
+  SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHER...
+  SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHE...
+  INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA ...
+  UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_...
+  UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+
+[SP][RW] paymentByCustomerIdC
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE,...
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA ...
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_...
+
+[SP][RW] paymentByCustomerIdW
+  SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHER...
+  SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHE...
+  INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+  UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+  UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+
+[MP][RW] paymentByCustomerName
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE,...
+  SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHER...
+  SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHE...
+  INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA ...
+  UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_...
+  UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+
+[SP][RW] paymentByCustomerNameC
+  SELECT C_ID, C_FIRST, C_MIDDLE, C_LAST, C_STREET_1, C_STREET_2, C_CITY, C_STATE,...
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ?, C_DATA ...
+  UPDATE CUSTOMER SET C_BALANCE = ?, C_YTD_PAYMENT = ?, C_PAYMENT_CNT = ? WHERE C_...
+
+[SP][RW] paymentByCustomerNameW
+  SELECT C_ID FROM CUSTOMER_NAME WHERE C_LAST = ? AND C_D_ID = ? AND C_W_ID = ? OR...
+  SELECT D_NAME, D_STREET_1, D_STREET_2, D_CITY, D_STATE, D_ZIP FROM DISTRICT WHER...
+  SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHE...
+  INSERT INTO HISTORY VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+  UPDATE DISTRICT SET D_YTD = D_YTD + ? WHERE D_W_ID = ? AND D_ID = ?;
+  UPDATE WAREHOUSE SET W_YTD = W_YTD + ? WHERE W_ID = ?;
+
+[SP][RO] slev
+  SELECT D_NEXT_O_ID FROM DISTRICT WHERE D_W_ID = ? AND D_ID = ?;
+  SELECT COUNT(DISTINCT(OL_I_ID)) FROM ORDER_LINE, STOCK WHERE OL_W_ID = ? AND OL_...
+
+------------------------------------------
+INFO  01:29:34,744   [main] HOST: Initializing VoltDB...
+
+ _    __      ____  ____  ____ 
+| |  / /___  / / /_/ __ \/ __ )
+| | / / __ \/ / __/ / / / __  |
+| |/ / /_/ / / /_/ /_/ / /_/ / 
+|___/\____/_/\__/_____/_____/
+
+--------------------------------
+
+INFO  01:29:34,777   [main] HOST: Build: 2.0 http://svnmirror.voltdb.com/eng/trunk?revision=2325-dirty Community Edition
+INFO  01:29:34,784   [main] HOST: URL of deployment info: deployment.xml
+INFO  01:29:35,094   [main] HOST: Cluster has 1 hosts with leader hostname: "localhost". 8 sites per host. K = 0.
+INFO  01:29:35,095   [main] HOST: The entire cluster has 1 copy of each of the 8 logical partitions.
+INFO  01:29:35,096   [main] HOST: Detection of network partitions in the cluster is not enabled.
+INFO  01:29:35,097   [main] HOST: Creating voltdbroot directory: /space/nirmesh/volt/volt-open/trunk/tests/test_apps/tpcc/voltdbroot
+INFO  01:29:35,098   [main] HOST: Using "/space/nirmesh/volt/volt-open/trunk/tests/test_apps/tpcc/voltdbroot" for voltdbroot directory.
+INFO  01:29:35,098   [main] HOST: Creating snapshot directory: /space/nirmesh/volt/volt-open/trunk/tests/test_apps/tpcc/voltdbroot/snapshots
+INFO  01:29:35,098   [main] HOST: Creating export overflow directory: /space/nirmesh/volt/volt-open/trunk/tests/test_apps/tpcc/voltdbroot/export_overflow
+INFO  01:29:35,110   [main] HOST: Aries log will sync every 15 ms
+INFO  01:29:35,275   [main] HOST: URL of deployment info: deployment.xml
+INFO  01:29:35,329   [main] HOST: Beginning inter-node communication on port 3021.
+INFO  01:29:35,364   [Thread-5] HOST: Connecting to VoltDB cluster as the leader...
+INFO  01:29:35,366   [Thread-5] HOST: Maximum clock/network skew is 0 milliseconds (according to leader)
+INFO  01:29:35,674   [main] ZK-SERVER: binding to port /127.0.0.1:2181
+INFO  01:29:35,691   [main] ZK-SERVER: Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000
+INFO  01:29:35,925   [main] HOST: Starting the network subsystem with 2 worker threads.
+INFO  01:29:35,932   [main] ZK-SERVER: Initiating client connection, connectString=127.0.0.1:2181 sessionTimeout=2000 watcher=org.voltdb.agreement.ZKUtil$1@1c20eb7
+INFO  01:29:35,942   [main-SendThread()] ZK-CLIENT: Opening socket connection to server /127.0.0.1:2181
+INFO  01:29:35,946   [main-SendThread(localhost:2181)] ZK-CLIENT: Socket connection established to localhost/127.0.0.1:2181, initiating session
+INFO  01:29:35,946   [NIOServerCxn.Factory:/127.0.0.1:2181] ZK-SERVER: Accepted socket connection from /127.0.0.1:54998
+INFO  01:29:35,968   [NIOServerCxn.Factory:/127.0.0.1:2181] ZK-SERVER: Client attempting to establish new session at /127.0.0.1:54998
+INFO  01:29:35,989   [ZooKeeperServer] ZK-SERVER: Established session 0x11cdc50ff0800001 with negotiated timeout 6000 for client /127.0.0.1:54998
+INFO  01:29:35,990   [main-SendThread(localhost:2181)] ZK-CLIENT: Session establishment complete on server localhost/127.0.0.1:2181, sessionid = 0x11cdc50ff0800001, negotiated timeout = 6000
+INFO  01:29:36,149   [main] HOST: Loading application catalog jarfile from /tmp/catalog-host0-2986571433889535592.jar
+INFO  01:29:37,471   [main] EXPORT: System is not using any export functionality.
+INFO  01:29:37,500   [Site 2] HOST: Loading native VoltDB code (voltdb-2.0). A confirmation message will follow if the loading is successful.
+INFO  01:29:37,668   [Site 2] HOST: Successfully loaded native VoltDB library voltdb-2.0.
+INFO  01:29:40,188   [main] HOST: Initializing initiator ID: 1, SiteID: 0
+INFO  01:29:40,231   [main] HOST: Database start action is Create.
+INFO  01:29:40,232   [main] HOST: Listening for native wire protocol clients on port 21212.
+INFO  01:29:40,232   [main] HOST: Listening for admin wire protocol clients on port 21211.
+INFO  01:29:40,232   [main] HOST: Local machine HTTP monitoring is listening on port 8080.
+INFO  01:29:40,232   [main] HOST: Json API over HTTP enabled at path /api/1.0/, listening on port 8080.
+INFO  01:29:40,232   [main] HOST: Available JVM arguments: -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp -XX:-ReduceInitialCardMarks -Xmx2048m -Dlog4j.configuration=file:///space/nirmesh/volt/volt-open/trunk/bin/../voltdb/log4j.xml -Djava.library.path=/space/nirmesh/volt/volt-open/trunk/bin/../obj/release/nativelibs
+INFO  01:29:40,232   [main] HOST: Maximum usable Java heap set to 1820 mb.
+INFO  01:29:40,232   [main] HOST: Client authentication is not enabled. Anonymous clients accepted.
+INFO  01:29:40,232   [main] HOST: Automatic snapshots enabled, saved to voltdbroot/snapshots and named with prefix 'savedstate'.
+INFO  01:29:40,232   [main] HOST: Database will retain a history of 2 snapshots, generated every 180 minutes.
+INFO  01:29:40,233   [main] HOST: CPU INFO:         8 Cores, 2 Sockets, 16 Hardware Threads
+INFO  01:29:40,233   [main] HOST: CPU DESC:         Intel(R) Xeon(R) CPU           E5530  @ 2.40GHz 8192 KB cache
+INFO  01:29:40,233   [main] HOST: HOST MEMORY (MB): 24147
+INFO  01:29:40,233   [main] HOST: OS PROFILE:       Linux 2.6.35-32-server amd64 en_US
+INFO  01:29:40,233   [main] HOST: JAVA VERSION:     1.6.0_26
+INFO  01:29:40,233   [main] HOST: JAVA RUNTIME:     Java(TM) SE Runtime Environment (1.6.0_26-b03)
+INFO  01:29:40,233   [main] HOST: JAVA VM:          Java HotSpot(TM) 64-Bit Server VM (20.1-b02, mixed mode)
+INFO  01:29:40,233   [main] HOST: About to list cluster interfaces for all nodes with format ip:client-port:admin-port:http-port
+INFO  01:29:40,233   [main] HOST:   Host id: 0 with interfaces: 128.30.76.250:21212:-1:2147483647 [SELF]
+WARN  01:29:40,233   [main] HOST: Running without redundancy (k=0) is not recommended for production use.
+java pointer address: 0
+java size of array:0
+Aries log read in 0 milliseconds
+Aries recovery finished in 501 milliseconds
+INFO  01:29:41,270   [Thread-18] HOST: Server completed initialization.
+INFO  01:29:41,378   [ExecutionSite:0001] HOST: Finished scanning snapshots. Took 17 milliseconds
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fa1f3ee2dbb, pid=9569, tid=140333329049344
+#
+# JRE version: 6.0_26-b03
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (20.1-b02 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  [libc.so.6+0x86dbb]  unsigned long+0x10b
+#
+# An error report file with more information is saved as:
+# /space/nirmesh/volt/volt-open/trunk/tests/test_apps/tpcc/hs_err_pid9569.log
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+./run.sh: line 35:  9569 Aborted                 $VOLTDB create catalog $APPNAME.jar deployment deployment.xml license $LICENSE leader $LEADER

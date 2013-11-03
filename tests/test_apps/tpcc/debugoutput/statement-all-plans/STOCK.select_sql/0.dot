@@ -1,0 +1,9 @@
+digraph name {
+1080 [label="1080: SEQSCAN" ];
+1080 -> 1084;
+1084 [label="1084: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+1085 [label="1085: SEND" fontcolor="white" style="filled" fillcolor="black"];
+1085 -> 1080;
+
+}
+

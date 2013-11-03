@@ -1,0 +1,7 @@
+SQL: UPDATE WAREHOUSE SET W_CITY = ?, W_ID = ?, W_NAME = ?, W_STATE = ?, W_STREET_1 = ?, W_STREET_2 = ?, W_TAX = ?, W_YTD = ?, W_ZIP = ? WHERE (W_ID = ?);
+COST: 6.0
+PLAN:
+
+UPDATE
+ INDEX SCAN of "WAREHOUSE" using "SYS_IDX_W_PK_TREE_10018" (unique-scan covering)
+

@@ -1,0 +1,15 @@
+digraph name {
+309 [label="309: INDEXSCAN" ];
+309 -> 310;
+310 [label="310: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+311 [label="311: SEND" fontcolor="white" style="filled" fillcolor="black"];
+311 -> 309;
+312 [label="312: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+312 -> 311;
+315 [label="315: PROJECTION" ];
+315 -> 312;
+316 [label="316: SEND" fontcolor="white" style="filled" fillcolor="black"];
+316 -> 315;
+
+}
+

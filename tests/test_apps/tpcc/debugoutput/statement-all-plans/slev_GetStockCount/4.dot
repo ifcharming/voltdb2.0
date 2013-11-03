@@ -1,0 +1,17 @@
+digraph name {
+801 [label="801: SEQSCAN" ];
+801 -> 802;
+802 [label="802: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+805 [label="805: NESTLOOPINDEX" ];
+805 -> 803;
+803 [label="803: INDEXSCAN" fontcolor="white" style="filled" fillcolor="red"];
+803 -> 804;
+804 [label="804: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+805 -> 801;
+823 [label="823: HASHAGGREGATE" ];
+823 -> 805;
+825 [label="825: SEND" fontcolor="white" style="filled" fillcolor="black"];
+825 -> 823;
+
+}
+

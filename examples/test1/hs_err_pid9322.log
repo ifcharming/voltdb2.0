@@ -1,0 +1,513 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f2c0561bad0, pid=9322, tid=139827051005696
+#
+# JRE version: 6.0_18-b18
+# Java VM: OpenJDK 64-Bit Server VM (14.0-b16 mixed mode linux-amd64 )
+# Derivative: IcedTea6 1.8.8
+# Distribution: Fedora release 13 (Goddard), package fedora-51.1.8.8.fc13-x86_64
+# Problematic frame:
+# C  [libvoltdb-2.0.so+0x54ad0]
+#
+# If you would like to submit a bug report, please include
+# instructions how to reproduce the bug and visit:
+#   http://icedtea.classpath.org/bugzilla
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f2c401ea800):  JavaThread "ExecutionSite:0002" [_thread_in_native, id=9366, stack(0x00007f2c05a48000,0x00007f2c05b49000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x0000000000000002
+
+Registers:
+RAX=0x00007f2c08096c34, RBX=0x00007f2c0801f658, RCX=0x0000000000000005, RDX=0x00007f2c080a6930
+RSP=0x00007f2c05b43d70, RBP=0x00007f2c05b44470, RSI=0x00007f2c05a3b750, RDI=0x00007f2c05b43de0
+R8 =0x0000000000000003, R9 =0x0000000002000000, R10=0x000000000000fd00, R11=0x0000000000000246
+R12=0x000000000000000c, R13=0x0000000000000002, R14=0x00007f2c0801f620, R15=0x00007f2c05b43de0
+RIP=0x00007f2c0561bad0, EFL=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f2c05b43d70)
+0x00007f2c05b43d70:   000003f100000000 000001284eed2188
+0x00007f2c05b43d80:   0000000000000000 00007f2c16f63698
+0x00007f2c05b43d90:   00007f2c08096c30 0000000009530a94
+0x00007f2c05b43da0:   0000000000000000 00007f2c00000000
+0x00007f2c05b43db0:   00007f2c08077b80 00007f2c05b443c0
+0x00007f2c05b43dc0:   00007f2c05b443b0 00007f2c05b44360
+0x00007f2c05b43dd0:   00007f2c0c67f436 00007f2c05b442d0
+0x00007f2c05b43de0:   0000000000000002 0000000000000000
+0x00007f2c05b43df0:   0000000000000005 0000000000000000
+0x00007f2c05b43e00:   0000000000000000 00007f2c05b43e70
+0x00007f2c05b43e10:   00007f2bdc10f0c0 0000000000000000
+0x00007f2c05b43e20:   0000000000000000 0000000000000000
+0x00007f2c05b43e30:   00007f2bdc10f0b0 00007f2c0c696572
+0x00007f2c05b43e40:   0000000000000000 00007f2c0c697a78
+0x00007f2c05b43e50:   00007f2bdc0101a0 00007f2c0c6965a8
+0x00007f2c05b43e60:   00007f2c05b43d88 00007f2c05b43dc8
+0x00007f2c05b43e70:   00007f2c05b43e51 0000000800000002
+0x00007f2c05b43e80:   0000000000000000 00000005458862a2
+0x00007f2c05b43e90:   00007f2b0000000e 01007f2c05b43af0
+0x00007f2c05b43ea0:   00007f2c05b43ed0 00007f2c401ea800
+0x00007f2c05b43eb0:   00007f2bdc10f018 00007f2c05b43fd0
+0x00007f2c05b43ec0:   00007f2bdc10f0a0 00007f2c0d767098
+0x00007f2c05b43ed0:   00007f2c05b44030 00007f2c4585cfb9
+0x00007f2c05b43ee0:   00007f2c401ea800 00007f2c16f5ff30
+0x00007f2c05b43ef0:   0000000000000061 00007f2bdc10f018
+0x00007f2c05b43f00:   00007f2c05b43f00 00007f2c0c709cf6
+0x00007f2c05b43f10:   00007f2c05b43f90 00007f2bdc10f010
+0x00007f2c05b43f20:   0000000000320101 00007f2bdc10f098
+0x00007f2c05b43f30:   0000000000000000 0000c000ff010000
+0x00007f2c05b43f40:   00007f2c05b43fd8 00007f2c36d609f3
+0x00007f2c05b43f50:   00007f2c16ddc920 00007f2c2caf0650
+0x00007f2c05b43f60:   00007f2c2caf0618 0000000000000000 
+
+Instructions: (pc=0x00007f2c0561bad0)
+0x00007f2c0561bac0:   c0 04 48 89 85 f8 fe ff ff 48 89 95 00 ff ff ff
+0x00007f2c0561bad0:   66 83 3c 25 02 00 00 00 00 0f 84 73 01 00 00 45 
+
+Stack: [0x00007f2c05a48000,0x00007f2c05b49000],  sp=0x00007f2c05b43d70,  free space=1007k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libvoltdb-2.0.so+0x54ad0]
+C  [libvoltdb-2.0.so+0x171f01]  _ZN6voltdb12VoltDBEngine12executeQueryEliiRKNS_17GenericValueArrayINS_6NValueEEEllbb+0x381
+C  [libvoltdb-2.0.so+0x35ef1]  Java_org_voltdb_jni_ExecutionEngine_nativeExecuteQueryPlanFragmentsAndGetResults+0x471
+j  org.voltdb.jni.ExecutionEngine.nativeExecuteQueryPlanFragmentsAndGetResults(J[JIJJJ)I+0
+j  org.voltdb.jni.ExecutionEngineJNI.executeQueryPlanFragmentsAndGetResults([JI[Lorg/voltdb/ParameterSet;IJJJ)[Lorg/voltdb/VoltTable;+216
+j  org.voltdb.ExecutionSite.executeQueryPlanFragmentsAndGetResults([JI[Lorg/voltdb/ParameterSet;IJZ)[Lorg/voltdb/VoltTable;+30
+j  org.voltdb.VoltProcedure.executeQueriesInABatch(I[Lorg/voltdb/SQLStmt;[[Ljava/lang/Object;Z)[Lorg/voltdb/VoltTable;+430
+j  org.voltdb.VoltProcedure.voltExecuteSQL(Z)[Lorg/voltdb/VoltTable;+56
+j  org.procedures.Insert.run(IJ)J+28
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x3b6183]
+V  [libjvm.so+0x3b5238]
+V  [libjvm.so+0x59065e]
+V  [libjvm.so+0x5914d9]
+V  [libjvm.so+0x407abc]
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+87
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  org.voltdb.VoltProcedure.call(Lorg/voltdb/dtxn/TransactionState;[Ljava/lang/Object;)Lorg/voltdb/ClientResponseImpl;+337
+j  org.voltdb.ExecutionSite.processInitiateTask(Lorg/voltdb/dtxn/TransactionState;Lorg/voltdb/messaging/VoltMessage;)Lorg/voltdb/messaging/InitiateResponseMessage;+248
+j  org.voltdb.dtxn.SinglePartitionTxnState.doWork(Z)Z+35
+j  org.voltdb.ExecutionSite.recursableRun(Lorg/voltdb/dtxn/TransactionState;)Ljava/util/Map;+5
+j  org.voltdb.ExecutionSite.run()V+366
+j  org.voltdb.ExecutionSiteRunner.run()V+98
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x3b6183]
+V  [libjvm.so+0x3b5238]
+V  [libjvm.so+0x3b5ba3]
+V  [libjvm.so+0x3b5d0b]
+V  [libjvm.so+0x3fcb7e]
+V  [libjvm.so+0x6240e7]
+V  [libjvm.so+0x53c892]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.voltdb.jni.ExecutionEngine.nativeExecuteQueryPlanFragmentsAndGetResults(J[JIJJJ)I+0
+j  org.voltdb.jni.ExecutionEngineJNI.executeQueryPlanFragmentsAndGetResults([JI[Lorg/voltdb/ParameterSet;IJJJ)[Lorg/voltdb/VoltTable;+216
+j  org.voltdb.ExecutionSite.executeQueryPlanFragmentsAndGetResults([JI[Lorg/voltdb/ParameterSet;IJZ)[Lorg/voltdb/VoltTable;+30
+j  org.voltdb.VoltProcedure.executeQueriesInABatch(I[Lorg/voltdb/SQLStmt;[[Ljava/lang/Object;Z)[Lorg/voltdb/VoltTable;+430
+j  org.voltdb.VoltProcedure.voltExecuteSQL(Z)[Lorg/voltdb/VoltTable;+56
+j  org.procedures.Insert.run(IJ)J+28
+v  ~StubRoutines::call_stub
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+87
+j  sun.reflect.DelegatingMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+6
+j  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+161
+j  org.voltdb.VoltProcedure.call(Lorg/voltdb/dtxn/TransactionState;[Ljava/lang/Object;)Lorg/voltdb/ClientResponseImpl;+337
+j  org.voltdb.ExecutionSite.processInitiateTask(Lorg/voltdb/dtxn/TransactionState;Lorg/voltdb/messaging/VoltMessage;)Lorg/voltdb/messaging/InitiateResponseMessage;+248
+j  org.voltdb.dtxn.SinglePartitionTxnState.doWork(Z)Z+35
+j  org.voltdb.ExecutionSite.recursableRun(Lorg/voltdb/dtxn/TransactionState;)Ljava/util/Map;+5
+j  org.voltdb.ExecutionSite.run()V+366
+j  org.voltdb.ExecutionSiteRunner.run()V+98
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f2be009e000 JavaThread "SnapshotDaemon" [_thread_blocked, id=9382, stack(0x00007f2bc6c13000,0x00007f2bc6d14000)]
+  0x00007f2be0052800 JavaThread "Client connection accceptor" daemon [_thread_in_native, id=9381, stack(0x00007f2bd00a9000,0x00007f2bd00ea000)]
+  0x00007f2be0051800 JavaThread "Client connection accceptor" daemon [_thread_in_native, id=9380, stack(0x00007f2c04006000,0x00007f2c04047000)]
+  0x00007f2c403a7000 JavaThread "PeriodicWork" [_thread_in_native, id=9373, stack(0x00007f2bd00ea000,0x00007f2bd01eb000)]
+  0x00007f2c403a4800 JavaThread "SnapshotCompletionMonitor" [_thread_blocked, id=9372, stack(0x00007f2bc6f16000,0x00007f2bc7017000)]
+  0x00007f2c40378000 JavaThread "Ad Hoc Planner" [_thread_blocked, id=9371, stack(0x00007f2bc7017000,0x00007f2bc7118000)]
+=>0x00007f2c401ea800 JavaThread "ExecutionSite:0002" [_thread_in_native, id=9366, stack(0x00007f2c05a48000,0x00007f2c05b49000)]
+  0x00007f2c4034a000 JavaThread "main-EventThread" daemon [_thread_blocked, id=9365, stack(0x00007f2c05b49000,0x00007f2c05c4a000)]
+  0x00007f2c40348800 JavaThread "main-SendThread(localhost.localdomain:2181)" daemon [_thread_in_native, id=9364, stack(0x00007f2c05c4a000,0x00007f2c05d4b000)]
+  0x00007f2c40340000 JavaThread "Volt Network" daemon [_thread_in_native, id=9363, stack(0x00007f2c05d4b000,0x00007f2c05e4c000)]
+  0x00007f2c40325800 JavaThread "ZooKeeperServer" [_thread_blocked, id=9362, stack(0x00007f2c06053000,0x00007f2c06154000)]
+  0x00007f2c4030a800 JavaThread "NIOServerCxn.Factory:/127.0.0.1:2181" daemon [_thread_in_native, id=9361, stack(0x00007f2c06154000,0x00007f2c06255000)]
+  0x00007f2c402fd000 JavaThread "qtp2124110242-25" [_thread_blocked, id=9359, stack(0x00007f2c06255000,0x00007f2c06356000)]
+  0x00007f2c402fb000 JavaThread "qtp2124110242-24" [_thread_blocked, id=9358, stack(0x00007f2c06356000,0x00007f2c06457000)]
+  0x00007f2c402f9000 JavaThread "qtp2124110242-23" [_thread_blocked, id=9357, stack(0x00007f2c06457000,0x00007f2c06558000)]
+  0x00007f2c402f7800 JavaThread "qtp2124110242-22" [_thread_blocked, id=9356, stack(0x00007f2c06558000,0x00007f2c06659000)]
+  0x00007f2c402f0800 JavaThread "qtp2124110242-21" [_thread_blocked, id=9355, stack(0x00007f2c06659000,0x00007f2c0675a000)]
+  0x00007f2c402ef000 JavaThread "qtp2124110242-20" [_thread_blocked, id=9354, stack(0x00007f2c0675a000,0x00007f2c0685b000)]
+  0x00007f2c402eb800 JavaThread "qtp2124110242-19" [_thread_blocked, id=9353, stack(0x00007f2c0685b000,0x00007f2c0695c000)]
+  0x00007f2c402ea800 JavaThread "qtp2124110242-18 - Acceptor0 SocketConnector@0.0.0.0:8080" [_thread_in_native, id=9352, stack(0x00007f2c0695c000,0x00007f2c06a5d000)]
+  0x00007f2c402bf800 JavaThread "Fault Distributor" daemon [_thread_blocked, id=9350, stack(0x00007f2c06e7a000,0x00007f2c06f7b000)]
+  0x00007f2c401f3800 JavaThread "Dispatcher-Thread-1" daemon [_thread_blocked, id=9349, stack(0x00007f2c06f7b000,0x00007f2c0707c000)]
+  0x00007f2c400ae800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=9346, stack(0x00007f2c073b0000,0x00007f2c074b1000)]
+  0x00007f2c400ab000 JavaThread "CompilerThread1" daemon [_thread_blocked, id=9344, stack(0x00007f2c074b1000,0x00007f2c075b2000)]
+  0x00007f2c400a9000 JavaThread "CompilerThread0" daemon [_thread_blocked, id=9343, stack(0x00007f2c075b2000,0x00007f2c076b3000)]
+  0x00007f2bf0001000 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=9340, stack(0x00007f2c076b3000,0x00007f2c077b4000)]
+  0x00007f2c400a7000 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=9339, stack(0x00007f2c077b4000,0x00007f2c078b5000)]
+  0x00007f2c400a3000 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=9337, stack(0x00007f2c078b5000,0x00007f2c079b6000)]
+  0x00007f2c40096800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=9335, stack(0x00007f2c07bba000,0x00007f2c07cbb000)]
+  0x00007f2c40079000 JavaThread "Finalizer" daemon [_thread_blocked, id=9332, stack(0x00007f2c07cbb000,0x00007f2c07dbc000)]
+  0x00007f2c40077000 JavaThread "Reference Handler" daemon [_thread_blocked, id=9331, stack(0x00007f2c07dbc000,0x00007f2c07ebd000)]
+  0x00007f2c4000b800 JavaThread "ExecutionSite:0001" [_thread_blocked, id=9324, stack(0x00007f2c4677d000,0x00007f2c4687e000)]
+
+Other Threads:
+  0x00007f2c4006f800 VMThread [stack: 0x00007f2c07ebd000,0x00007f2c07fbe000] [id=9330]
+  0x00007f2c400b0800 WatcherThread [stack: 0x00007f2c072af000,0x00007f2c073b0000] [id=9347]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 11392K, used 8482K [0x00007f2c2c2b0000, 0x00007f2c2d0f0000, 0x00007f2c36d50000)
+  eden space 10880K, 77% used [0x00007f2c2c2b0000,0x00007f2c2caf8b78,0x00007f2c2cd50000)
+  from space 512K, 0% used [0x00007f2c2ceb0000,0x00007f2c2ceb0000,0x00007f2c2cf30000)
+  to   space 1792K, 0% used [0x00007f2c2cf30000,0x00007f2c2cf30000,0x00007f2c2d0f0000)
+ PSOldGen        total 15040K, used 4301K [0x00007f2c16d50000, 0x00007f2c17c00000, 0x00007f2c2c2b0000)
+  object space 15040K, 28% used [0x00007f2c16d50000,0x00007f2c171835e0,0x00007f2c17c00000)
+ PSPermGen       total 39360K, used 18525K [0x00007f2c0c550000, 0x00007f2c0ebc0000, 0x00007f2c16d50000)
+  object space 39360K, 47% used [0x00007f2c0c550000,0x00007f2c0d7674d0,0x00007f2c0ebc0000)
+
+Dynamic libraries:
+00400000-00408000 r-xp 00000000 fd:00 12                                 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/bin/java
+00608000-00609000 rw-p 00008000 fd:00 12                                 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/bin/java
+00c66000-00c87000 rw-p 00000000 00:00 0                                  [heap]
+3289000000-3289015000 r-xp 00000000 fd:00 131300                         /lib64/libz.so.1.2.3
+3289015000-3289214000 ---p 00015000 fd:00 131300                         /lib64/libz.so.1.2.3
+3289214000-3289215000 rw-p 00014000 fd:00 131300                         /lib64/libz.so.1.2.3
+7f2bc6aaf000-7f2bc6b12000 rw-p 00000000 00:00 0 
+7f2bc6b12000-7f2bc6b15000 rwxp 00000000 00:00 0 
+7f2bc6b15000-7f2bc6c13000 rw-p 00000000 00:00 0 
+7f2bc6c13000-7f2bc6c16000 ---p 00000000 00:00 0 
+7f2bc6c16000-7f2bc6d14000 rw-p 00000000 00:00 0 
+7f2bc6d14000-7f2bc6d17000 rwxp 00000000 00:00 0 
+7f2bc6d17000-7f2bc6e15000 rw-p 00000000 00:00 0 
+7f2bc6e15000-7f2bc6e18000 rwxp 00000000 00:00 0 
+7f2bc6e18000-7f2bc6f16000 rw-p 00000000 00:00 0 
+7f2bc6f16000-7f2bc6f19000 ---p 00000000 00:00 0 
+7f2bc6f19000-7f2bc7017000 rw-p 00000000 00:00 0 
+7f2bc7017000-7f2bc701a000 ---p 00000000 00:00 0 
+7f2bc701a000-7f2bcc000000 rw-p 00000000 00:00 0 
+7f2bcc000000-7f2bcc021000 rw-p 00000000 00:00 0 
+7f2bcc021000-7f2bd0000000 ---p 00000000 00:00 0 
+7f2bd0004000-7f2bd0007000 rwxp 00000000 00:00 0 
+7f2bd0007000-7f2bd00a9000 rw-p 00000000 00:00 0 
+7f2bd00a9000-7f2bd00ac000 ---p 00000000 00:00 0 
+7f2bd00ac000-7f2bd00ea000 rw-p 00000000 00:00 0 
+7f2bd00ea000-7f2bd00ed000 ---p 00000000 00:00 0 
+7f2bd00ed000-7f2bd4000000 rw-p 00000000 00:00 0 
+7f2bd4000000-7f2bd4021000 rw-p 00000000 00:00 0 
+7f2bd4021000-7f2bd8000000 ---p 00000000 00:00 0 
+7f2bd8000000-7f2bd8021000 rw-p 00000000 00:00 0 
+7f2bd8021000-7f2bdc000000 ---p 00000000 00:00 0 
+7f2bdc000000-7f2bdc42c000 rw-p 00000000 00:00 0 
+7f2bdc42c000-7f2be0000000 ---p 00000000 00:00 0 
+7f2be0000000-7f2be0384000 rw-p 00000000 00:00 0 
+7f2be0384000-7f2be4000000 ---p 00000000 00:00 0 
+7f2be4000000-7f2be4021000 rw-p 00000000 00:00 0 
+7f2be4021000-7f2be8000000 ---p 00000000 00:00 0 
+7f2be8000000-7f2be8021000 rw-p 00000000 00:00 0 
+7f2be8021000-7f2bec000000 ---p 00000000 00:00 0 
+7f2bec000000-7f2bec021000 rw-p 00000000 00:00 0 
+7f2bec021000-7f2bf0000000 ---p 00000000 00:00 0 
+7f2bf0000000-7f2bf0021000 rw-p 00000000 00:00 0 
+7f2bf0021000-7f2bf4000000 ---p 00000000 00:00 0 
+7f2bf4000000-7f2bf4021000 rw-p 00000000 00:00 0 
+7f2bf4021000-7f2bf8000000 ---p 00000000 00:00 0 
+7f2bf8000000-7f2bf8021000 rw-p 00000000 00:00 0 
+7f2bf8021000-7f2bfc000000 ---p 00000000 00:00 0 
+7f2bfc000000-7f2bfc03a000 rw-p 00000000 00:00 0 
+7f2bfc03a000-7f2c00000000 ---p 00000000 00:00 0 
+7f2c00000000-7f2c00021000 rw-p 00000000 00:00 0 
+7f2c00021000-7f2c04000000 ---p 00000000 00:00 0 
+7f2c04006000-7f2c04009000 ---p 00000000 00:00 0 
+7f2c04009000-7f2c0508d000 rw-p 00000000 00:00 0 
+7f2c0508d000-7f2c050a3000 r-xp 00000000 fd:00 131306                     /lib64/libgcc_s-4.4.5-20101113.so.1
+7f2c050a3000-7f2c052a2000 ---p 00016000 fd:00 131306                     /lib64/libgcc_s-4.4.5-20101113.so.1
+7f2c052a2000-7f2c052a3000 rw-p 00015000 fd:00 131306                     /lib64/libgcc_s-4.4.5-20101113.so.1
+7f2c052a3000-7f2c0538b000 r-xp 00000000 fd:00 2889025                    /usr/lib64/libstdc++.so.6.0.13
+7f2c0538b000-7f2c0558b000 ---p 000e8000 fd:00 2889025                    /usr/lib64/libstdc++.so.6.0.13
+7f2c0558b000-7f2c05592000 r--p 000e8000 fd:00 2889025                    /usr/lib64/libstdc++.so.6.0.13
+7f2c05592000-7f2c05594000 rw-p 000ef000 fd:00 2889025                    /usr/lib64/libstdc++.so.6.0.13
+7f2c05594000-7f2c055a9000 rw-p 00000000 00:00 0 
+7f2c055c7000-7f2c0583b000 r-xp 00000000 fd:02 8656369                    /export/home/nirmeshmalviya/volt/volt-open/trunk/voltdb/libvoltdb-2.0.so
+7f2c0583b000-7f2c05a3b000 ---p 00274000 fd:02 8656369                    /export/home/nirmeshmalviya/volt/volt-open/trunk/voltdb/libvoltdb-2.0.so
+7f2c05a3b000-7f2c05a48000 rw-p 00274000 fd:02 8656369                    /export/home/nirmeshmalviya/volt/volt-open/trunk/voltdb/libvoltdb-2.0.so
+7f2c05a48000-7f2c05a4b000 ---p 00000000 00:00 0 
+7f2c05a4b000-7f2c05b49000 rw-p 00000000 00:00 0 
+7f2c05b49000-7f2c05b4c000 ---p 00000000 00:00 0 
+7f2c05b4c000-7f2c05c4a000 rw-p 00000000 00:00 0 
+7f2c05c4a000-7f2c05c4d000 ---p 00000000 00:00 0 
+7f2c05c4d000-7f2c05d4b000 rw-p 00000000 00:00 0 
+7f2c05d4b000-7f2c05d4e000 ---p 00000000 00:00 0 
+7f2c05d4e000-7f2c05e4c000 rw-p 00000000 00:00 0 
+7f2c05e4c000-7f2c05e52000 r-xp 00000000 fd:00 3151883                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libmanagement.so
+7f2c05e52000-7f2c06052000 ---p 00006000 fd:00 3151883                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libmanagement.so
+7f2c06052000-7f2c06053000 rw-p 00006000 fd:00 3151883                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libmanagement.so
+7f2c06053000-7f2c06056000 ---p 00000000 00:00 0 
+7f2c06056000-7f2c06154000 rw-p 00000000 00:00 0 
+7f2c06154000-7f2c06157000 ---p 00000000 00:00 0 
+7f2c06157000-7f2c06255000 rw-p 00000000 00:00 0 
+7f2c06255000-7f2c06258000 ---p 00000000 00:00 0 
+7f2c06258000-7f2c06356000 rw-p 00000000 00:00 0 
+7f2c06356000-7f2c06359000 ---p 00000000 00:00 0 
+7f2c06359000-7f2c06457000 rw-p 00000000 00:00 0 
+7f2c06457000-7f2c0645a000 ---p 00000000 00:00 0 
+7f2c0645a000-7f2c06558000 rw-p 00000000 00:00 0 
+7f2c06558000-7f2c0655b000 ---p 00000000 00:00 0 
+7f2c0655b000-7f2c06659000 rw-p 00000000 00:00 0 
+7f2c06659000-7f2c0665c000 ---p 00000000 00:00 0 
+7f2c0665c000-7f2c0675a000 rw-p 00000000 00:00 0 
+7f2c0675a000-7f2c0675d000 ---p 00000000 00:00 0 
+7f2c0675d000-7f2c0685b000 rw-p 00000000 00:00 0 
+7f2c0685b000-7f2c0685e000 ---p 00000000 00:00 0 
+7f2c0685e000-7f2c0695c000 rw-p 00000000 00:00 0 
+7f2c0695c000-7f2c0695f000 ---p 00000000 00:00 0 
+7f2c0695f000-7f2c06a5d000 rw-p 00000000 00:00 0 
+7f2c06a5d000-7f2c06a65000 r-xp 00000000 fd:00 3155413                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnio.so
+7f2c06a65000-7f2c06c64000 ---p 00008000 fd:00 3155413                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnio.so
+7f2c06c64000-7f2c06c65000 rw-p 00007000 fd:00 3155413                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnio.so
+7f2c06c65000-7f2c06c79000 r-xp 00000000 fd:00 3151885                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnet.so
+7f2c06c79000-7f2c06e79000 ---p 00014000 fd:00 3151885                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnet.so
+7f2c06e79000-7f2c06e7a000 rw-p 00014000 fd:00 3151885                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnet.so
+7f2c06e7a000-7f2c06e7d000 ---p 00000000 00:00 0 
+7f2c06e7d000-7f2c06f7b000 rw-p 00000000 00:00 0 
+7f2c06f7b000-7f2c06f7e000 ---p 00000000 00:00 0 
+7f2c06f7e000-7f2c0707c000 rw-p 00000000 00:00 0 
+7f2c0707c000-7f2c07092000 r--s 001c3000 fd:02 8654483                    /export/home/nirmeshmalviya/volt/volt-open/trunk/voltdb/voltdbclient-2.0.jar
+7f2c07092000-7f2c070cd000 r--s 004bf000 fd:02 8654481                    /export/home/nirmeshmalviya/volt/volt-open/trunk/voltdb/voltdb-2.0.jar
+7f2c070cd000-7f2c070e6000 r--s 00135000 fd:02 1835455                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/testability-explorer.jar
+7f2c070e6000-7f2c070fa000 r--s 000f7000 fd:02 1835457                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/pmd-4.2.5.jar
+7f2c070fa000-7f2c07100000 r--s 00034000 fd:02 1835456                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/junit-4.8.2.jar
+7f2c07100000-7f2c07111000 r--s 0014c000 fd:02 1835450                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/jfreechart-1.0.13.jar
+7f2c07111000-7f2c07117000 r--s 00046000 fd:02 1835449                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/jcommon-1.0.16.jar
+7f2c07117000-7f2c07119000 r--s 00019000 fd:02 1835447                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/japex.jar
+7f2c07119000-7f2c07121000 r--s 000e0000 fd:02 1835454                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/emma.jar
+7f2c07121000-7f2c07123000 r--s 00015000 fd:02 1835453                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/emma_ant.jar
+7f2c07123000-7f2c07137000 r--s 0012f000 fd:02 1835448                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/ant.jar
+7f2c07137000-7f2c07138000 r--s 00001000 fd:02 1835451                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/ant-testability-explorer.jar
+7f2c07138000-7f2c0713a000 r--s 00015000 fd:02 1835452                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/ant-junit.jar
+7f2c0713a000-7f2c0713b000 r--s 00002000 fd:02 1835458                    /export/home/nirmeshmalviya/volt/volt-open/trunk/third_party/java/jars/ant_doxygen.jar
+7f2c0713b000-7f2c071aa000 r--s 008ec000 fd:02 8654465                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/voltbin/voltdbfat.jar
+7f2c071aa000-7f2c071c0000 r--s 001c3000 fd:02 1575611                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/voltdb/voltdbclient-2.0.jar
+7f2c071c0000-7f2c071fb000 r--s 004bf000 fd:02 1575615                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/voltdb/voltdb-2.0.jar
+7f2c071fb000-7f2c071fd000 r--s 00015000 fd:02 1966346                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/lib/jline-1.0.jar
+7f2c071fd000-7f2c07202000 r--s 00046000 fd:02 1967296                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/lib/commons-lang3-3.0.jar
+7f2c07202000-7f2c07203000 r--s 00006000 fd:02 1966310                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/examples/voter/voter.jar
+7f2c07203000-7f2c07205000 r--s 00002000 fd:02 1967246                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/examples/voltkv/voltkv.jar
+7f2c07205000-7f2c07207000 r--s 0000c000 fd:02 1967399                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/examples/voltcache/voltcache.jar
+7f2c07207000-7f2c07208000 r--s 00002000 fd:02 1966434                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist/examples/test1/catalog.jar
+7f2c07208000-7f2c0721e000 r--s 001c3000 fd:02 1971069                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltkv/voltdb/voltdbclient-2.0.jar
+7f2c0721e000-7f2c07259000 r--s 004bf000 fd:02 1971075                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltkv/voltdb/voltdb-2.0.jar
+7f2c07259000-7f2c0725e000 r--s 00046000 fd:02 1971077                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltkv/lib/commons-lang3-3.0.jar
+7f2c0725e000-7f2c07274000 r--s 001c3000 fd:02 1971058                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltcache/voltdb/voltdbclient-2.0.jar
+7f2c07274000-7f2c072af000 r--s 004bf000 fd:02 1971064                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltcache/voltdb/voltdb-2.0.jar
+7f2c072af000-7f2c072b0000 ---p 00000000 00:00 0 
+7f2c072b0000-7f2c073b0000 rw-p 00000000 00:00 0 
+7f2c073b0000-7f2c073b3000 ---p 00000000 00:00 0 
+7f2c073b3000-7f2c074b1000 rw-p 00000000 00:00 0 
+7f2c074b1000-7f2c074b4000 ---p 00000000 00:00 0 
+7f2c074b4000-7f2c075b2000 rw-p 00000000 00:00 0 
+7f2c075b2000-7f2c075b5000 ---p 00000000 00:00 0 
+7f2c075b5000-7f2c076b3000 rw-p 00000000 00:00 0 
+7f2c076b3000-7f2c076b6000 ---p 00000000 00:00 0 
+7f2c076b6000-7f2c077b4000 rw-p 00000000 00:00 0 
+7f2c077b4000-7f2c077b7000 ---p 00000000 00:00 0 
+7f2c077b7000-7f2c078b5000 rw-p 00000000 00:00 0 
+7f2c078b5000-7f2c078b8000 ---p 00000000 00:00 0 
+7f2c078b8000-7f2c079b6000 rw-p 00000000 00:00 0 
+7f2c079b6000-7f2c079ba000 r-xp 00000000 fd:00 3151866                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libdt_socket.so
+7f2c079ba000-7f2c07bb9000 ---p 00004000 fd:00 3151866                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libdt_socket.so
+7f2c07bb9000-7f2c07bba000 rw-p 00003000 fd:00 3151866                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libdt_socket.so
+7f2c07bba000-7f2c07bbd000 ---p 00000000 00:00 0 
+7f2c07bbd000-7f2c07cbb000 rw-p 00000000 00:00 0 
+7f2c07cbb000-7f2c07cbe000 ---p 00000000 00:00 0 
+7f2c07cbe000-7f2c07dbc000 rw-p 00000000 00:00 0 
+7f2c07dbc000-7f2c07dbf000 ---p 00000000 00:00 0 
+7f2c07dbf000-7f2c07ebd000 rw-p 00000000 00:00 0 
+7f2c07ebd000-7f2c07ebe000 ---p 00000000 00:00 0 
+7f2c07ebe000-7f2c08000000 rw-p 00000000 00:00 0 
+7f2c08000000-7f2c080e7000 rw-p 00000000 00:00 0 
+7f2c080e7000-7f2c0c000000 ---p 00000000 00:00 0 
+7f2c0c00b000-7f2c0c012000 r--s 00102000 fd:00 3151960                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/resources.jar
+7f2c0c012000-7f2c0c066000 rw-p 00000000 00:00 0 
+7f2c0c066000-7f2c0c1f9000 r--s 03929000 fd:00 3151962                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/rt.jar
+7f2c0c1f9000-7f2c0c1fa000 ---p 00000000 00:00 0 
+7f2c0c1fa000-7f2c0c2fa000 rw-p 00000000 00:00 0 
+7f2c0c2fa000-7f2c0c2fb000 ---p 00000000 00:00 0 
+7f2c0c2fb000-7f2c0c3fb000 rw-p 00000000 00:00 0 
+7f2c0c3fb000-7f2c0c40f000 rwxp 00000000 00:00 0 
+7f2c0c40f000-7f2c0c44f000 rwxp 00000000 00:00 0 
+7f2c0c44f000-7f2c0c457000 rwxp 00000000 00:00 0 
+7f2c0c457000-7f2c0c4f9000 rwxp 00000000 00:00 0 
+7f2c0c4f9000-7f2c0c501000 rwxp 00000000 00:00 0 
+7f2c0c501000-7f2c0c54f000 rwxp 00000000 00:00 0 
+7f2c0c54f000-7f2c0ebc0000 rwxp 00000000 00:00 0 
+7f2c0ebc0000-7f2c16d50000 rwxp 00000000 00:00 0 
+7f2c16d50000-7f2c17c00000 rwxp 00000000 00:00 0 
+7f2c17c00000-7f2c2c2b0000 rwxp 00000000 00:00 0 
+7f2c2c2b0000-7f2c2d0f0000 rwxp 00000000 00:00 0 
+7f2c2d0f0000-7f2c36d50000 rwxp 00000000 00:00 0 
+7f2c36d51000-7f2c36d53000 r--s 00002000 fd:02 8785428                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltkv/src/voltkv.jar
+7f2c36d53000-7f2c36d55000 r--s 00015000 fd:02 1971071                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltkv/lib/jline-1.0.jar
+7f2c36d55000-7f2c36d59000 r--s 0007c000 fd:00 3154398                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/jsse.jar
+7f2c36d59000-7f2c36d5b000 r--s 0000c000 fd:02 8657883                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltcache/src/voltcache.jar
+7f2c36d5b000-7f2c36fcb000 rwxp 00000000 00:00 0 
+7f2c36fcb000-7f2c39d5b000 rwxp 00000000 00:00 0 
+7f2c39d5b000-7f2c39d62000 r-xp 00000000 fd:00 3155415                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libzip.so
+7f2c39d62000-7f2c39f61000 ---p 00007000 fd:00 3155415                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libzip.so
+7f2c39f61000-7f2c39f62000 rw-p 00006000 fd:00 3155415                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libzip.so
+7f2c39f62000-7f2c39f6e000 r-xp 00000000 fd:00 131125                     /lib64/libnss_files-2.12.2.so
+7f2c39f6e000-7f2c3a16d000 ---p 0000c000 fd:00 131125                     /lib64/libnss_files-2.12.2.so
+7f2c3a16d000-7f2c3a16e000 r--p 0000b000 fd:00 131125                     /lib64/libnss_files-2.12.2.so
+7f2c3a16e000-7f2c3a16f000 rw-p 0000c000 fd:00 131125                     /lib64/libnss_files-2.12.2.so
+7f2c3a16f000-7f2c40000000 r--p 00000000 fd:00 2941842                    /usr/lib/locale/locale-archive
+7f2c40000000-7f2c40b64000 rw-p 00000000 00:00 0 
+7f2c40b64000-7f2c44000000 ---p 00000000 00:00 0 
+7f2c44001000-7f2c44017000 r--s 001c3000 fd:02 9048014                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/voltdb/voltdbclient-2.0.jar
+7f2c44017000-7f2c4403f000 rw-p 00000000 00:00 0 
+7f2c4403f000-7f2c44053000 rwxp 00000000 00:00 0 
+7f2c44053000-7f2c44093000 rwxp 00000000 00:00 0 
+7f2c44093000-7f2c4409b000 rwxp 00000000 00:00 0 
+7f2c4409b000-7f2c4413e000 rwxp 00000000 00:00 0 
+7f2c4413e000-7f2c44141000 r-xp 00000000 fd:00 3155414                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnpt.so
+7f2c44141000-7f2c44340000 ---p 00003000 fd:00 3155414                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnpt.so
+7f2c44340000-7f2c44341000 rw-p 00002000 fd:00 3155414                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libnpt.so
+7f2c44341000-7f2c4437b000 r-xp 00000000 fd:00 3151877                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjdwp.so
+7f2c4437b000-7f2c4457a000 ---p 0003a000 fd:00 3151877                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjdwp.so
+7f2c4457a000-7f2c4457b000 rw-p 00039000 fd:00 3151877                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjdwp.so
+7f2c4457b000-7f2c4457c000 rw-p 00000000 00:00 0 
+7f2c4457c000-7f2c44584000 r-xp 00000000 fd:00 3155416                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+7f2c44584000-7f2c44783000 ---p 00008000 fd:00 3155416                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+7f2c44783000-7f2c44784000 rw-p 00007000 fd:00 3155416                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/native_threads/libhpi.so
+7f2c44784000-7f2c44785000 rw-p 00000000 00:00 0 
+7f2c44785000-7f2c4479b000 r-xp 00000000 fd:00 131113                     /lib64/libnsl-2.12.2.so
+7f2c4479b000-7f2c4499a000 ---p 00016000 fd:00 131113                     /lib64/libnsl-2.12.2.so
+7f2c4499a000-7f2c4499b000 r--p 00015000 fd:00 131113                     /lib64/libnsl-2.12.2.so
+7f2c4499b000-7f2c4499c000 rw-p 00016000 fd:00 131113                     /lib64/libnsl-2.12.2.so
+7f2c4499c000-7f2c4499e000 rw-p 00000000 00:00 0 
+7f2c4499e000-7f2c449c9000 r-xp 00000000 fd:00 3151874                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjava.so
+7f2c449c9000-7f2c44bc9000 ---p 0002b000 fd:00 3151874                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjava.so
+7f2c44bc9000-7f2c44bcd000 rw-p 0002b000 fd:00 3151874                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libjava.so
+7f2c44bcd000-7f2c44bdb000 r-xp 00000000 fd:00 3151893                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libverify.so
+7f2c44bdb000-7f2c44dda000 ---p 0000e000 fd:00 3151893                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libverify.so
+7f2c44dda000-7f2c44ddc000 rw-p 0000d000 fd:00 3151893                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/libverify.so
+7f2c44ddc000-7f2c44de3000 r-xp 00000000 fd:00 131139                     /lib64/librt-2.12.2.so
+7f2c44de3000-7f2c44fe2000 ---p 00007000 fd:00 131139                     /lib64/librt-2.12.2.so
+7f2c44fe2000-7f2c44fe3000 r--p 00006000 fd:00 131139                     /lib64/librt-2.12.2.so
+7f2c44fe3000-7f2c44fe4000 rw-p 00007000 fd:00 131139                     /lib64/librt-2.12.2.so
+7f2c44fe4000-7f2c45067000 r-xp 00000000 fd:00 131111                     /lib64/libm-2.12.2.so
+7f2c45067000-7f2c45266000 ---p 00083000 fd:00 131111                     /lib64/libm-2.12.2.so
+7f2c45266000-7f2c45267000 r--p 00082000 fd:00 131111                     /lib64/libm-2.12.2.so
+7f2c45267000-7f2c45268000 rw-p 00083000 fd:00 131111                     /lib64/libm-2.12.2.so
+7f2c45268000-7f2c45a21000 r-xp 00000000 fd:00 3151900                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+7f2c45a21000-7f2c45c21000 ---p 007b9000 fd:00 3151900                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+7f2c45c21000-7f2c45ca7000 rw-p 007b9000 fd:00 3151900                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server/libjvm.so
+7f2c45ca7000-7f2c45ce3000 rw-p 00000000 00:00 0 
+7f2c45ce3000-7f2c45e57000 r-xp 00000000 fd:00 131091                     /lib64/libc-2.12.2.so
+7f2c45e57000-7f2c46057000 ---p 00174000 fd:00 131091                     /lib64/libc-2.12.2.so
+7f2c46057000-7f2c4605b000 r--p 00174000 fd:00 131091                     /lib64/libc-2.12.2.so
+7f2c4605b000-7f2c4605c000 rw-p 00178000 fd:00 131091                     /lib64/libc-2.12.2.so
+7f2c4605c000-7f2c46061000 rw-p 00000000 00:00 0 
+7f2c46061000-7f2c46063000 r-xp 00000000 fd:00 131097                     /lib64/libdl-2.12.2.so
+7f2c46063000-7f2c46263000 ---p 00002000 fd:00 131097                     /lib64/libdl-2.12.2.so
+7f2c46263000-7f2c46264000 r--p 00002000 fd:00 131097                     /lib64/libdl-2.12.2.so
+7f2c46264000-7f2c46265000 rw-p 00003000 fd:00 131097                     /lib64/libdl-2.12.2.so
+7f2c46265000-7f2c46269000 r-xp 00000000 fd:00 3151859                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+7f2c46269000-7f2c46468000 ---p 00004000 fd:00 3151859                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+7f2c46468000-7f2c46469000 rw-p 00003000 fd:00 3151859                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/jli/libjli.so
+7f2c46469000-7f2c46480000 r-xp 00000000 fd:00 131135                     /lib64/libpthread-2.12.2.so
+7f2c46480000-7f2c4667f000 ---p 00017000 fd:00 131135                     /lib64/libpthread-2.12.2.so
+7f2c4667f000-7f2c46680000 r--p 00016000 fd:00 131135                     /lib64/libpthread-2.12.2.so
+7f2c46680000-7f2c46681000 rw-p 00017000 fd:00 131135                     /lib64/libpthread-2.12.2.so
+7f2c46681000-7f2c46685000 rw-p 00000000 00:00 0 
+7f2c46685000-7f2c466a3000 r-xp 00000000 fd:00 131079                     /lib64/ld-2.12.2.so
+7f2c466a4000-7f2c466a9000 r--s 00046000 fd:02 1971066                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltcache/lib/commons-lang3-3.0.jar
+7f2c466a9000-7f2c466ab000 r--s 00015000 fd:02 1966561                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/lib/jline-1.0.jar
+7f2c466ab000-7f2c466b0000 r--s 00046000 fd:02 1966590                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/lib/commons-lang3-3.0.jar
+7f2c466b0000-7f2c466b1000 r--s 00006000 fd:02 1575685                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/examples/voter/voter.jar
+7f2c466b1000-7f2c466b3000 r--s 00002000 fd:02 1707593                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/examples/voltkv/voltkv.jar
+7f2c466b3000-7f2c466b5000 r--s 0000c000 fd:02 1446136                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/examples/voltcache/voltcache.jar
+7f2c466b5000-7f2c466b6000 r--s 00002000 fd:02 1838325                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-client-java/examples/test1/catalog.jar
+7f2c466b6000-7f2c466b8000 r--s 00015000 fd:02 8657295                    /export/home/nirmeshmalviya/volt/volt-open/trunk/lib/jline-1.0.jar
+7f2c466b8000-7f2c466bd000 r--s 00046000 fd:02 8657296                    /export/home/nirmeshmalviya/volt/volt-open/trunk/lib/commons-lang3-3.0.jar
+7f2c466bd000-7f2c466c7000 rwxp 00000000 00:00 0 
+7f2c466c7000-7f2c4677d000 rwxp 00000000 00:00 0 
+7f2c4677d000-7f2c46780000 ---p 00000000 00:00 0 
+7f2c46780000-7f2c46883000 rw-p 00000000 00:00 0 
+7f2c46883000-7f2c46885000 r--s 00015000 fd:02 1971060                    /export/home/nirmeshmalviya/volt/volt-open/trunk/obj/release/dist-voltcache/lib/jline-1.0.jar
+7f2c46885000-7f2c46886000 r--s 00006000 fd:02 8784861                    /export/home/nirmeshmalviya/volt/volt-open/trunk/examples/voter/voter.jar
+7f2c46886000-7f2c46888000 r--s 00002000 fd:02 8915400                    /export/home/nirmeshmalviya/volt/volt-open/trunk/examples/voltkv/voltkv.jar
+7f2c46888000-7f2c4688a000 r--s 0000c000 fd:02 8915401                    /export/home/nirmeshmalviya/volt/volt-open/trunk/examples/voltcache/voltcache.jar
+7f2c4688a000-7f2c4688b000 r--s 00002000 fd:02 9047997                    /export/home/nirmeshmalviya/volt/volt-open/trunk/examples/test1/catalog.jar
+7f2c4688b000-7f2c46894000 r--s 00065000 fd:00 3151916                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/ext/gnome-java-bridge.jar
+7f2c46894000-7f2c46897000 r--s 0000f000 fd:00 3151920                    /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/ext/pulse-java.jar
+7f2c46897000-7f2c4689f000 rw-s 00000000 fd:00 1048694                    /tmp/hsperfdata_nirmeshmalviya/9322
+7f2c4689f000-7f2c468a0000 rw-p 00000000 00:00 0 
+7f2c468a0000-7f2c468a1000 r--p 00000000 00:00 0 
+7f2c468a1000-7f2c468a2000 rw-p 00000000 00:00 0 
+7f2c468a2000-7f2c468a3000 r--p 0001d000 fd:00 131079                     /lib64/ld-2.12.2.so
+7f2c468a3000-7f2c468a4000 rw-p 0001e000 fd:00 131079                     /lib64/ld-2.12.2.so
+7f2c468a4000-7f2c468a5000 rw-p 00000000 00:00 0 
+7fff2cad4000-7fff2caf6000 rw-p 00000000 00:00 0                          [stack]
+7fff2cbff000-7fff2cc00000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:50025 -Djava.library.path=../../voltdb -Xmx512m -XX:-ReduceInitialCardMarks -Dfile.encoding=UTF-8 
+java_command: org.voltdb.VoltDB leader localhost catalog catalog.jar deployment deployment.xml license ../../voltdb/license.xml
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/lib64/qt-3.3/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/export/home/nirmeshmalviya/bin
+USERNAME=nirmeshmalviya
+LD_LIBRARY_PATH=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64/server:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/lib/amd64:/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64/jre/../lib/amd64:/usr/lib64/xulrunner-1.9.2
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x65c330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x65c330], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x539650], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x539650], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x539650], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x539650], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x538e00], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x53b230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x53b230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x53b230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x53b230], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Fedora release 13 (Goddard)
+
+uname:Linux 2.6.34.7-56.fc13.x86_64 #1 SMP Wed Sep 15 03:36:55 UTC 2010 x86_64
+libc:glibc 2.12.2 NPTL 2.12.2 
+rlimit: STACK 10240k, CORE 0k, NPROC 1024, NOFILE 1024, AS infinity
+load average:0.10 0.06 0.05
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 23 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+Memory: 4k page, physical 4056312k(155468k free), swap 6160380k(5980332k free)
+
+vm_info: OpenJDK 64-Bit Server VM (14.0-b16) for linux-amd64 JRE (1.6.0_18-b18), built on Jun  7 2011 17:53:45 by "mockbuild" with gcc 4.4.5 20101112 (Red Hat 4.4.5-2)
+
+time: Tue Nov  1 22:50:32 2011
+elapsed time: 553 seconds
+

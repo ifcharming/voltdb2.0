@@ -1,0 +1,15 @@
+digraph name {
+99 [label="99: SEQSCAN" ];
+99 -> 100;
+100 [label="100: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+107 [label="107: ORDERBY" ];
+107 -> 99;
+108 [label="108: PROJECTION" ];
+108 -> 107;
+110 [label="110: LIMIT" ];
+110 -> 108;
+111 [label="111: SEND" fontcolor="white" style="filled" fillcolor="black"];
+111 -> 110;
+
+}
+

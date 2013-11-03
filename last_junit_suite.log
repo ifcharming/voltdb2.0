@@ -1,0 +1,45 @@
+13/10/22 01:13:47 INFO COMPILER: Path to catalog /var/folders/t_/grxhl9px3gz364zdpn735p_r0000gn/T/myApp5214257459682418821.tmp
+13/10/22 01:13:47 INFO COMPILER: [myApp3868010195480165413.tmp]: Created index: SYS_IDX_SYS_PK_10018_10019 on table: BLAH of type: BALANCED_TREE
+13/10/22 01:13:47 INFO COMPILER: [myApp3868010195480165413.tmp]: Created index: SYS_IDX_SYS_PK_10021_10022 on table: BLAH_REPLICATED of type: BALANCED_TREE
+13/10/22 01:13:47 INFO COMPILER: [myApp3868010195480165413.tmp]: Created index: SYS_IDX_SYS_PK_10025_10026 on table: PARTITIONED of type: BALANCED_TREE
+13/10/22 01:13:47 INFO COMPILER: [myApp3868010195480165413.tmp]: Created index: SYS_IDX_SYS_PK_10029_10030 on table: PARTITIONED_LARGE of type: BALANCED_TREE
+13/10/22 01:13:47 INFO COMPILER: [myApp3868010195480165413.tmp]: Created index: SYS_IDX_SYS_PK_10034_10035 on table: TEST_INLINED_STRING of type: BALANCED_TREE
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM BLAH WHERE (IVAL = ?); for BLAH with partitioning: BLAH.IVAL:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in INSERT procedure: INSERT INTO BLAH VALUES (?); for BLAH with partitioning: BLAH.IVAL:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in UPDATE procedure: UPDATE BLAH SET IVAL = ? WHERE (IVAL = ?); for BLAH with partitioning: BLAH.IVAL:1
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM PARTITIONED WHERE (PKEY = ?); for PARTITIONED with partitioning: PARTITIONED.PKEY:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in INSERT procedure: INSERT INTO PARTITIONED VALUES (?, ?); for PARTITIONED with partitioning: PARTITIONED.PKEY:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in UPDATE procedure: UPDATE PARTITIONED SET PKEY = ?, VALUE = ? WHERE (PKEY = ?); for PARTITIONED with partitioning: PARTITIONED.PKEY:2
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM PARTITIONED_LARGE WHERE (PKEY = ?); for PARTITIONED_LARGE with partitioning: PARTITIONED_LARGE.PKEY:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in INSERT procedure: INSERT INTO PARTITIONED_LARGE VALUES (?, ?, ?); for PARTITIONED_LARGE with partitioning: PARTITIONED_LARGE.PKEY:1
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in UPDATE procedure: UPDATE PARTITIONED_LARGE SET DATA = ?, PKEY = ?, VALUE = ? WHERE (PKEY = ?); for PARTITIONED_LARGE with partitioning: PARTITIONED_LARGE.PKEY:3
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in SELECT procedure: SELECT * FROM TEST_INLINED_STRING WHERE (PKEY = ?); for TEST_INLINED_STRING with partitioning: TEST_INLINED_STRING.PKEY:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in INSERT procedure: INSERT INTO TEST_INLINED_STRING VALUES (?, ?, ?); for TEST_INLINED_STRING with partitioning: TEST_INLINED_STRING.PKEY:0
+13/10/22 01:13:47 INFO COMPILER: Synthesized built-in UPDATE procedure: UPDATE TEST_INLINED_STRING SET PKEY = ?, VALUE = ?, VALUE1 = ? WHERE (PKEY = ?); for TEST_INLINED_STRING with partitioning: TEST_INLINED_STRING.PKEY:3
+13/10/22 01:13:47 INFO COMPILER: [InsertInlinedString]: Compiling Statement: insert into TEST_INLINED_STRING values (?, ?, ?);
+13/10/22 01:13:48 INFO COMPILER: [Insert]: Compiling Statement: insert into blah values (?);
+13/10/22 01:13:48 INFO COMPILER: [InsertSinglePartition]: Compiling Statement: insert into blah values (?);
+13/10/22 01:13:48 INFO COMPILER: [InsertReplicated]: Compiling Statement: insert into blah_replicated values (?);
+13/10/22 01:13:48 INFO COMPILER: [SelectBlahSinglePartition]: Compiling Statement: select * from blah where ival = ?;
+13/10/22 01:13:48 INFO COMPILER: [SelectBlah]: Compiling Statement: select * from blah where ival = ?;
+13/10/22 01:13:48 INFO COMPILER: [SelectBlahReplicated]: Compiling Statement: select * from blah_replicated where ival = ?;
+13/10/22 01:13:48 INFO COMPILER: [InsertPartitioned]: Compiling Statement: insert into PARTITIONED values (?, ?);
+13/10/22 01:13:48 INFO COMPILER: [UpdatePartitioned]: Compiling Statement: update PARTITIONED set value = ? where pkey = ?;
+13/10/22 01:13:48 INFO COMPILER: [SelectPartitioned]: Compiling Statement: select * from PARTITIONED;
+13/10/22 01:13:48 INFO COMPILER: [InsertPartitionedLarge]: Compiling Statement: insert into PARTITIONED_LARGE values (?, ?, ?);
+13/10/22 01:13:48 INFO COMPILER: [BLAH.select]: Compiling Statement: SELECT * FROM BLAH WHERE (IVAL = ?);
+13/10/22 01:13:48 INFO COMPILER: [BLAH.insert]: Compiling Statement: INSERT INTO BLAH VALUES (?);
+13/10/22 01:13:48 INFO COMPILER: [BLAH.delete]: Compiling Statement: DELETE FROM BLAH WHERE (IVAL = ?);
+13/10/22 01:13:48 INFO COMPILER: [BLAH.update]: Compiling Statement: UPDATE BLAH SET IVAL = ? WHERE (IVAL = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED.select]: Compiling Statement: SELECT * FROM PARTITIONED WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED.insert]: Compiling Statement: INSERT INTO PARTITIONED VALUES (?, ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED.delete]: Compiling Statement: DELETE FROM PARTITIONED WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED.update]: Compiling Statement: UPDATE PARTITIONED SET PKEY = ?, VALUE = ? WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED_LARGE.select]: Compiling Statement: SELECT * FROM PARTITIONED_LARGE WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED_LARGE.insert]: Compiling Statement: INSERT INTO PARTITIONED_LARGE VALUES (?, ?, ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED_LARGE.delete]: Compiling Statement: DELETE FROM PARTITIONED_LARGE WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [PARTITIONED_LARGE.update]: Compiling Statement: UPDATE PARTITIONED_LARGE SET DATA = ?, PKEY = ?, VALUE = ? WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [TEST_INLINED_STRING.select]: Compiling Statement: SELECT * FROM TEST_INLINED_STRING WHERE (PKEY = ?);
+13/10/22 01:13:48 INFO COMPILER: [TEST_INLINED_STRING.insert]: Compiling Statement: INSERT INTO TEST_INLINED_STRING VALUES (?, ?, ?);
+13/10/22 01:13:48 INFO COMPILER: [TEST_INLINED_STRING.delete]: Compiling Statement: DELETE FROM TEST_INLINED_STRING WHERE (PKEY = ?);
+13/10/22 01:13:49 INFO COMPILER: [TEST_INLINED_STRING.update]: Compiling Statement: UPDATE TEST_INLINED_STRING SET PKEY = ?, VALUE = ?, VALUE1 = ? WHERE (PKEY = ?);

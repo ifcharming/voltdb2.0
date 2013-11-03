@@ -1,0 +1,9 @@
+digraph name {
+973 [label="973: INDEXSCAN" ];
+973 -> 977;
+977 [label="977: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+976 [label="976: DELETE" ];
+976 -> 973;
+
+}
+

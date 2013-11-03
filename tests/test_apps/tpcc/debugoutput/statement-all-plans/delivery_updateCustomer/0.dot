@@ -1,0 +1,9 @@
+digraph name {
+164 [label="164: SEQSCAN" ];
+164 -> 169;
+169 [label="169: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+168 [label="168: UPDATE" ];
+168 -> 164;
+
+}
+

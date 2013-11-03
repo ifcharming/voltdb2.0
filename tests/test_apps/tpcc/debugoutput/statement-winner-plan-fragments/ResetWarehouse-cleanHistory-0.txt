@@ -1,0 +1,29 @@
+{
+    "EXECUTE_LIST": [1],
+    "PARAMETERS": [],
+    "PLAN_NODES": [{
+        "CHILDREN_IDS": [],
+        "ID": 1,
+        "INLINE_NODES": [],
+        "OUTPUT_SCHEMA": [{
+            "COLUMN_ALIAS": "modified_tuples",
+            "COLUMN_NAME": "modified_tuples",
+            "EXPRESSION": {
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_IDX": 0,
+                "COLUMN_NAME": "modified_tuples",
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "VALUE_TUPLE",
+                "VALUE_SIZE": 8,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "SIZE": 8,
+            "TABLE_NAME": "VOLT_TEMP_TABLE",
+            "TYPE": "BIGINT"
+        }],
+        "PARENT_IDS": [],
+        "PLAN_NODE_TYPE": "DELETE",
+        "TARGET_TABLE_NAME": "HISTORY",
+        "TRUNCATE": true
+    }]
+}

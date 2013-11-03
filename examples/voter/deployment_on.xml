@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<deployment>
+    <cluster hostcount="2" sitesperhost="2" kfactor="1" />
+    <httpd enabled="true" port="0">
+        <jsonapi enabled="true" />
+      </httpd>
+      <arieslog enabled="true" logsize="6144" >
+	<frequency time="15" />
+	</arieslog>
+      <snapshot prefix="savedstate"
+        frequency="180m"
+        retain="2"
+        />
+</deployment>

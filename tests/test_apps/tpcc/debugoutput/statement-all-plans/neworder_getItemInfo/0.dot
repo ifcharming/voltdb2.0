@@ -1,0 +1,9 @@
+digraph name {
+649 [label="649: SEQSCAN" ];
+649 -> 653;
+653 [label="653: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+654 [label="654: SEND" fontcolor="white" style="filled" fillcolor="black"];
+654 -> 649;
+
+}
+

@@ -1,0 +1,17 @@
+digraph name {
+277 [label="277: SEQSCAN" ];
+277 -> 290;
+290 [label="290: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+289 [label="289: UPDATE" ];
+289 -> 277;
+278 [label="278: SEND" fontcolor="white" style="filled" fillcolor="black"];
+278 -> 289;
+279 [label="279: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+279 -> 278;
+291 [label="291: AGGREGATE" ];
+291 -> 279;
+292 [label="292: SEND" fontcolor="white" style="filled" fillcolor="black"];
+292 -> 291;
+
+}
+

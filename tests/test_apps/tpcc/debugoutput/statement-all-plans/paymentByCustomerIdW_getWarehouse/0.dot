@@ -1,0 +1,9 @@
+digraph name {
+619 [label="619: SEQSCAN" ];
+619 -> 623;
+623 [label="623: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+624 [label="624: SEND" fontcolor="white" style="filled" fillcolor="black"];
+624 -> 619;
+
+}
+

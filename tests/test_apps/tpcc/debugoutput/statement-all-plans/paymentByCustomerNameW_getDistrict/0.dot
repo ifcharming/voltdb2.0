@@ -1,0 +1,9 @@
+digraph name {
+415 [label="415: SEQSCAN" ];
+415 -> 419;
+419 [label="419: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+420 [label="420: SEND" fontcolor="white" style="filled" fillcolor="black"];
+420 -> 415;
+
+}
+

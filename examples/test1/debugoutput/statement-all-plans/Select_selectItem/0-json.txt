@@ -1,0 +1,155 @@
+SQL: SELECT TEST1_ID,  TEST1_ITEM FROM TEST1 WHERE  TEST1_ID = ?
+COST: 2000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        9,
+        14
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [9],
+            "ID": 14,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "TEST1_ID",
+                    "COLUMN_NAME": "TEST1_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "TEST1_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "TEST1_ID",
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "TEST1",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "TEST1_ITEM",
+                    "COLUMN_NAME": "TEST1_ITEM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "TEST1_ITEM",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "TEST1_ITEM",
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "TEST1",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 9,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 13,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "TEST1_ID",
+                        "COLUMN_NAME": "TEST1_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "TEST1_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "TEST1_ID",
+                            "TABLE_NAME": "TEST1",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "TEST1_ITEM",
+                        "COLUMN_NAME": "TEST1_ITEM",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "TEST1_ITEM",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "TEST1_ITEM",
+                            "TABLE_NAME": "TEST1",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "INTEGER"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "TEST1_ID",
+                    "COLUMN_NAME": "TEST1_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "TEST1_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "TEST1_ID",
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "TEST1",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "TEST1_ITEM",
+                    "COLUMN_NAME": "TEST1_ITEM",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "TEST1_ITEM",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "TEST1_ITEM",
+                        "TABLE_NAME": "TEST1",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "TEST1",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [14],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "COLUMN_ALIAS": "TEST1_ID",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "TEST1_ID",
+                    "TABLE_NAME": "TEST1",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "RIGHT": {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "TYPE": "COMPARE_EQUAL",
+                "VALUE_SIZE": 8,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "TEST1"
+        }
+    ]
+}

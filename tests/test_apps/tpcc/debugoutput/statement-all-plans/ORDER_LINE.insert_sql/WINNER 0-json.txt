@@ -1,0 +1,177 @@
+SQL: INSERT INTO ORDER_LINE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+COST: 0.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        1061,
+        1060
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [1061],
+            "ID": 1060,
+            "INLINE_NODES": [],
+            "MULTI_PARTITION": false,
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "INSERT",
+            "TARGET_TABLE_NAME": "ORDER_LINE"
+        },
+        {
+            "BATCHED": false,
+            "CHILDREN_IDS": [],
+            "ID": 1061,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "OL_O_ID",
+                    "COLUMN_NAME": "OL_O_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_D_ID",
+                    "COLUMN_NAME": "OL_D_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_W_ID",
+                    "COLUMN_NAME": "OL_W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 2,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_NUMBER",
+                    "COLUMN_NAME": "OL_NUMBER",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 3,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_I_ID",
+                    "COLUMN_NAME": "OL_I_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 4,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_SUPPLY_W_ID",
+                    "COLUMN_NAME": "OL_SUPPLY_W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 5,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_DELIVERY_D",
+                    "COLUMN_NAME": "OL_DELIVERY_D",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 6,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_QUANTITY",
+                    "COLUMN_NAME": "OL_QUANTITY",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 7,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_AMOUNT",
+                    "COLUMN_NAME": "OL_AMOUNT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 8,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_DIST_INFO",
+                    "COLUMN_NAME": "OL_DIST_INFO",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 9,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [1060],
+            "PLAN_NODE_TYPE": "MATERIALIZE"
+        }
+    ]
+}

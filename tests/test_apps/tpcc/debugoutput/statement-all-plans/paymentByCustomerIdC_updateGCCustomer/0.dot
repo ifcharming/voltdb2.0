@@ -1,0 +1,9 @@
+digraph name {
+601 [label="601: SEQSCAN" ];
+601 -> 606;
+606 [label="606: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+605 [label="605: UPDATE" ];
+605 -> 601;
+
+}
+

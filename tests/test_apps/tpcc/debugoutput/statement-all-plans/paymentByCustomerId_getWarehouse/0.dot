@@ -1,0 +1,15 @@
+digraph name {
+449 [label="449: SEQSCAN" ];
+449 -> 450;
+450 [label="450: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+451 [label="451: SEND" fontcolor="white" style="filled" fillcolor="black"];
+451 -> 449;
+452 [label="452: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+452 -> 451;
+457 [label="457: PROJECTION" ];
+457 -> 452;
+458 [label="458: SEND" fontcolor="white" style="filled" fillcolor="black"];
+458 -> 457;
+
+}
+

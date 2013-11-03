@@ -1,0 +1,55 @@
+Chaomins-MacBook-Pro:voter chaominy$ ./run.sh client
+-------------------------------------------------------------------------------------
+                  stats :
+                         display-interval : 30
+                                        duration : 120
+                                                        servers : localhost
+                                                                           port : 21212
+                                                                                       contestants : 6
+                                                                                                     max-votes : 2
+                                                                                                                  rate-limit : 100000
+                                                                                                                                auto-tune : false
+                                                                                                                                         latency-target : 50.0
+                                                                                                                                         -------------------------------------------------------------------------------------
+                                                                                                                                         Connecting to servers: localhost at port: 21212
+                                                                                                                                         No logging configuration supplied via -Dlog4j.configuration. Supplying default config that logs INFO or higher to STDOUT
+                                                                                                                                         Connected.  Starting benchmark.
+                                                                                                                                         00:00:30 | Txn.:   1,011,640 @    33,712.3 TPS | Lat. =      12 <    87.66 <     382
+                                                                                                                                         00:01:00 | Txn.:   2,062,630 @    34,382.9 TPS | Lat. =      12 <    86.52 <     382
+                                                                                                                                         00:01:30 | Txn.:   3,101,440 @    34,464.3 TPS | Lat. =      10 <    86.49 <     382
+                                                                                                                                         -------------------------------------------------------------------------------------
+                                                                                                                                          Voting Results
+                                                                                                                                          -------------------------------------------------------------------------------------
+
+                                                                                                                                          A total of 4133349 votes was received...
+                                                                                                                                           - 4,092,284 Accepted
+                                                                                                                                            -    41,061 Rejected (Invalid Contestant)
+                                                                                                                                             -         4 Rejected (Maximum Vote Count Reached)
+                                                                                                                                              -         0 Failed (Transaction Error)
+
+
+                                                                                                                                              -------------------------------------------------------------------------------------
+                                                                                                                                              Contestant Name       Votes Received
+                                                                                                                                              Edwina Burnam          1,077,669
+                                                                                                                                              Jessie Eichman               844,582
+                                                                                                                                              Alana Bregman            577,847
+                                                                                                                                              Jessie Alloway               537,816
+                                                                                                                                              Kelly Clauss             536,316
+                                                                                                                                              Tabatha Gehling              521,013
+
+
+                                                                                                                                              The Winner is: Edwina Burnam
+                                                                                                                                              -------------------------------------------------------------------------------------
+
+
+                                                                                                                                              -------------------------------------------------------------------------------------
+                                                                                                                                               System Statistics
+                                                                                                                                               -------------------------------------------------------------------------------------
+
+
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               Final:   | Txn.:   4,136,182 @    34,438.1 TPS | Lat. =       7 <    86.64 <     382
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               Lat.:     25 <     50 <     75 <    100 <    150 <    200 <    250 <    300 <    300+
+                                                                                                                                               -------------------------------------------------------------------------------------
+                                                                                                                                               %       0.11 |  20.68 |  19.72 |  19.33 |  39.18 |   0.65 |   0.08 |   0.13 |   0.12

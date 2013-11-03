@@ -1,0 +1,9 @@
+digraph name {
+751 [label="751: INDEXSCAN" ];
+751 -> 755;
+755 [label="755: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+756 [label="756: SEND" fontcolor="white" style="filled" fillcolor="black"];
+756 -> 751;
+
+}
+

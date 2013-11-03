@@ -1,0 +1,729 @@
+SQL: SELECT W_NAME, W_STREET_1, W_STREET_2, W_CITY, W_STATE, W_ZIP FROM WAREHOUSE WHERE W_ID = ?;
+COST: 5000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        449,
+        451,
+        452,
+        457,
+        458
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [457],
+            "ID": 458,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "W_NAME",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "W_STREET_1",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "W_STREET_2",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "W_CITY",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "W_STATE",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "W_ZIP",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [452],
+            "ID": 457,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "W_NAME",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "W_STREET_1",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "W_STREET_2",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "W_CITY",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "W_STATE",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "W_ZIP",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [458],
+            "PLAN_NODE_TYPE": "PROJECTION"
+        },
+        {
+            "CHILDREN_IDS": [451],
+            "ID": 452,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_ID",
+                    "COLUMN_NAME": "W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "W_ID",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "W_NAME",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "W_STREET_1",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "W_STREET_2",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "W_CITY",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "W_STATE",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "W_ZIP",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [457],
+            "PLAN_NODE_TYPE": "RECEIVE"
+        },
+        {
+            "CHILDREN_IDS": [449],
+            "ID": 451,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_ID",
+                    "COLUMN_NAME": "W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "W_ID",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "W_NAME",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "W_STREET_1",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "W_STREET_2",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "W_CITY",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "W_STATE",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "W_ZIP",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [452],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 449,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 450,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "W_ID",
+                        "COLUMN_NAME": "W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "W_ID",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_NAME": "W_NAME",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_NAME",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "W_NAME",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 16,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 16,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_NAME": "W_STREET_1",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_STREET_1",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "W_STREET_1",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_NAME": "W_STREET_2",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_STREET_2",
+                            "COLUMN_IDX": 3,
+                            "COLUMN_NAME": "W_STREET_2",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_NAME": "W_CITY",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_CITY",
+                            "COLUMN_IDX": 4,
+                            "COLUMN_NAME": "W_CITY",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_NAME": "W_STATE",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_STATE",
+                            "COLUMN_IDX": 5,
+                            "COLUMN_NAME": "W_STATE",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_NAME": "W_ZIP",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "W_ZIP",
+                            "COLUMN_IDX": 6,
+                            "COLUMN_NAME": "W_ZIP",
+                            "TABLE_NAME": "WAREHOUSE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 9,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 9,
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "STRING"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_ID",
+                    "COLUMN_NAME": "W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "W_ID",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_NAME",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "W_NAME",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_1",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "W_STREET_1",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STREET_2",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "W_STREET_2",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_CITY",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "W_CITY",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_STATE",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "W_STATE",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "W_ZIP",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "W_ZIP",
+                        "TABLE_NAME": "WAREHOUSE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [451],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "COLUMN_ALIAS": "W_ID",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "W_ID",
+                    "TABLE_NAME": "WAREHOUSE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                "RIGHT": {
+                    "PARAM_IDX": 0,
+                    "TYPE": "VALUE_PARAMETER",
+                    "VALUE_SIZE": 2,
+                    "VALUE_TYPE": "SMALLINT"
+                },
+                "TYPE": "COMPARE_EQUAL",
+                "VALUE_SIZE": 8,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "WAREHOUSE"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+digraph name {
+693 [label="693: INDEXSCAN" ];
+693 -> 697;
+697 [label="697: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+698 [label="698: SEND" fontcolor="white" style="filled" fillcolor="black"];
+698 -> 693;
+
+}
+

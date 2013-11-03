@@ -1,0 +1,9 @@
+digraph name {
+1026 [label="1026: INDEXSCAN" ];
+1026 -> 1033;
+1033 [label="1033: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+1032 [label="1032: DELETE" ];
+1032 -> 1026;
+
+}
+

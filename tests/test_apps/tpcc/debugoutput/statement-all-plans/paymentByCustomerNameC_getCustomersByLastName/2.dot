@@ -1,0 +1,13 @@
+digraph name {
+379 [label="379: INDEXSCAN" ];
+379 -> 380;
+380 [label="380: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+389 [label="389: ORDERBY" ];
+389 -> 379;
+390 [label="390: PROJECTION" ];
+390 -> 389;
+391 [label="391: SEND" fontcolor="white" style="filled" fillcolor="black"];
+391 -> 390;
+
+}
+

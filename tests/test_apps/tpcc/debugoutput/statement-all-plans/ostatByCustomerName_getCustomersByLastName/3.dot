@@ -1,0 +1,13 @@
+digraph name {
+57 [label="57: INDEXSCAN" ];
+57 -> 58;
+58 [label="58: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+68 [label="68: ORDERBY" ];
+68 -> 57;
+69 [label="69: PROJECTION" ];
+69 -> 68;
+70 [label="70: SEND" fontcolor="white" style="filled" fillcolor="black"];
+70 -> 69;
+
+}
+

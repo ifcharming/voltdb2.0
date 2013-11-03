@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <select>
+        <scan_columns>
+            <columnref id="1853698128" table="ORDERS" column="O_ID" alias="O_ID" />
+            <columnref id="1559170267" table="ORDERS" column="O_D_ID" alias="O_D_ID" />
+            <columnref id="1379216775" table="ORDERS" column="O_W_ID" alias="O_W_ID" />
+            <columnref id="557851707" table="ORDERS" column="O_C_ID" alias="O_C_ID" />
+            <columnref id="2047520394" table="ORDERS" column="O_ENTRY_D" alias="O_ENTRY_D" />
+            <columnref id="1397302430" table="ORDERS" column="O_CARRIER_ID" alias="O_CARRIER_ID" />
+            <columnref id="1728261065" table="ORDERS" column="O_OL_CNT" alias="O_OL_CNT" />
+            <columnref id="19910133" table="ORDERS" column="O_ALL_LOCAL" alias="O_ALL_LOCAL" />
+        </scan_columns>
+        <columns>
+            <columnref id="1853698128" table="ORDERS" column="O_ID" alias="O_ID" />
+            <columnref id="1559170267" table="ORDERS" column="O_D_ID" alias="O_D_ID" />
+            <columnref id="1379216775" table="ORDERS" column="O_W_ID" alias="O_W_ID" />
+            <columnref id="557851707" table="ORDERS" column="O_C_ID" alias="O_C_ID" />
+            <columnref id="2047520394" table="ORDERS" column="O_ENTRY_D" alias="O_ENTRY_D" />
+            <columnref id="1397302430" table="ORDERS" column="O_CARRIER_ID" alias="O_CARRIER_ID" />
+            <columnref id="1728261065" table="ORDERS" column="O_OL_CNT" alias="O_OL_CNT" />
+            <columnref id="19910133" table="ORDERS" column="O_ALL_LOCAL" alias="O_ALL_LOCAL" />
+        </columns>
+        <parameters>
+            <parameter index='0' id='1769640046' type='TINYINT' />
+            <parameter index='1' id='1839225819' type='INTEGER' />
+            <parameter index='2' id='988725015' type='SMALLINT' />
+        </parameters>
+        <tablescans>
+            <tablescan type="sequential" table="ORDERS">
+                <postexp>
+                    <operation id="1328704876" type="and">
+                        <operation id="348845104" type="and">
+                            <operation id="397237285" type="and">
+                                <operation id="-1480920797" type="and">
+                                    <operation id="1438606927" type="and">
+                                        <operation id="-1760685760" type="equal">
+                                            <columnref id="272866619" table="ORDERS" column="O_W_ID" alias="O_W_ID" />
+                                            <value id="988725015" type="SMALLINT" isparam="true" />
+                                        </operation>
+                                        <operation id="-1435120326" type="equal">
+                                            <columnref id="1191679188" table="ORDERS" column="O_D_ID" alias="O_D_ID" />
+                                            <value id="1769640046" type="TINYINT" isparam="true" />
+                                        </operation>
+                                    </operation>
+                                    <operation id="-100319682" type="equal">
+                                        <columnref id="1119620794" table="ORDERS" column="O_ID" alias="O_ID" />
+                                        <value id="1839225819" type="INTEGER" isparam="true" />
+                                    </operation>
+                                </operation>
+                                <operation id="-1760685760" type="equal">
+                                    <columnref id="272866619" table="ORDERS" column="O_W_ID" alias="O_W_ID" />
+                                    <value id="988725015" type="SMALLINT" isparam="true" />
+                                </operation>
+                            </operation>
+                            <operation id="-1435120326" type="equal">
+                                <columnref id="1191679188" table="ORDERS" column="O_D_ID" alias="O_D_ID" />
+                                <value id="1769640046" type="TINYINT" isparam="true" />
+                            </operation>
+                        </operation>
+                        <operation id="-100319682" type="equal">
+                            <columnref id="1119620794" table="ORDERS" column="O_ID" alias="O_ID" />
+                            <value id="1839225819" type="INTEGER" isparam="true" />
+                        </operation>
+                    </operation>
+                </postexp>
+            </tablescan>
+        </tablescans>
+        <querycondition>
+            <operation id="-1721747229" type="and">
+                <operation id="-1051432333" type="and">
+                    <operation id="-1435120326" type="equal">
+                        <columnref id="1191679188" table="ORDERS" column="O_D_ID" alias="O_D_ID" />
+                        <value id="1769640046" type="TINYINT" isparam="true" />
+                    </operation>
+                    <operation id="-100319682" type="equal">
+                        <columnref id="1119620794" table="ORDERS" column="O_ID" alias="O_ID" />
+                        <value id="1839225819" type="INTEGER" isparam="true" />
+                    </operation>
+                </operation>
+                <operation id="-1760685760" type="equal">
+                    <columnref id="272866619" table="ORDERS" column="O_W_ID" alias="O_W_ID" />
+                    <value id="988725015" type="SMALLINT" isparam="true" />
+                </operation>
+            </operation>
+        </querycondition>
+    </select>
+</statement>
+

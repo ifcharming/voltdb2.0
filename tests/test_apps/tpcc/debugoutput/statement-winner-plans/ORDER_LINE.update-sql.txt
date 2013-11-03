@@ -1,0 +1,7 @@
+SQL: UPDATE ORDER_LINE SET OL_AMOUNT = ?, OL_DELIVERY_D = ?, OL_DIST_INFO = ?, OL_D_ID = ?, OL_I_ID = ?, OL_NUMBER = ?, OL_O_ID = ?, OL_QUANTITY = ?, OL_SUPPLY_W_ID = ?, OL_W_ID = ? WHERE (OL_D_ID = ?) AND (OL_NUMBER = ?) AND (OL_O_ID = ?) AND (OL_W_ID = ?);
+COST: 6.0
+PLAN:
+
+UPDATE
+ INDEX SCAN of "ORDER_LINE" using "SYS_IDX_SYS_PK_10061_10062" (unique-scan covering)
+

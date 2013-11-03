@@ -1,0 +1,9 @@
+digraph name {
+938 [label="938: SEQSCAN" ];
+938 -> 943;
+943 [label="943: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+942 [label="942: DELETE" ];
+942 -> 938;
+
+}
+

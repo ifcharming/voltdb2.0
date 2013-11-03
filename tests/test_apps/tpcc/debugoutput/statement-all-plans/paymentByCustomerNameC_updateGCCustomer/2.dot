@@ -1,0 +1,9 @@
+digraph name {
+365 [label="365: INDEXSCAN" ];
+365 -> 372;
+372 [label="372: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+371 [label="371: UPDATE" ];
+371 -> 365;
+
+}
+

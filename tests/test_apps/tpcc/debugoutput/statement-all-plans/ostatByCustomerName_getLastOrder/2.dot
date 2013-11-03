@@ -1,0 +1,15 @@
+digraph name {
+27 [label="27: INDEXSCAN" ];
+27 -> 28;
+28 [label="28: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+41 [label="41: ORDERBY" ];
+41 -> 27;
+42 [label="42: PROJECTION" ];
+42 -> 41;
+44 [label="44: LIMIT" ];
+44 -> 42;
+45 [label="45: SEND" fontcolor="white" style="filled" fillcolor="black"];
+45 -> 44;
+
+}
+

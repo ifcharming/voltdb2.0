@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <update table="STOCK">
+        <columns>
+            <column table="STOCK" name="S_DATA">
+                <value id="1066955437" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_01">
+                <value id="831577209" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_02">
+                <value id="494576987" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_03">
+                <value id="1593706619" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_04">
+                <value id="2011100149" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_05">
+                <value id="1315084110" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_06">
+                <value id="716941846" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_07">
+                <value id="110862405" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_08">
+                <value id="1396118886" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_09">
+                <value id="1163789880" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_DIST_10">
+                <value id="535456284" type="VARCHAR" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_I_ID">
+                <value id="1457284258" type="INTEGER" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_ORDER_CNT">
+                <value id="525530171" type="INTEGER" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_QUANTITY">
+                <value id="2132827533" type="INTEGER" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_REMOTE_CNT">
+                <value id="635311407" type="INTEGER" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_W_ID">
+                <value id="390124565" type="SMALLINT" isparam="true" />
+            </column>
+            <column table="STOCK" name="S_YTD">
+                <value id="555989664" type="INTEGER" isparam="true" />
+            </column>
+        </columns>
+        <parameters>
+            <parameter index='0' id='1066955437' type='VARCHAR' />
+            <parameter index='1' id='831577209' type='VARCHAR' />
+            <parameter index='2' id='494576987' type='VARCHAR' />
+            <parameter index='3' id='1593706619' type='VARCHAR' />
+            <parameter index='4' id='2011100149' type='VARCHAR' />
+            <parameter index='5' id='1315084110' type='VARCHAR' />
+            <parameter index='6' id='716941846' type='VARCHAR' />
+            <parameter index='7' id='110862405' type='VARCHAR' />
+            <parameter index='8' id='1396118886' type='VARCHAR' />
+            <parameter index='9' id='1163789880' type='VARCHAR' />
+            <parameter index='10' id='535456284' type='VARCHAR' />
+            <parameter index='11' id='1457284258' type='INTEGER' />
+            <parameter index='12' id='525530171' type='INTEGER' />
+            <parameter index='13' id='2132827533' type='INTEGER' />
+            <parameter index='14' id='635311407' type='INTEGER' />
+            <parameter index='15' id='390124565' type='SMALLINT' />
+            <parameter index='16' id='555989664' type='INTEGER' />
+            <parameter index='17' id='816934751' type='INTEGER' />
+            <parameter index='18' id='1359404786' type='SMALLINT' />
+        </parameters>
+        <tablescan type="sequential" table="STOCK">
+            <postexp>
+                <operation id="1770908748" type="and">
+                    <operation id="1463822425" type="equal">
+                        <columnref id="437717869" table="STOCK" column="S_W_ID" alias="S_W_ID" />
+                        <value id="1359404786" type="SMALLINT" isparam="true" />
+                    </operation>
+                    <operation id="-1498314123" type="equal">
+                        <columnref id="1592733308" table="STOCK" column="S_I_ID" alias="S_I_ID" />
+                        <value id="816934751" type="INTEGER" isparam="true" />
+                    </operation>
+                </operation>
+            </postexp>
+        </tablescan>
+        <condition>
+            <operation id="1770908748" type="and">
+                <operation id="1463822425" type="equal">
+                    <columnref id="437717869" table="STOCK" column="S_W_ID" alias="S_W_ID" />
+                    <value id="1359404786" type="SMALLINT" isparam="true" />
+                </operation>
+                <operation id="-1498314123" type="equal">
+                    <columnref id="1592733308" table="STOCK" column="S_I_ID" alias="S_I_ID" />
+                    <value id="816934751" type="INTEGER" isparam="true" />
+                </operation>
+            </operation>
+        </condition>
+    </update>
+</statement>
+

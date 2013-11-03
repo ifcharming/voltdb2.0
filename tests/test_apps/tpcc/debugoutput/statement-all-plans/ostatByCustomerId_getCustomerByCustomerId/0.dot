@@ -1,0 +1,9 @@
+digraph name {
+71 [label="71: SEQSCAN" ];
+71 -> 79;
+79 [label="79: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+80 [label="80: SEND" fontcolor="white" style="filled" fillcolor="black"];
+80 -> 71;
+
+}
+

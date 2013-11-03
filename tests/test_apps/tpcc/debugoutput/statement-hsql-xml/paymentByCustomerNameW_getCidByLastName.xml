@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <select>
+        <scan_columns>
+            <columnref id="430554787" table="CUSTOMER_NAME" column="C_ID" alias="C_ID" />
+            <columnref id="1461898366" table="CUSTOMER_NAME" column="C_FIRST" alias="C_FIRST" />
+            <columnref id="765432035" table="CUSTOMER_NAME" column="C_LAST" alias="C_LAST" />
+            <columnref id="1189166715" table="CUSTOMER_NAME" column="C_D_ID" alias="C_D_ID" />
+            <columnref id="1842160023" table="CUSTOMER_NAME" column="C_W_ID" alias="C_W_ID" />
+        </scan_columns>
+        <columns>
+            <columnref id="430554787" table="CUSTOMER_NAME" column="C_ID" alias="C_ID" />
+        </columns>
+        <parameters>
+            <parameter index='0' id='911767762' type='VARCHAR' />
+            <parameter index='1' id='1784954589' type='TINYINT' />
+            <parameter index='2' id='1532712380' type='SMALLINT' />
+        </parameters>
+        <tablescans>
+            <tablescan type="sequential" table="CUSTOMER_NAME">
+                <postexp>
+                    <operation id="-537993175" type="and">
+                        <operation id="1086465818" type="and">
+                            <operation id="995964257" type="equal">
+                                <columnref id="1842160023" table="CUSTOMER_NAME" column="C_W_ID" alias="C_W_ID" />
+                                <value id="1532712380" type="SMALLINT" isparam="true" />
+                            </operation>
+                            <operation id="1927217003" type="equal">
+                                <columnref id="1189166715" table="CUSTOMER_NAME" column="C_D_ID" alias="C_D_ID" />
+                                <value id="1784954589" type="TINYINT" isparam="true" />
+                            </operation>
+                        </operation>
+                        <operation id="-601923297" type="equal">
+                            <columnref id="765432035" table="CUSTOMER_NAME" column="C_LAST" alias="C_LAST" />
+                            <value id="911767762" type="VARCHAR" isparam="true" />
+                        </operation>
+                    </operation>
+                </postexp>
+            </tablescan>
+        </tablescans>
+        <querycondition>
+            <operation id="-1909077184" type="and">
+                <operation id="954755144" type="and">
+                    <operation id="-601923297" type="equal">
+                        <columnref id="765432035" table="CUSTOMER_NAME" column="C_LAST" alias="C_LAST" />
+                        <value id="911767762" type="VARCHAR" isparam="true" />
+                    </operation>
+                    <operation id="1927217003" type="equal">
+                        <columnref id="1189166715" table="CUSTOMER_NAME" column="C_D_ID" alias="C_D_ID" />
+                        <value id="1784954589" type="TINYINT" isparam="true" />
+                    </operation>
+                </operation>
+                <operation id="995964257" type="equal">
+                    <columnref id="1842160023" table="CUSTOMER_NAME" column="C_W_ID" alias="C_W_ID" />
+                    <value id="1532712380" type="SMALLINT" isparam="true" />
+                </operation>
+            </operation>
+        </querycondition>
+        <ordercolumns>
+            <operation id="1280498458" type="orderby" desc='false'>
+                <columnref id="1461898366" table="CUSTOMER_NAME" column="C_FIRST" alias="C_FIRST" />
+            </operation>
+        </ordercolumns>
+    </select>
+</statement>
+

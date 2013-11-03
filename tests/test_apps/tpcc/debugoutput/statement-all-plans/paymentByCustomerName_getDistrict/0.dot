@@ -1,0 +1,15 @@
+digraph name {
+305 [label="305: SEQSCAN" ];
+305 -> 306;
+306 [label="306: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+307 [label="307: SEND" fontcolor="white" style="filled" fillcolor="black"];
+307 -> 305;
+308 [label="308: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+308 -> 307;
+313 [label="313: PROJECTION" ];
+313 -> 308;
+314 [label="314: SEND" fontcolor="white" style="filled" fillcolor="black"];
+314 -> 313;
+
+}
+

@@ -1,0 +1,9 @@
+digraph name {
+4 [label="4: INDEXSCAN" ];
+4 -> 8;
+8 [label="8: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+7 [label="7: DELETE" ];
+7 -> 4;
+
+}
+

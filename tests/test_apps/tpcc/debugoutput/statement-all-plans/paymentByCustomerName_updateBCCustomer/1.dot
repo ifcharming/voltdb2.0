@@ -1,0 +1,17 @@
+digraph name {
+238 [label="238: INDEXSCAN" ];
+238 -> 252;
+252 [label="252: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+251 [label="251: UPDATE" ];
+251 -> 238;
+239 [label="239: SEND" fontcolor="white" style="filled" fillcolor="black"];
+239 -> 251;
+240 [label="240: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+240 -> 239;
+253 [label="253: AGGREGATE" ];
+253 -> 240;
+254 [label="254: SEND" fontcolor="white" style="filled" fillcolor="black"];
+254 -> 253;
+
+}
+

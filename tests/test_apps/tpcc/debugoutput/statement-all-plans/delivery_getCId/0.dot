@@ -1,0 +1,9 @@
+digraph name {
+148 [label="148: SEQSCAN" ];
+148 -> 156;
+156 [label="156: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+157 [label="157: SEND" fontcolor="white" style="filled" fillcolor="black"];
+157 -> 148;
+
+}
+

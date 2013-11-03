@@ -1,0 +1,17 @@
+digraph name {
+323 [label="323: SEQSCAN" ];
+323 -> 324;
+324 [label="324: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+325 [label="325: SEND" fontcolor="white" style="filled" fillcolor="black"];
+325 -> 323;
+326 [label="326: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+326 -> 325;
+339 [label="339: ORDERBY" ];
+339 -> 326;
+340 [label="340: PROJECTION" ];
+340 -> 339;
+341 [label="341: SEND" fontcolor="white" style="filled" fillcolor="black"];
+341 -> 340;
+
+}
+

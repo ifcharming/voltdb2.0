@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <select>
+        <scan_columns>
+            <columnref id="1207715470" table="DISTRICT" column="D_NAME" alias="D_NAME" />
+            <columnref id="58472846" table="DISTRICT" column="D_STREET_1" alias="D_STREET_1" />
+            <columnref id="1353096043" table="DISTRICT" column="D_STREET_2" alias="D_STREET_2" />
+            <columnref id="1780856618" table="DISTRICT" column="D_CITY" alias="D_CITY" />
+            <columnref id="1377590487" table="DISTRICT" column="D_STATE" alias="D_STATE" />
+            <columnref id="1142116702" table="DISTRICT" column="D_ZIP" alias="D_ZIP" />
+            <columnref id="1346573628" table="DISTRICT" column="D_W_ID" alias="D_W_ID" />
+            <columnref id="1680293710" table="DISTRICT" column="D_ID" alias="D_ID" />
+        </scan_columns>
+        <columns>
+            <columnref id="1207715470" table="DISTRICT" column="D_NAME" alias="D_NAME" />
+            <columnref id="58472846" table="DISTRICT" column="D_STREET_1" alias="D_STREET_1" />
+            <columnref id="1353096043" table="DISTRICT" column="D_STREET_2" alias="D_STREET_2" />
+            <columnref id="1780856618" table="DISTRICT" column="D_CITY" alias="D_CITY" />
+            <columnref id="1377590487" table="DISTRICT" column="D_STATE" alias="D_STATE" />
+            <columnref id="1142116702" table="DISTRICT" column="D_ZIP" alias="D_ZIP" />
+        </columns>
+        <parameters>
+            <parameter index='0' id='1286425920' type='SMALLINT' />
+            <parameter index='1' id='95079444' type='TINYINT' />
+        </parameters>
+        <tablescans>
+            <tablescan type="sequential" table="DISTRICT">
+                <postexp>
+                    <operation id="1895828176" type="and">
+                        <operation id="818766885" type="and">
+                            <operation id="-1438353486" type="and">
+                                <operation id="-1743181586" type="equal">
+                                    <columnref id="1346573628" table="DISTRICT" column="D_W_ID" alias="D_W_ID" />
+                                    <value id="1286425920" type="SMALLINT" isparam="true" />
+                                </operation>
+                                <operation id="-1953704731" type="equal">
+                                    <columnref id="1680293710" table="DISTRICT" column="D_ID" alias="D_ID" />
+                                    <value id="95079444" type="TINYINT" isparam="true" />
+                                </operation>
+                            </operation>
+                            <operation id="-1743181586" type="equal">
+                                <columnref id="1346573628" table="DISTRICT" column="D_W_ID" alias="D_W_ID" />
+                                <value id="1286425920" type="SMALLINT" isparam="true" />
+                            </operation>
+                        </operation>
+                        <operation id="-1953704731" type="equal">
+                            <columnref id="1680293710" table="DISTRICT" column="D_ID" alias="D_ID" />
+                            <value id="95079444" type="TINYINT" isparam="true" />
+                        </operation>
+                    </operation>
+                </postexp>
+            </tablescan>
+        </tablescans>
+        <querycondition>
+            <operation id="-1438353486" type="and">
+                <operation id="-1743181586" type="equal">
+                    <columnref id="1346573628" table="DISTRICT" column="D_W_ID" alias="D_W_ID" />
+                    <value id="1286425920" type="SMALLINT" isparam="true" />
+                </operation>
+                <operation id="-1953704731" type="equal">
+                    <columnref id="1680293710" table="DISTRICT" column="D_ID" alias="D_ID" />
+                    <value id="95079444" type="TINYINT" isparam="true" />
+                </operation>
+            </operation>
+        </querycondition>
+    </select>
+</statement>
+

@@ -1,0 +1,164 @@
+SQL: INSERT INTO WAREHOUSE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+COST: 0.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        2,
+        1
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [2],
+            "ID": 1,
+            "INLINE_NODES": [],
+            "MULTI_PARTITION": false,
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "INSERT",
+            "TARGET_TABLE_NAME": "WAREHOUSE"
+        },
+        {
+            "BATCHED": false,
+            "CHILDREN_IDS": [],
+            "ID": 2,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "W_ID",
+                    "COLUMN_NAME": "W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "W_NAME",
+                    "COLUMN_NAME": "W_NAME",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 16,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 16,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_1",
+                    "COLUMN_NAME": "W_STREET_1",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 2,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STREET_2",
+                    "COLUMN_NAME": "W_STREET_2",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 3,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_CITY",
+                    "COLUMN_NAME": "W_CITY",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 4,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_STATE",
+                    "COLUMN_NAME": "W_STATE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 5,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_ZIP",
+                    "COLUMN_NAME": "W_ZIP",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 6,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "W_TAX",
+                    "COLUMN_NAME": "W_TAX",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 7,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "W_YTD",
+                    "COLUMN_NAME": "W_YTD",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 8,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                }
+            ],
+            "PARENT_IDS": [1],
+            "PLAN_NODE_TYPE": "MATERIALIZE"
+        }
+    ]
+}

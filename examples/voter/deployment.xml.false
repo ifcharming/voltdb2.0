@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<deployment>
+    <cluster hostcount="1" sitesperhost="5" kfactor="0" />
+    <httpd enabled="true">
+        <jsonapi enabled="true" />
+      </httpd>
+      <snapshot prefix="savedstate"
+        frequency="180m"
+        retain="2"
+        />
+</deployment>

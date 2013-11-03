@@ -1,0 +1,610 @@
+#!/usr/bin/env python
+
+# This file is part of VoltDB.
+# Copyright (C) 2008-2011 VoltDB Inc.
+#
+# VoltDB is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# VoltDB is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with VoltDB.  If not, see <http://www.gnu.org/licenses/>.
+
+import sys
+import string
+import os
+
+def readfile(filename):
+    FH=open(filename, 'r')
+    fileString = FH.read()
+    FH.close()
+    return fileString
+
+def writefile(filename, content):
+    FH=open(filename, 'w')
+    FH.write(content)
+    FH.close()
+
+buildFileContent = """<?xml version="1.0" ?>
+<project default="main" name="##project_name## build file">
+
+<!--
+***************************************
+PATHS AND PROPERTIES
+***************************************
+-->
+
+<!-- make environment var FOO available as env.FOO -->
+<property environment="env"/>
+
+<property name='build.dir'          location='obj/' />
+<property name='src.dir'            location='src/' />
+<property name='junit.haltonfailure'    value='true' />
+
+<path id='project.classpath'>
+    <pathelement location='${build.dir}' />
+    <fileset dir='##voltdb_lib_path##/../lib' >
+        <include name='*.jar' />
+    </fileset>
+    <fileset dir='##voltdb_lib_path##' >
+        <include name='voltdb*.jar' />
+    </fileset>
+    <pathelement path="${java.class.path}"/>
+</path>
+
+<!--
+***************************************
+PRIMARY ENTRY POINTS
+***************************************
+-->
+
+<target name="main" depends="srccompile, compile" description="default. Compile Java stored procedures and and then run the VoltDB compiler on the stored procedures and schema to generate a catalog" />
+
+
+<target name="client" depends="srccompile" description="Start the client who will connect to the server @ localhost and start calling procedures" >
+    <java fork="yes" classname="##package_prefix##.Client" >
+        <jvmarg value="-server" />
+        <jvmarg value="-Xmx512m" />
+        <classpath refid='project.classpath' />
+        <assertions><disable /></assertions>
+    </java>
+</target>
+
+
+<target name="server" depends="srccompile, compile" description="Start the server and load the catalog." >
+    <java fork="yes" classname="org.voltdb.VoltDB" >
+        <jvmarg value="-Djava.library.path=##voltdb_lib_path##" />
+        <jvmarg value="-server" />
+        <jvmarg value="-Xmx512m" />
+        <jvmarg value="-XX:-ReduceInitialCardMarks" />
+        <arg value="catalog" />
+        <arg value="catalog.jar" /> <!-- catalog -->
+        <arg value="deployment" />
+        <arg value="deployment.xml" /> <!-- deployment file -->
+        <arg value="license" />
+        <arg value="##voltdb_lib_path##/license.xml" /> <!-- license file -->
+        <arg value="leader" />
+        <arg value="localhost" /> <!-- leader -->
+        <classpath refid='project.classpath' />
+        <assertions><disable /></assertions>
+    </java>
+</target>
+
+
+<target name="compile" depends="srccompile" description="Compile the catalog using the schema and the DDL file" >
+    <java fork="yes" failonerror="true"
+          classname="org.voltdb.compiler.VoltCompiler" >
+        <jvmarg value="-Djava.library.path=##voltdb_lib_path##" />
+        <arg value="project.xml"/> <!-- project file -->
+        <arg value="catalog.jar"/> <!-- output -->
+        <classpath refid='project.classpath' />
+        <assertions><disable /></assertions>
+    </java>
+</target>
+
+<!--
+***************************************
+CLEANING
+***************************************
+-->
+
+<target name='clean' description="remove all compiled files">
+    <delete includeemptydirs="true" failonerror='false'>
+        <fileset dir="${build.dir}" includes="**/*" />
+        <fileset dir="." defaultexcludes="yes" >
+            <include name="catalog.jar" />
+        </fileset>
+    </delete>
+</target>
+
+<!--
+***************************************
+JAVA COMPILATION
+***************************************
+-->
+
+<target name="srccompile">
+    <mkdir dir='${build.dir}' />
+    <javac target="1.6" srcdir="${src.dir}" destdir='${build.dir}' debug='true'>
+        <classpath refid="project.classpath" />
+    </javac>
+</target>
+
+</project>
+"""
+
+clientFileContent = """package ##package_prefix##;
+
+import java.io.IOException;
+
+// VoltTable is VoltDB's table representation.
+import org.voltdb.VoltTable;
+import org.voltdb.VoltTableRow;
+import org.voltdb.client.ClientConfig;
+
+// Procedures are invoked by class name. Import them to
+// allow access to the class name programmatically.
+import ##package_prefix##.procedures.*;
+
+public class Client {
+
+    /** Example SELECT: select rows matching the specified id parameter.
+     *
+     * Call <code>##package_prefix##.procedures.Select</code> passing
+     * the <code>id</code> as the only parameter. An array of tables
+     * one table long will be returned.
+     *
+     * Use <code>VoltTable.getRowCount()</code> and
+     * <code>VoltTable.fetchRow(int row)</code> to read the resulting
+     * rows. Use <code>VoltTableRow.getLong(int column)</code> to read
+     * a specific column.
+     *
+     * @param long id: the id parameter value.
+     * @throws java.io.IOException on client communication error.
+     * @throws org.voltdb.client.Client.ProcCallException on VoltDB server error.
+     */
+    private void doSelect(int id) {
+        System.out.println("Select(" + id + ")");
+        try {
+            VoltTable[] result = client.callProcedure(Select.class.getSimpleName(), id).getResults();
+            assert result.length == 1;
+            final int rowCount = result[0].getRowCount();
+            if (rowCount == 0) {
+                System.out.println("Selected: 0 rows selected.");
+            }
+            for (int ii = 0; ii < rowCount; ii++) {
+                final VoltTableRow row = result[0].fetchRow(0);
+                final long ##project_name##_ID = row.getLong(0);
+                final long ##project_name##_ITEM = row.getLong(1);
+                System.out.println("Selected: ##project_name##_ID == " + ##project_name##_ID + " ##project_name##_ITEM == " + ##project_name##_ITEM);
+            }
+
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        catch (org.voltdb.client.ProcCallException e) {
+            System.out.println("Select(" + id + ") failed: " + e.getMessage());
+        }
+    }
+
+    /** Example INSERT: insert an id, item pair as specified by the id
+     * and item parameters.
+     *
+     * Call <code>##package_prefix##.procedures.Insert</code> passing
+     * the id and item parameters.  Inserts return one table
+     * containing exactly one row with exactly one integer column. The
+     * sole value is the count of inserted rows.
+     *
+     * Use <code>VoltTable.getRowCount()</code> and
+     * <code>VoltTable.fetchRow(int row)</code> to read the resulting
+     * rows. Use <code>VoltTableRow.getLong(int column)</code> to read
+     * a specific column.
+     *
+     * @param id: the id parameter value.
+     * @param item: the item parameter value.
+     * @throws java.io.IOException on client communication error.
+     * @throws org.voltdb.client.Client.ProcCallException on VoltDB server error.
+     */
+    private void doInsert(int id, long item) {
+        System.out.println("Insert(" + id + "," + item + ")");
+        try {
+            VoltTable[] result = client.callProcedure(Insert.class.getSimpleName(), id, item).getResults();
+            assert (result != null);
+            long insertedRows = result[0].fetchRow(0).getLong(0);
+            System.out.println("INSERT(" + id + "," + item + ") successfully inserted " + insertedRows + " row(s)");
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        catch (org.voltdb.client.ProcCallException e) {
+            System.out.println("Insert(" + id + "," + item + ") failed: " + e.getMessage());
+        }
+    }
+
+    /** Example error: attempt an invalid INSERT.
+     *
+     * Call <code>##package_prefix##.procedures.Insert</code> with an
+     * invalid number of parameters.  This procedure invocation will
+     * <code>throw org.voltdb.client.Client.ProcCallException</code>.
+     *
+     * @param id: the id parameter value.
+     * @throws java.io.IOException on client communication error.
+     * @throws org.voltdb.client.Client.ProcCallException on VoltDB server error, expected in this example.
+     */
+    private void tryInvalidInsert(int id) {
+        System.out.println("Insert(" + id + ")");
+        try {
+            VoltTable[] result = client.callProcedure(Insert.class.getSimpleName(), id).getResults();
+            assert (result != null);
+            System.out.println("INVALID INSERT(" + id + ") successful");
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        catch (org.voltdb.client.ProcCallException e) {
+            System.out.println("Invalid Insert(" + id + ") failed: " + e.getMessage());
+        }
+    }
+
+    /** Example DELETE: delete the row corresponding to the specified id.
+     *
+     *  Call <code>##package_prefix##.procedures.Delete</code> passing
+     *  the id parameter. Deletes return one table containing exactly
+     *  one row with exactly one integer column. The sole value is the
+     *  count of deleted rows.
+     *
+     * @param id: the id parameter value.
+     * @throws java.io.IOException on client communication error.
+     * @throws org.voltdb.client.Client.ProcCallException on VoltDB server error, expected in this example.
+     */
+    private void doDelete(int id) {
+        System.out.println("Delete (" + id + ")");
+        try {
+            VoltTable[] result = client.callProcedure(Delete.class.getSimpleName(), id).getResults();
+            assert (result != null);
+            long deletedRows = result[0].fetchRow(0).getLong(0);
+            System.out.println("DELETE(" + id + ") successfully deleted " + deletedRows + " row(s)");
+
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        catch (org.voltdb.client.ProcCallException e) {
+            System.out.println("Delete(" + id + ") failed: " + e.getMessage());
+        }
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Client started");
+
+        // org.voltdb.client.Client.createConnection is a static method that returns
+        // an org.voltdb.client.Client instance connected to the database running on
+        // the specified IP address, in this case 127.0.0.1. The
+        // database always runs on TCP/IP port 21212.
+        final ClientConfig clientConfig = new ClientConfig("program", "none");
+        final org.voltdb.client.Client voltclient =
+            org.voltdb.client.ClientFactory.createClient(clientConfig);
+        try {
+            voltclient.createConnection("localhost");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
+        final Client client = new Client(voltclient);
+
+        client.doInsert( 1, 2 );      // insert id=1, item=2
+        client.doInsert( 3, 4 );      // insert id=3, item=4
+        client.doInsert( 5, 6 );      // insert id=5, item=6
+        client.doSelect(5);           // select row where id=5
+        client.doSelect(6);           // select row where id=6
+        client.doSelect(3);           // select row where id=3
+        client.doDelete(5);           // delete row where id=5
+        client.doSelect(5);           // select row where id=5
+        client.tryInvalidInsert(10);  // demonstrate procedure error.
+        System.out.println("Client finished");
+    }
+
+    private final org.voltdb.client.Client client;
+
+    private Client(org.voltdb.client.Client client) {
+        this.client = client;
+    }
+}
+"""
+
+ddlFileContent = """CREATE TABLE ##upper_project_name## (
+  ##upper_project_name##_ID INTEGER DEFAULT '0' NOT NULL,
+  ##upper_project_name##_ITEM INTEGER,
+  PRIMARY KEY (##upper_project_name##_ID)
+);
+"""
+
+deleteFileContent = """package ##package_prefix##.procedures;
+
+import org.voltdb.*;
+
+/** A VoltDB stored procedure is a Java class defining one or
+ * more SQL statements and implementing a <code>public
+ * VoltTable[] run</code> method. VoltDB requires a
+ * <code>ProcInfo</code> annotation providing metadata for the
+ * procedure.  The <code>run</code> method is
+ * defined to accept one or more parameters. These parameters take the
+ * values the client passes via the
+ * <code>Client.callProcedure</code> invocation.
+ *
+ * The <a href="https://community.voltdb.com/documentation">VoltDB
+ * User Guide</a> specifies valid stored procedure definitions,
+ * including valid run method parameter types, required annotation
+ * metadata, and correct use the Volt query interface.
+*/
+@ProcInfo(
+    partitionInfo = "##upper_project_name##.##upper_project_name##_ID: 0",
+    singlePartition = true
+)
+public class Delete extends VoltProcedure {
+
+    public final SQLStmt deleteItem =
+      new SQLStmt("DELETE FROM ##upper_project_name## " +
+                  "WHERE ##upper_project_name##_ID = ?");
+
+    public long run( int ##upper_project_name##_ID ) throws VoltAbortException {
+        // Add a SQL statement to the execution queue.
+        voltQueueSQL( deleteItem, ##upper_project_name##_ID );
+
+        // Run all queued queries.
+        // Passing true parameter since this is the last voltExecuteSQL for this procedure.
+        VoltTable[] retval = voltExecuteSQL(true);
+
+        // Ensure there is one table as expected
+        assert(retval.length == 1);
+        // Use a convenience method to get one
+        long modifiedTuples = retval[0].asScalarLong();
+        // Check that one tuple was modified
+        assert(modifiedTuples == 1);
+
+        // This will be converted into an array of VoltTable for the client.
+        // It will contain one table, with one column and one row.
+        return modifiedTuples;
+    }
+}
+"""
+
+deploymentFileContent = """<?xml version="1.0"?>
+<deployment>
+    <cluster hostcount="1" sitesperhost="2" />
+    <paths>
+        <voltdbroot path="/tmp" />
+    </paths>
+    <httpd enabled="true">
+        <jsonapi enabled="true" />
+    </httpd>
+</deployment>
+"""
+
+insertFileContent = """package ##package_prefix##.procedures;
+
+import org.voltdb.*;
+
+/** A VoltDB stored procedure is a Java class defining one or
+ * more SQL statements and implementing a <code>public
+ * VoltTable[] run</code> method. VoltDB requires a
+ * <code>ProcInfo</code> annotation providing metadata for the
+ * procedure.  The <code>run</code> method is
+ * defined to accept one or more parameters. These parameters take the
+ * values the client passes via the
+ * <code>Client.callProcedure</code> invocation.
+ *
+ * The <a href="https://community.voltdb.com/documentation">VoltDB
+ * User Guide</a> specifies valid stored procedure definitions,
+ * including valid run method parameter types, required annotation
+ * metadata, and correct use the Volt query interface.
+*/
+@ProcInfo(
+    partitionInfo = "##upper_project_name##.##upper_project_name##_ID: 0",
+    singlePartition = true
+)
+public class Insert extends VoltProcedure {
+
+    public final SQLStmt insertItem = new SQLStmt("INSERT INTO ##project_name## VALUES (?, ?);");
+
+    public long run( int ##upper_project_name##_ID, long ##upper_project_name##_ITEM ) throws VoltAbortException {
+        // Add a SQL statement to the execution queue.
+        voltQueueSQL( insertItem, ##upper_project_name##_ID, ##upper_project_name##_ITEM );
+
+        // Run all queued queries.
+        // Passing true parameter since this is the last voltExecuteSQL for this procedure.
+        VoltTable[] retval = voltExecuteSQL(true);
+
+        // Ensure there is one table as expected
+        assert(retval.length == 1);
+        // Use a convenience method to get one
+        long modifiedTuples = retval[0].asScalarLong();
+        // Check that one tuple was modified
+        assert(modifiedTuples == 1);
+
+        // This will be converted into an array of VoltTable for the client.
+        // It will contain one table, with one column and one row.
+        return modifiedTuples;
+    }
+}
+"""
+
+projectFileContent = """<?xml version="1.0"?>
+<project>
+    <database name='database'>
+        <schemas>
+            <schema path='##project_name##-ddl.sql' />
+        </schemas>
+        <procedures>
+            <procedure class='##package_prefix##.procedures.Insert' />
+            <procedure class='##package_prefix##.procedures.Delete' />
+            <procedure class='##package_prefix##.procedures.Select' />
+        </procedures>
+        <partitions>
+            <partition table='##upper_project_name##' column='##upper_project_name##_ID' />
+        </partitions>
+    </database>
+</project>
+"""
+
+selectFileContent = """package ##package_prefix##.procedures;
+
+import org.voltdb.*;
+
+/** A VoltDB stored procedure is a Java class defining one or
+ * more SQL statements and implementing a <code>public
+ * VoltTable[] run</code> method. VoltDB requires a
+ * <code>ProcInfo</code> annotation providing metadata for the
+ * procedure.  The <code>run</code> method is
+ * defined to accept one or more parameters. These parameters take the
+ * values the client passes via the
+ * <code>Client.callProcedure</code> invocation.
+ *
+ * The <a href="https://community.voltdb.com/documentation">VoltDB
+ * User Guide</a> specifies valid stored procedure definitions,
+ * including valid run method parameter types, required annotation
+ * metadata, and correct use the Volt query interface.
+*/
+@ProcInfo(
+    partitionInfo = "##upper_project_name##.##upper_project_name##_ID: 0",
+    singlePartition = true
+)
+public class Select extends VoltProcedure {
+
+    public final SQLStmt selectItem =
+      new SQLStmt("SELECT ##upper_project_name##_ID,  ##upper_project_name##_ITEM " +
+                  "FROM ##upper_project_name## WHERE  ##upper_project_name##_ID = ?");
+
+    public VoltTable[] run( int ##upper_project_name##_ID ) throws VoltAbortException {
+        // Add a SQL statement to the current execution queue
+        voltQueueSQL( selectItem, ##upper_project_name##_ID );
+
+        // Run all queued queries.
+        // Passing true parameter since this is the last voltExecuteSQL for this procedure.
+        return voltExecuteSQL(true);
+    }
+}
+"""
+
+
+
+# this method is pulled from python svn to make this work on 2.5
+# trivial mods only
+def relpath(path, start=os.curdir):
+    """Return a relative version of a path"""
+
+    if not path:
+        raise ValueError("no path specified")
+    start_list = os.path.abspath(start).split(os.sep)
+    path_list = os.path.abspath(path).split(os.sep)
+    if start_list[0].lower() != path_list[0].lower():
+        unc_path, rest = os.path.splitunc(path)
+        unc_start, rest = os.path.splitunc(start)
+        if bool(unc_path) ^ bool(unc_start):
+            raise ValueError("Cannot mix UNC and non-UNC paths (%s and %s)"
+                                                                % (path, start))
+        else:
+            raise ValueError("path is on drive %s, start on drive %s"
+                                                % (path_list[0], start_list[0]))
+    # Work out how much of the filepath is shared by start and path.
+    for i in range(min(len(start_list), len(path_list))):
+        if start_list[i].lower() != path_list[i].lower():
+            break
+    else:
+        i += 1
+
+    rel_list = [os.pardir] * (len(start_list)-i) + path_list[i:]
+    if not rel_list:
+        return os.curdir
+    return os.path.join(*rel_list)
+
+def replace(instr, pattern, value):
+    pattern = string.strip(pattern)
+    value = string.strip(value)
+    return string.replace(instr, pattern, value)
+
+def copyAndSubstituteTemplates(srcString, dest_fn, package_prefix, project_name, voltdb_lib_path):
+    """Copy file and replace template parameters with real values"""
+    srcString = replace(srcString, "##package_prefix##", package_prefix)
+    srcString = replace(srcString, "##project_name##", project_name)
+    srcString = replace(srcString, "##upper_project_name##", string.upper(project_name))
+    srcString = replace(srcString, "##voltdb_lib_path##", voltdb_lib_path)
+    writefile(dest_fn, srcString)
+
+def isDestExist(path):
+    return os.path.exists(path)
+
+def isParentDir(candidateParent, candidateChild):
+    "determine if one dir contains another"
+    rel = relpath(candidateParent, candidateChild)
+    for element in rel.split(os.sep):
+        if element != "..":
+            return False
+    return True
+
+if len(sys.argv) != 4:
+    print "Usage: generate <name> <package_prefix> <destination>"
+    sys.exit(0)
+
+# find the location of the voltdb jar
+distpath = os.path.split(sys.path[0])[0]
+voltpath = distpath + "/voltdb"
+
+project_name = string.strip(sys.argv[1])
+package_prefix = string.strip(sys.argv[2])
+package_prefix_wslashies = string.replace(package_prefix, ".", "/")
+
+# destination should be relative to user's original cwd
+destination = sys.argv[3]
+
+if isDestExist(destination):
+    print "Warning: Destination", destination, "already exists."
+    print "Please specify a different location."
+    sys.exit(0)
+
+# if the user is putting the new project inside the dist folder,
+# use a relative path for voltdb
+if isParentDir(distpath, destination):
+    voltpath = relpath(distpath + "/voltdb", destination)
+
+# Make the directory for the stored procedures and by extension the root of the project
+os.system("mkdir -p %s/src/%s/procedures"%(destination, package_prefix_wslashies))
+
+# Example procedures
+for proc in [("Insert.java", insertFileContent),
+             ("Delete.java", deleteFileContent),
+             ("Select.java", selectFileContent)]:
+    dest_fn = "%s/src/%s/procedures/%s"%(destination, package_prefix_wslashies, proc[0])
+    copyAndSubstituteTemplates(proc[1], dest_fn, package_prefix, project_name, voltpath)
+
+# Client.java
+dest_fn = "%s/src/%s/Client.java"%(destination, package_prefix_wslashies)
+copyAndSubstituteTemplates(clientFileContent, dest_fn, package_prefix, project_name, voltpath)
+
+# build.xml
+dest_fn = "%s/build.xml"%(destination)
+copyAndSubstituteTemplates(buildFileContent, dest_fn, package_prefix, project_name, voltpath)
+
+# project.xml
+dest_fn = "%s/project.xml"%(destination)
+copyAndSubstituteTemplates(projectFileContent, dest_fn, package_prefix, project_name, voltpath)
+
+# deployment.xml
+dest_fn = "%s/deployment.xml"%(destination)
+copyAndSubstituteTemplates(deploymentFileContent, dest_fn, package_prefix, project_name, voltpath)
+
+# ddl.sql
+dest_fn = "%s/%s-ddl.sql"%(destination, project_name)
+copyAndSubstituteTemplates(ddlFileContent, dest_fn, package_prefix, project_name, voltpath)
+
+print "Generated skeleton Volt project in %s" % (destination)

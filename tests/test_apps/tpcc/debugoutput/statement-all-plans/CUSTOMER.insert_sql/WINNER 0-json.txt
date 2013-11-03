@@ -1,0 +1,320 @@
+SQL: INSERT INTO CUSTOMER VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+COST: 0.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        937,
+        936
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [937],
+            "ID": 936,
+            "INLINE_NODES": [],
+            "MULTI_PARTITION": false,
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "modified_tuples",
+                "COLUMN_NAME": "modified_tuples",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "modified_tuples",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "modified_tuples",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "INSERT",
+            "TARGET_TABLE_NAME": "CUSTOMER"
+        },
+        {
+            "BATCHED": false,
+            "CHILDREN_IDS": [],
+            "ID": 937,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "C_ID",
+                    "COLUMN_NAME": "C_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_D_ID",
+                    "COLUMN_NAME": "C_D_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_W_ID",
+                    "COLUMN_NAME": "C_W_ID",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 2,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_FIRST",
+                    "COLUMN_NAME": "C_FIRST",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 3,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_MIDDLE",
+                    "COLUMN_NAME": "C_MIDDLE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 4,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_LAST",
+                    "COLUMN_NAME": "C_LAST",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 5,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_1",
+                    "COLUMN_NAME": "C_STREET_1",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 6,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STREET_2",
+                    "COLUMN_NAME": "C_STREET_2",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 7,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CITY",
+                    "COLUMN_NAME": "C_CITY",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 8,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_STATE",
+                    "COLUMN_NAME": "C_STATE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 9,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_ZIP",
+                    "COLUMN_NAME": "C_ZIP",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 10,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 9,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 9,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PHONE",
+                    "COLUMN_NAME": "C_PHONE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 11,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_SINCE",
+                    "COLUMN_NAME": "C_SINCE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 12,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "TIMESTAMP"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "TIMESTAMP"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT",
+                    "COLUMN_NAME": "C_CREDIT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 13,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "C_CREDIT_LIM",
+                    "COLUMN_NAME": "C_CREDIT_LIM",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 14,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DISCOUNT",
+                    "COLUMN_NAME": "C_DISCOUNT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 15,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_BALANCE",
+                    "COLUMN_NAME": "C_BALANCE",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 16,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_YTD_PAYMENT",
+                    "COLUMN_NAME": "C_YTD_PAYMENT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 17,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "FLOAT"
+                    },
+                    "SIZE": 8,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "FLOAT"
+                },
+                {
+                    "COLUMN_ALIAS": "C_PAYMENT_CNT",
+                    "COLUMN_NAME": "C_PAYMENT_CNT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 18,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DELIVERY_CNT",
+                    "COLUMN_NAME": "C_DELIVERY_CNT",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 19,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "C_DATA",
+                    "COLUMN_NAME": "C_DATA",
+                    "EXPRESSION": {
+                        "PARAM_IDX": 20,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 500,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 500,
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [936],
+            "PLAN_NODE_TYPE": "MATERIALIZE"
+        }
+    ]
+}

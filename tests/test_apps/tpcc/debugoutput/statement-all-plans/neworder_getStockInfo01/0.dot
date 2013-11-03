@@ -1,0 +1,9 @@
+digraph name {
+741 [label="741: SEQSCAN" ];
+741 -> 745;
+745 [label="745: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+746 [label="746: SEND" fontcolor="white" style="filled" fillcolor="black"];
+746 -> 741;
+
+}
+

@@ -1,0 +1,9 @@
+digraph name {
+877 [label="877: SEQSCAN" ];
+877 -> 881;
+881 [label="881: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+882 [label="882: SEND" fontcolor="white" style="filled" fillcolor="black"];
+882 -> 877;
+
+}
+

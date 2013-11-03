@@ -1,0 +1,13 @@
+digraph name {
+375 [label="375: SEQSCAN" ];
+375 -> 376;
+376 [label="376: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+383 [label="383: ORDERBY" ];
+383 -> 375;
+384 [label="384: PROJECTION" ];
+384 -> 383;
+385 [label="385: SEND" fontcolor="white" style="filled" fillcolor="black"];
+385 -> 384;
+
+}
+

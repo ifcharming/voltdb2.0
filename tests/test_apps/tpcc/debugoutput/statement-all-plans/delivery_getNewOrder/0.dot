@@ -1,0 +1,11 @@
+digraph name {
+197 [label="197: SEQSCAN" ];
+197 -> 201;
+201 [label="201: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+197 -> 203;
+203 [label="203: LIMIT" fontcolor="white" style="filled" fillcolor="red"];
+204 [label="204: SEND" fontcolor="white" style="filled" fillcolor="black"];
+204 -> 197;
+
+}
+

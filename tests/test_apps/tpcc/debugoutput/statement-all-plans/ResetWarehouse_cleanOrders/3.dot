@@ -1,0 +1,9 @@
+digraph name {
+900 [label="900: INDEXSCAN" ];
+900 -> 908;
+908 [label="908: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+907 [label="907: DELETE" ];
+907 -> 900;
+
+}
+

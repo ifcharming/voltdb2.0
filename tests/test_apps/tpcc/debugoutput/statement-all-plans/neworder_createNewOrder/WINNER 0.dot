@@ -1,0 +1,7 @@
+digraph name {
+668 [label="668: MATERIALIZE" ];
+667 [label="667: INSERT" ];
+667 -> 668;
+
+}
+

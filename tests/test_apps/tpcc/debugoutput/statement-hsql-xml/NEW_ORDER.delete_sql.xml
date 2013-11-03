@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <delete table="NEW_ORDER">
+        <parameters>
+            <parameter index='0' id='472732980' type='TINYINT' />
+            <parameter index='1' id='1681184607' type='INTEGER' />
+            <parameter index='2' id='1227346270' type='SMALLINT' />
+        </parameters>
+        <tablescan type="sequential" table="NEW_ORDER">
+            <postexp>
+                <operation id="1471679480" type="and">
+                    <operation id="-855286729" type="and">
+                        <operation id="510504669" type="equal">
+                            <columnref id="1428330455" table="NEW_ORDER" column="NO_D_ID" alias="NO_D_ID" />
+                            <value id="472732980" type="TINYINT" isparam="true" />
+                        </operation>
+                        <operation id="1011992259" type="equal">
+                            <columnref id="1377751019" table="NEW_ORDER" column="NO_W_ID" alias="NO_W_ID" />
+                            <value id="1227346270" type="SMALLINT" isparam="true" />
+                        </operation>
+                    </operation>
+                    <operation id="1074572784" type="equal">
+                        <columnref id="1692694379" table="NEW_ORDER" column="NO_O_ID" alias="NO_O_ID" />
+                        <value id="1681184607" type="INTEGER" isparam="true" />
+                    </operation>
+                </operation>
+            </postexp>
+        </tablescan>
+        <condition>
+            <operation id="1471679480" type="and">
+                <operation id="-855286729" type="and">
+                    <operation id="510504669" type="equal">
+                        <columnref id="1428330455" table="NEW_ORDER" column="NO_D_ID" alias="NO_D_ID" />
+                        <value id="472732980" type="TINYINT" isparam="true" />
+                    </operation>
+                    <operation id="1011992259" type="equal">
+                        <columnref id="1377751019" table="NEW_ORDER" column="NO_W_ID" alias="NO_W_ID" />
+                        <value id="1227346270" type="SMALLINT" isparam="true" />
+                    </operation>
+                </operation>
+                <operation id="1074572784" type="equal">
+                    <columnref id="1692694379" table="NEW_ORDER" column="NO_O_ID" alias="NO_O_ID" />
+                    <value id="1681184607" type="INTEGER" isparam="true" />
+                </operation>
+            </operation>
+        </condition>
+    </delete>
+</statement>
+

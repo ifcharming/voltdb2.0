@@ -1,0 +1,693 @@
+SQL: SELECT COUNT(DISTINCT(OL_I_ID)) FROM ORDER_LINE, STOCK WHERE OL_W_ID = ? AND OL_D_ID = ? AND OL_O_ID < ? AND OL_O_ID >= ? AND S_W_ID = ? AND S_I_ID = OL_I_ID AND S_QUANTITY < ?;
+COST: 4000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        791,
+        795,
+        817,
+        819
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [817],
+            "ID": 819,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "C1",
+                "COLUMN_NAME": "C1",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "C1",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "AGGREGATE_COLUMNS": [{
+                "AGGREGATE_DISTINCT": 1,
+                "AGGREGATE_EXPRESSION": {
+                    "COLUMN_ALIAS": "OL_I_ID",
+                    "COLUMN_IDX": 6,
+                    "COLUMN_NAME": "OL_I_ID",
+                    "TABLE_NAME": "ORDER_LINE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 4,
+                    "VALUE_TYPE": "INTEGER"
+                },
+                "AGGREGATE_OUTPUT_COLUMN": 0,
+                "AGGREGATE_TYPE": "AGGREGATE_COUNT"
+            }],
+            "CHILDREN_IDS": [795],
+            "ID": 817,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [{
+                "COLUMN_ALIAS": "C1",
+                "COLUMN_NAME": "C1",
+                "EXPRESSION": {
+                    "COLUMN_ALIAS": "C1",
+                    "COLUMN_IDX": 0,
+                    "COLUMN_NAME": "",
+                    "TABLE_NAME": "VOLT_TEMP_TABLE",
+                    "TYPE": "VALUE_TUPLE",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SIZE": 8,
+                "TABLE_NAME": "VOLT_TEMP_TABLE",
+                "TYPE": "BIGINT"
+            }],
+            "PARENT_IDS": [819],
+            "PLAN_NODE_TYPE": "HASHAGGREGATE"
+        },
+        {
+            "CHILDREN_IDS": [791],
+            "ID": 795,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "END_EXPRESSION": {
+                    "LEFT": {
+                        "LEFT": {
+                            "LEFT": {
+                                "COLUMN_ALIAS": "OL_O_ID",
+                                "COLUMN_IDX": 0,
+                                "COLUMN_NAME": "OL_O_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 4,
+                                "VALUE_TYPE": "INTEGER"
+                            },
+                            "RIGHT": {
+                                "PARAM_IDX": 2,
+                                "TYPE": "VALUE_PARAMETER",
+                                "VALUE_SIZE": 4,
+                                "VALUE_TYPE": "INTEGER"
+                            },
+                            "TYPE": "COMPARE_LESSTHAN",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "BIGINT"
+                        },
+                        "RIGHT": {
+                            "LEFT": {
+                                "COLUMN_ALIAS": "OL_D_ID",
+                                "COLUMN_IDX": 1,
+                                "COLUMN_NAME": "OL_D_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 1,
+                                "VALUE_TYPE": "TINYINT"
+                            },
+                            "RIGHT": {
+                                "PARAM_IDX": 1,
+                                "TYPE": "VALUE_PARAMETER",
+                                "VALUE_SIZE": 1,
+                                "VALUE_TYPE": "TINYINT"
+                            },
+                            "TYPE": "COMPARE_EQUAL",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "BIGINT"
+                        },
+                        "TYPE": "CONJUNCTION_AND",
+                        "VALUE_SIZE": 0,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "OL_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "OL_W_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 0,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "ID": 793,
+                "INLINE_NODES": [{
+                    "CHILDREN_IDS": [],
+                    "ID": 794,
+                    "INLINE_NODES": [],
+                    "OUTPUT_SCHEMA": [
+                        {
+                            "COLUMN_ALIAS": "OL_O_ID",
+                            "COLUMN_NAME": "OL_O_ID",
+                            "EXPRESSION": {
+                                "COLUMN_ALIAS": "OL_O_ID",
+                                "COLUMN_IDX": 0,
+                                "COLUMN_NAME": "OL_O_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 4,
+                                "VALUE_TYPE": "INTEGER"
+                            },
+                            "SIZE": 4,
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "INTEGER"
+                        },
+                        {
+                            "COLUMN_ALIAS": "OL_D_ID",
+                            "COLUMN_NAME": "OL_D_ID",
+                            "EXPRESSION": {
+                                "COLUMN_ALIAS": "OL_D_ID",
+                                "COLUMN_IDX": 1,
+                                "COLUMN_NAME": "OL_D_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 1,
+                                "VALUE_TYPE": "TINYINT"
+                            },
+                            "SIZE": 1,
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "TINYINT"
+                        },
+                        {
+                            "COLUMN_ALIAS": "OL_W_ID",
+                            "COLUMN_NAME": "OL_W_ID",
+                            "EXPRESSION": {
+                                "COLUMN_ALIAS": "OL_W_ID",
+                                "COLUMN_IDX": 2,
+                                "COLUMN_NAME": "OL_W_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 2,
+                                "VALUE_TYPE": "SMALLINT"
+                            },
+                            "SIZE": 2,
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "SMALLINT"
+                        },
+                        {
+                            "COLUMN_ALIAS": "OL_I_ID",
+                            "COLUMN_NAME": "OL_I_ID",
+                            "EXPRESSION": {
+                                "COLUMN_ALIAS": "OL_I_ID",
+                                "COLUMN_IDX": 4,
+                                "COLUMN_NAME": "OL_I_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 4,
+                                "VALUE_TYPE": "INTEGER"
+                            },
+                            "SIZE": 4,
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "INTEGER"
+                        }
+                    ],
+                    "PARENT_IDS": [],
+                    "PLAN_NODE_TYPE": "PROJECTION"
+                }],
+                "KEY_ITERATE": false,
+                "LOOKUP_TYPE": "GTE",
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "OL_O_ID",
+                        "COLUMN_NAME": "OL_O_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "OL_O_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "OL_O_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "OL_D_ID",
+                        "COLUMN_NAME": "OL_D_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "OL_D_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "OL_D_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 1,
+                            "VALUE_TYPE": "TINYINT"
+                        },
+                        "SIZE": 1,
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "TINYINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "OL_W_ID",
+                        "COLUMN_NAME": "OL_W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "OL_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "OL_W_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "OL_I_ID",
+                        "COLUMN_NAME": "OL_I_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "OL_I_ID",
+                            "COLUMN_IDX": 4,
+                            "COLUMN_NAME": "OL_I_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "INTEGER"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "INDEXSCAN",
+                "PREDICATE": {
+                    "LEFT": {
+                        "LEFT": {
+                            "LEFT": {
+                                "LEFT": {
+                                    "COLUMN_ALIAS": "S_I_ID",
+                                    "COLUMN_IDX": 0,
+                                    "COLUMN_NAME": "S_I_ID",
+                                    "TABLE_NAME": "STOCK",
+                                    "TYPE": "VALUE_TUPLE",
+                                    "VALUE_SIZE": 4,
+                                    "VALUE_TYPE": "INTEGER"
+                                },
+                                "RIGHT": {
+                                    "COLUMN_ALIAS": "OL_I_ID",
+                                    "COLUMN_IDX": 4,
+                                    "COLUMN_NAME": "OL_I_ID",
+                                    "TABLE_NAME": "ORDER_LINE",
+                                    "TYPE": "VALUE_TUPLE",
+                                    "VALUE_SIZE": 4,
+                                    "VALUE_TYPE": "INTEGER"
+                                },
+                                "TYPE": "COMPARE_EQUAL",
+                                "VALUE_SIZE": 8,
+                                "VALUE_TYPE": "BIGINT"
+                            },
+                            "RIGHT": {
+                                "LEFT": {
+                                    "COLUMN_ALIAS": "OL_O_ID",
+                                    "COLUMN_IDX": 0,
+                                    "COLUMN_NAME": "OL_O_ID",
+                                    "TABLE_NAME": "ORDER_LINE",
+                                    "TYPE": "VALUE_TUPLE",
+                                    "VALUE_SIZE": 4,
+                                    "VALUE_TYPE": "INTEGER"
+                                },
+                                "RIGHT": {
+                                    "PARAM_IDX": 3,
+                                    "TYPE": "VALUE_PARAMETER",
+                                    "VALUE_SIZE": 4,
+                                    "VALUE_TYPE": "INTEGER"
+                                },
+                                "TYPE": "COMPARE_GREATERTHANOREQUALTO",
+                                "VALUE_SIZE": 8,
+                                "VALUE_TYPE": "BIGINT"
+                            },
+                            "TYPE": "CONJUNCTION_AND",
+                            "VALUE_SIZE": 0,
+                            "VALUE_TYPE": "BIGINT"
+                        },
+                        "RIGHT": {
+                            "LEFT": {
+                                "COLUMN_ALIAS": "OL_D_ID",
+                                "COLUMN_IDX": 1,
+                                "COLUMN_NAME": "OL_D_ID",
+                                "TABLE_NAME": "ORDER_LINE",
+                                "TYPE": "VALUE_TUPLE",
+                                "VALUE_SIZE": 1,
+                                "VALUE_TYPE": "TINYINT"
+                            },
+                            "RIGHT": {
+                                "PARAM_IDX": 1,
+                                "TYPE": "VALUE_PARAMETER",
+                                "VALUE_SIZE": 1,
+                                "VALUE_TYPE": "TINYINT"
+                            },
+                            "TYPE": "COMPARE_EQUAL",
+                            "VALUE_SIZE": 8,
+                            "VALUE_TYPE": "BIGINT"
+                        },
+                        "TYPE": "CONJUNCTION_AND",
+                        "VALUE_SIZE": 0,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "RIGHT": {
+                        "LEFT": {
+                            "COLUMN_ALIAS": "OL_W_ID",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "OL_W_ID",
+                            "TABLE_NAME": "ORDER_LINE",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "RIGHT": {
+                            "PARAM_IDX": 0,
+                            "TYPE": "VALUE_PARAMETER",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "TYPE": "COMPARE_EQUAL",
+                        "VALUE_SIZE": 8,
+                        "VALUE_TYPE": "BIGINT"
+                    },
+                    "TYPE": "CONJUNCTION_AND",
+                    "VALUE_SIZE": 0,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "SEARCHKEY_EXPRESSIONS": [
+                    {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    {
+                        "PARAM_IDX": 3,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    }
+                ],
+                "SORT_DIRECTION": "INVALID",
+                "TARGET_INDEX_NAME": "IDX_ORDER_LINE_TREE",
+                "TARGET_TABLE_NAME": "ORDER_LINE"
+            }],
+            "JOIN_TYPE": "INNER",
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "S_I_ID",
+                    "COLUMN_NAME": "S_I_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_I_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_W_ID",
+                    "COLUMN_NAME": "S_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "S_QUANTITY",
+                    "COLUMN_NAME": "S_QUANTITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_O_ID",
+                    "COLUMN_NAME": "OL_O_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "OL_O_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "OL_O_ID",
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDER_LINE",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_D_ID",
+                    "COLUMN_NAME": "OL_D_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "OL_D_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "OL_D_ID",
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 1,
+                        "VALUE_TYPE": "TINYINT"
+                    },
+                    "SIZE": 1,
+                    "TABLE_NAME": "ORDER_LINE",
+                    "TYPE": "TINYINT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_W_ID",
+                    "COLUMN_NAME": "OL_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "OL_W_ID",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "OL_W_ID",
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "ORDER_LINE",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "OL_I_ID",
+                    "COLUMN_NAME": "OL_I_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "OL_I_ID",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "OL_I_ID",
+                        "TABLE_NAME": "ORDER_LINE",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "ORDER_LINE",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [817],
+            "PLAN_NODE_TYPE": "NESTLOOPINDEX",
+            "PREDICATE": null
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 791,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 792,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_NAME": "S_I_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_I_ID",
+                            "COLUMN_IDX": 0,
+                            "COLUMN_NAME": "S_I_ID",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_NAME": "S_W_ID",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_W_ID",
+                            "COLUMN_IDX": 1,
+                            "COLUMN_NAME": "S_W_ID",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 2,
+                            "VALUE_TYPE": "SMALLINT"
+                        },
+                        "SIZE": 2,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "SMALLINT"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_QUANTITY",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "S_QUANTITY",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "S_I_ID",
+                    "COLUMN_NAME": "S_I_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_I_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_W_ID",
+                    "COLUMN_NAME": "S_W_ID",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "SIZE": 2,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "SMALLINT"
+                },
+                {
+                    "COLUMN_ALIAS": "S_QUANTITY",
+                    "COLUMN_NAME": "S_QUANTITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                }
+            ],
+            "PARENT_IDS": [795],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 5,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "TYPE": "COMPARE_LESSTHAN",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 4,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "STOCK"
+        }
+    ]
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE statement [
+  <!ELEMENT statement (select|update|insert|delete)>
+  <!ELEMENT select (scan_columns,columns,parameters,tablescans,querycondition?,havingcondition?,ordercolumns?)>
+  <!ATTLIST select
+    limit CDATA #IMPLIED
+    limit_paramid CDATA #IMPLIED
+    offset CDATA #IMPLIED
+    offset_paramid CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    grouped CDATA #IMPLIED
+    aggregated CDATA #IMPLIED>
+  <!ELEMENT values (columnref*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT scan_columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT columns (columnref*|column*|(value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT parameters (parameter*)>
+  <!ELEMENT parameter ANY>
+  <!ATTLIST parameter
+    index CDATA #REQUIRED
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT tablescans (tablescan*)>
+  <!ELEMENT tablescan (searchkey?,startexp?,endexp?,postexp?)>
+  <!ATTLIST tablescan
+    type CDATA #REQUIRED
+    table CDATA #REQUIRED
+    index CDATA #IMPLIED
+    alias CDATA #IMPLIED>
+  <!ELEMENT searchkey ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT startexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT endexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT postexp ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT querycondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT havingcondition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT value ANY>
+  <!ATTLIST value
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    value CDATA #IMPLIED
+    isparam CDATA #IMPLIED>
+  <!ELEMENT columnref ANY>
+  <!ATTLIST columnref
+    id CDATA #REQUIRED
+    table CDATA #REQUIRED
+    column CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    dir CDATA #IMPLIED>
+  <!ELEMENT bool ANY>
+  <!ATTLIST bool
+    id CDATA #REQUIRED
+    value CDATA #REQUIRED>
+  <!ELEMENT asterisk ANY>
+  <!ELEMENT groupcolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT ordercolumns ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT operation ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST operation
+    id CDATA #REQUIRED
+    type CDATA #REQUIRED
+    alias CDATA #IMPLIED
+    distinct CDATA #IMPLIED
+    desc CDATA #IMPLIED>
+  <!ELEMENT function ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST function
+    id CDATA #IMPLIED
+    name CDATA #REQUIRED
+    type CDATA #REQUIRED>
+  <!ELEMENT update (columns,parameters,tablescan,condition?)>
+  <!ATTLIST update
+    table CDATA #REQUIRED>
+  <!ELEMENT condition ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ELEMENT column ((value|columnref|bool|asterisk|operation|function)*)>
+  <!ATTLIST column
+    name CDATA #REQUIRED
+    table CDATA #REQUIRED>
+  <!ELEMENT insert (columns,parameters,tablescan?,condition?)>
+  <!ATTLIST insert
+    table CDATA #REQUIRED>
+  <!ELEMENT delete (parameters,tablescan?,condition?)>
+  <!ATTLIST delete
+    table CDATA #REQUIRED>
+]>
+<statement>
+    <select>
+        <scan_columns>
+            <columnref id="1328127870" table="CUSTOMER" column="C_ID" alias="C_ID" />
+            <columnref id="900084172" table="CUSTOMER" column="C_FIRST" alias="C_FIRST" />
+            <columnref id="839869336" table="CUSTOMER" column="C_MIDDLE" alias="C_MIDDLE" />
+            <columnref id="273918421" table="CUSTOMER" column="C_LAST" alias="C_LAST" />
+            <columnref id="1689446226" table="CUSTOMER" column="C_STREET_1" alias="C_STREET_1" />
+            <columnref id="493939748" table="CUSTOMER" column="C_STREET_2" alias="C_STREET_2" />
+            <columnref id="1621048981" table="CUSTOMER" column="C_CITY" alias="C_CITY" />
+            <columnref id="1992677825" table="CUSTOMER" column="C_STATE" alias="C_STATE" />
+            <columnref id="928729810" table="CUSTOMER" column="C_ZIP" alias="C_ZIP" />
+            <columnref id="1250770274" table="CUSTOMER" column="C_PHONE" alias="C_PHONE" />
+            <columnref id="2126058282" table="CUSTOMER" column="C_SINCE" alias="C_SINCE" />
+            <columnref id="681143141" table="CUSTOMER" column="C_CREDIT" alias="C_CREDIT" />
+            <columnref id="1884932277" table="CUSTOMER" column="C_CREDIT_LIM" alias="C_CREDIT_LIM" />
+            <columnref id="378018995" table="CUSTOMER" column="C_DISCOUNT" alias="C_DISCOUNT" />
+            <columnref id="1108621139" table="CUSTOMER" column="C_BALANCE" alias="C_BALANCE" />
+            <columnref id="1027361801" table="CUSTOMER" column="C_YTD_PAYMENT" alias="C_YTD_PAYMENT" />
+            <columnref id="1101267527" table="CUSTOMER" column="C_PAYMENT_CNT" alias="C_PAYMENT_CNT" />
+            <columnref id="1989256443" table="CUSTOMER" column="C_DATA" alias="C_DATA" />
+            <columnref id="1407621005" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+            <columnref id="1206375683" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+        </scan_columns>
+        <columns>
+            <columnref id="1328127870" table="CUSTOMER" column="C_ID" alias="C_ID" />
+            <columnref id="900084172" table="CUSTOMER" column="C_FIRST" alias="C_FIRST" />
+            <columnref id="839869336" table="CUSTOMER" column="C_MIDDLE" alias="C_MIDDLE" />
+            <columnref id="273918421" table="CUSTOMER" column="C_LAST" alias="C_LAST" />
+            <columnref id="1689446226" table="CUSTOMER" column="C_STREET_1" alias="C_STREET_1" />
+            <columnref id="493939748" table="CUSTOMER" column="C_STREET_2" alias="C_STREET_2" />
+            <columnref id="1621048981" table="CUSTOMER" column="C_CITY" alias="C_CITY" />
+            <columnref id="1992677825" table="CUSTOMER" column="C_STATE" alias="C_STATE" />
+            <columnref id="928729810" table="CUSTOMER" column="C_ZIP" alias="C_ZIP" />
+            <columnref id="1250770274" table="CUSTOMER" column="C_PHONE" alias="C_PHONE" />
+            <columnref id="2126058282" table="CUSTOMER" column="C_SINCE" alias="C_SINCE" />
+            <columnref id="681143141" table="CUSTOMER" column="C_CREDIT" alias="C_CREDIT" />
+            <columnref id="1884932277" table="CUSTOMER" column="C_CREDIT_LIM" alias="C_CREDIT_LIM" />
+            <columnref id="378018995" table="CUSTOMER" column="C_DISCOUNT" alias="C_DISCOUNT" />
+            <columnref id="1108621139" table="CUSTOMER" column="C_BALANCE" alias="C_BALANCE" />
+            <columnref id="1027361801" table="CUSTOMER" column="C_YTD_PAYMENT" alias="C_YTD_PAYMENT" />
+            <columnref id="1101267527" table="CUSTOMER" column="C_PAYMENT_CNT" alias="C_PAYMENT_CNT" />
+            <columnref id="1989256443" table="CUSTOMER" column="C_DATA" alias="C_DATA" />
+        </columns>
+        <parameters>
+            <parameter index='0' id='1162992854' type='INTEGER' />
+            <parameter index='1' id='24742184' type='TINYINT' />
+            <parameter index='2' id='1377542617' type='SMALLINT' />
+        </parameters>
+        <tablescans>
+            <tablescan type="sequential" table="CUSTOMER">
+                <postexp>
+                    <operation id="624106368" type="and">
+                        <operation id="95173646" type="and">
+                            <operation id="-2040233661" type="and">
+                                <operation id="719925245" type="and">
+                                    <operation id="793992391" type="and">
+                                        <operation id="1636472114" type="equal">
+                                            <columnref id="1206375683" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+                                            <value id="1377542617" type="SMALLINT" isparam="true" />
+                                        </operation>
+                                        <operation id="598379940" type="equal">
+                                            <columnref id="1407621005" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+                                            <value id="24742184" type="TINYINT" isparam="true" />
+                                        </operation>
+                                    </operation>
+                                    <operation id="-2074920677" type="equal">
+                                        <columnref id="337565612" table="CUSTOMER" column="C_ID" alias="C_ID" />
+                                        <value id="1162992854" type="INTEGER" isparam="true" />
+                                    </operation>
+                                </operation>
+                                <operation id="1636472114" type="equal">
+                                    <columnref id="1206375683" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+                                    <value id="1377542617" type="SMALLINT" isparam="true" />
+                                </operation>
+                            </operation>
+                            <operation id="598379940" type="equal">
+                                <columnref id="1407621005" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+                                <value id="24742184" type="TINYINT" isparam="true" />
+                            </operation>
+                        </operation>
+                        <operation id="-2074920677" type="equal">
+                            <columnref id="337565612" table="CUSTOMER" column="C_ID" alias="C_ID" />
+                            <value id="1162992854" type="INTEGER" isparam="true" />
+                        </operation>
+                    </operation>
+                </postexp>
+            </tablescan>
+        </tablescans>
+        <querycondition>
+            <operation id="-1040429518" type="and">
+                <operation id="-1809337939" type="and">
+                    <operation id="-2074920677" type="equal">
+                        <columnref id="337565612" table="CUSTOMER" column="C_ID" alias="C_ID" />
+                        <value id="1162992854" type="INTEGER" isparam="true" />
+                    </operation>
+                    <operation id="598379940" type="equal">
+                        <columnref id="1407621005" table="CUSTOMER" column="C_D_ID" alias="C_D_ID" />
+                        <value id="24742184" type="TINYINT" isparam="true" />
+                    </operation>
+                </operation>
+                <operation id="1636472114" type="equal">
+                    <columnref id="1206375683" table="CUSTOMER" column="C_W_ID" alias="C_W_ID" />
+                    <value id="1377542617" type="SMALLINT" isparam="true" />
+                </operation>
+            </operation>
+        </querycondition>
+    </select>
+</statement>
+

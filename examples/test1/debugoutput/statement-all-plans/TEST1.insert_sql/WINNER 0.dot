@@ -1,0 +1,7 @@
+digraph name {
+26 [label="26: MATERIALIZE" ];
+25 [label="25: INSERT" ];
+25 -> 26;
+
+}
+

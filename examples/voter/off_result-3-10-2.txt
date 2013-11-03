@@ -1,0 +1,97 @@
+-------------------------------------------------------------------------------------
+                  stats : 
+       display-interval : 5
+               duration : 120
+                servers : localhost
+                   port : 21212
+            contestants : 6
+              max-votes : 2
+             rate-limit : 100000
+              auto-tune : true
+         latency-target : 10.0
+-------------------------------------------------------------------------------------
+Connecting to servers: localhost at port: 21212
+Connected.  Starting benchmark.
+00:00:05 | Adjusting DOWN to:     80,000.0 TPS | Recent Latency :   109.09
+00:00:05 | Txn.:     124,290 @    24,977.9 TPS | Lat. =      43 <   109.10 <     857
+00:00:10 | Txn.:     329,711 @    33,070.3 TPS | Lat. =      37 <    85.44 <     857
+00:00:10 | Adjusting DOWN to:     64,000.0 TPS | Recent Latency :    71.15
+00:00:15 | Txn.:     536,259 @    35,788.8 TPS | Lat. =      36 <    79.64 <     857
+00:00:15 | Adjusting DOWN to:     51,200.0 TPS | Recent Latency :    70.34
+00:00:20 | Txn.:     738,041 @    36,961.2 TPS | Lat. =      30 <    76.56 <     857
+00:00:20 | Adjusting DOWN to:     40,960.0 TPS | Recent Latency :    68.44
+00:00:25 | Txn.:     939,239 @    37,596.7 TPS | Lat. =      23 <    72.29 <     857
+00:00:25 | Adjusting DOWN to:     32,768.0 TPS | Recent Latency :    56.38
+00:00:30 | Txn.:   1,104,384 @    36,841.0 TPS | Lat. =       4 <    63.40 <     857
+00:00:30 | Adjusting  UP  to:     36,044.0 TPS | Recent Latency :    -0.03
+00:00:35 | Txn.:   1,286,742 @    36,785.1 TPS | Lat. =       4 <    57.34 <     857
+00:00:35 | Adjusting  UP  to:     39,648.0 TPS | Recent Latency :    -2.10
+00:00:40 | Txn.:   1,481,965 @    37,072.3 TPS | Lat. =       4 <    57.54 <     857
+00:00:40 | Adjusting  UP  to:     43,612.0 TPS | Recent Latency :    -9.40
+00:00:45 | Txn.:   1,686,390 @    37,496.2 TPS | Lat. =       4 <    58.25 <     857
+00:00:45 | Adjusting  UP  to:     47,973.0 TPS | Recent Latency :    -8.96
+00:00:50 | Txn.:   1,889,205 @    37,797.7 TPS | Lat. =       4 <    59.23 <     857
+00:00:50 | Adjusting  UP  to:     52,770.0 TPS | Recent Latency :    -7.90
+00:00:55 | Txn.:   2,090,555 @    38,021.8 TPS | Lat. =       4 <    60.18 <     857
+00:00:55 | Adjusting  UP  to:     58,047.0 TPS | Recent Latency :    -6.94
+00:01:00 | Txn.:   2,289,206 @    38,168.7 TPS | Lat. =       4 <    61.15 <     857
+00:01:00 | Adjusting  UP  to:     63,851.0 TPS | Recent Latency :    -6.16
+00:01:05 | Txn.:   2,489,476 @    38,314.4 TPS | Lat. =       4 <    62.00 <     857
+00:01:05 | Adjusting  UP  to:     70,236.0 TPS | Recent Latency :    -5.45
+00:01:10 | Txn.:   2,691,284 @    38,457.4 TPS | Lat. =       4 <    62.77 <     857
+00:01:10 | Adjusting  UP  to:     77,259.0 TPS | Recent Latency :    -4.86
+00:01:15 | Txn.:   2,895,762 @    38,622.5 TPS | Lat. =       4 <    63.36 <     857
+00:01:15 | Adjusting  UP  to:     84,984.0 TPS | Recent Latency :    -4.34
+00:01:20 | Txn.:   3,079,770 @    38,515.9 TPS | Lat. =       4 <    64.31 <     857
+00:01:20 | Adjusting  UP  to:     93,482.0 TPS | Recent Latency :    -3.60
+00:01:25 | Txn.:   3,251,439 @    38,261.2 TPS | Lat. =       4 <    65.45 <     857
+00:01:25 | Adjusting  UP  to:    102,830.0 TPS | Recent Latency :    -2.94
+00:01:30 | Txn.:   3,454,340 @    38,390.1 TPS | Lat. =       4 <    65.83 <     857
+00:01:30 | Adjusting  UP  to:    113,113.0 TPS | Recent Latency :    -2.68
+00:01:35 | Txn.:   3,658,671 @    38,524.1 TPS | Lat. =       4 <    66.18 <     857
+00:01:35 | Adjusting  UP  to:    124,424.0 TPS | Recent Latency :    -2.43
+00:01:40 | Txn.:   3,862,653 @    38,635.8 TPS | Lat. =       4 <    66.50 <     857
+00:01:40 | Adjusting  UP  to:    136,866.0 TPS | Recent Latency :    -2.22
+00:01:45 | Txn.:   4,067,479 @    38,747.5 TPS | Lat. =       4 <    66.79 <     857
+00:01:45 | Adjusting  UP  to:    150,552.0 TPS | Recent Latency :    -1.99
+00:01:50 | Txn.:   4,272,790 @    38,849.9 TPS | Lat. =       4 <    67.04 <     857
+00:01:50 | Adjusting  UP  to:    165,607.0 TPS | Recent Latency :    -1.79
+00:01:55 | Txn.:   4,473,464 @    38,906.1 TPS | Lat. =       4 <    67.32 <     857
+00:01:55 | Adjusting  UP  to:    182,167.0 TPS | Recent Latency :    -1.64
+00:02:00 | Txn.:   4,671,123 @    38,933.8 TPS | Lat. =       4 <    67.63 <     857
+-------------------------------------------------------------------------------------
+ Voting Results
+-------------------------------------------------------------------------------------
+
+A total of 4672111 votes was received...
+ - 4,625,462 Accepted
+ -    46,646 Rejected (Invalid Contestant)
+ -         3 Rejected (Maximum Vote Count Reached)
+ -         0 Failed (Transaction Error)
+
+
+-------------------------------------------------------------------------------------
+Contestant Name		Votes Received
+Edwina Burnam		     1,190,490
+Jessie Eichman		       939,107
+Alana Bregman		       726,468
+Kelly Clauss		       597,532
+Tabatha Gehling		       589,954
+Jessie Alloway		       584,829
+
+
+The Winner is: Edwina Burnam
+-------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+ System Statistics
+-------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------
+Final:   | Txn.:   4,675,052 @    38,939.0 TPS | Lat. =       4 <    67.63 <     857
+-------------------------------------------------------------------------------------
+Lat.:     25 <     50 <     75 <    100 <    150 <    200 <    250 <    300 <    300+
+-------------------------------------------------------------------------------------
+%       6.57 |   4.19 |  57.25 |  30.04 |   1.41 |   0.21 |   0.08 |   0.08 |   0.16

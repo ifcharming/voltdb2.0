@@ -1,0 +1,9 @@
+digraph paymentByCustomerName-getDistrict-2 {
+5 [label="5: INDEXSCAN" ];
+5 -> 0;
+0 [label="0: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+4 [label="4: SEND" fontcolor="white" style="filled" fillcolor="black"];
+4 -> 5;
+
+}
+

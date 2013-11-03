@@ -1,0 +1,7 @@
+digraph name {
+4 [label="4: MATERIALIZE" ];
+3 [label="3: INSERT" ];
+3 -> 4;
+
+}
+

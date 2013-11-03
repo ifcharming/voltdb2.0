@@ -1,0 +1,17 @@
+digraph name {
+533 [label="533: INDEXSCAN" ];
+533 -> 548;
+548 [label="548: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+547 [label="547: UPDATE" ];
+547 -> 533;
+534 [label="534: SEND" fontcolor="white" style="filled" fillcolor="black"];
+534 -> 547;
+535 [label="535: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+535 -> 534;
+549 [label="549: AGGREGATE" ];
+549 -> 535;
+550 [label="550: SEND" fontcolor="white" style="filled" fillcolor="black"];
+550 -> 549;
+
+}
+

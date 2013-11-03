@@ -1,0 +1,13 @@
+digraph name {
+51 [label="51: SEQSCAN" ];
+51 -> 52;
+52 [label="52: PROJECTION" fontcolor="white" style="filled" fillcolor="red"];
+59 [label="59: ORDERBY" ];
+59 -> 51;
+60 [label="60: PROJECTION" ];
+60 -> 59;
+61 [label="61: SEND" fontcolor="white" style="filled" fillcolor="black"];
+61 -> 60;
+
+}
+

@@ -1,0 +1,372 @@
+SQL: SELECT S_QUANTITY, S_DATA, S_YTD, S_ORDER_CNT, S_REMOTE_CNT, S_DIST_04 FROM STOCK WHERE S_I_ID = ? AND S_W_ID = ?;
+COST: 2000000.0
+PLAN:
+{
+    "EXECUTE_LIST": [
+        725,
+        730
+    ],
+    "PARAMETERS": [],
+    "PLAN_NODES": [
+        {
+            "CHILDREN_IDS": [725],
+            "ID": 730,
+            "INLINE_NODES": [],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "S_QUANTITY",
+                    "COLUMN_NAME": "S_QUANTITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_DATA",
+                    "COLUMN_NAME": "S_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_DATA",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_DATA",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 64,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 64,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "S_YTD",
+                    "COLUMN_NAME": "S_YTD",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_YTD",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "S_YTD",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_ORDER_CNT",
+                    "COLUMN_NAME": "S_ORDER_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_ORDER_CNT",
+                        "COLUMN_IDX": 3,
+                        "COLUMN_NAME": "S_ORDER_CNT",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_REMOTE_CNT",
+                    "COLUMN_NAME": "S_REMOTE_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_REMOTE_CNT",
+                        "COLUMN_IDX": 4,
+                        "COLUMN_NAME": "S_REMOTE_CNT",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_DIST_04",
+                    "COLUMN_NAME": "S_DIST_04",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_DIST_04",
+                        "COLUMN_IDX": 5,
+                        "COLUMN_NAME": "S_DIST_04",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [],
+            "PLAN_NODE_TYPE": "SEND"
+        },
+        {
+            "CHILDREN_IDS": [],
+            "ID": 725,
+            "INLINE_NODES": [{
+                "CHILDREN_IDS": [],
+                "ID": 729,
+                "INLINE_NODES": [],
+                "OUTPUT_SCHEMA": [
+                    {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_QUANTITY",
+                            "COLUMN_IDX": 2,
+                            "COLUMN_NAME": "S_QUANTITY",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_DATA",
+                        "COLUMN_NAME": "S_DATA",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_DATA",
+                            "COLUMN_IDX": 16,
+                            "COLUMN_NAME": "S_DATA",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 64,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 64,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "STRING"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_YTD",
+                        "COLUMN_NAME": "S_YTD",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_YTD",
+                            "COLUMN_IDX": 13,
+                            "COLUMN_NAME": "S_YTD",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_ORDER_CNT",
+                        "COLUMN_NAME": "S_ORDER_CNT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_ORDER_CNT",
+                            "COLUMN_IDX": 14,
+                            "COLUMN_NAME": "S_ORDER_CNT",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_REMOTE_CNT",
+                        "COLUMN_NAME": "S_REMOTE_CNT",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_REMOTE_CNT",
+                            "COLUMN_IDX": 15,
+                            "COLUMN_NAME": "S_REMOTE_CNT",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 4,
+                            "VALUE_TYPE": "INTEGER"
+                        },
+                        "SIZE": 4,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "INTEGER"
+                    },
+                    {
+                        "COLUMN_ALIAS": "S_DIST_04",
+                        "COLUMN_NAME": "S_DIST_04",
+                        "EXPRESSION": {
+                            "COLUMN_ALIAS": "S_DIST_04",
+                            "COLUMN_IDX": 6,
+                            "COLUMN_NAME": "S_DIST_04",
+                            "TABLE_NAME": "STOCK",
+                            "TYPE": "VALUE_TUPLE",
+                            "VALUE_SIZE": 32,
+                            "VALUE_TYPE": "STRING"
+                        },
+                        "SIZE": 32,
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "STRING"
+                    }
+                ],
+                "PARENT_IDS": [],
+                "PLAN_NODE_TYPE": "PROJECTION"
+            }],
+            "OUTPUT_SCHEMA": [
+                {
+                    "COLUMN_ALIAS": "S_QUANTITY",
+                    "COLUMN_NAME": "S_QUANTITY",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_QUANTITY",
+                        "COLUMN_IDX": 2,
+                        "COLUMN_NAME": "S_QUANTITY",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_DATA",
+                    "COLUMN_NAME": "S_DATA",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_DATA",
+                        "COLUMN_IDX": 16,
+                        "COLUMN_NAME": "S_DATA",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 64,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 64,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "STRING"
+                },
+                {
+                    "COLUMN_ALIAS": "S_YTD",
+                    "COLUMN_NAME": "S_YTD",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_YTD",
+                        "COLUMN_IDX": 13,
+                        "COLUMN_NAME": "S_YTD",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_ORDER_CNT",
+                    "COLUMN_NAME": "S_ORDER_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_ORDER_CNT",
+                        "COLUMN_IDX": 14,
+                        "COLUMN_NAME": "S_ORDER_CNT",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_REMOTE_CNT",
+                    "COLUMN_NAME": "S_REMOTE_CNT",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_REMOTE_CNT",
+                        "COLUMN_IDX": 15,
+                        "COLUMN_NAME": "S_REMOTE_CNT",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "SIZE": 4,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "INTEGER"
+                },
+                {
+                    "COLUMN_ALIAS": "S_DIST_04",
+                    "COLUMN_NAME": "S_DIST_04",
+                    "EXPRESSION": {
+                        "COLUMN_ALIAS": "S_DIST_04",
+                        "COLUMN_IDX": 6,
+                        "COLUMN_NAME": "S_DIST_04",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 32,
+                        "VALUE_TYPE": "STRING"
+                    },
+                    "SIZE": 32,
+                    "TABLE_NAME": "STOCK",
+                    "TYPE": "STRING"
+                }
+            ],
+            "PARENT_IDS": [730],
+            "PLAN_NODE_TYPE": "SEQSCAN",
+            "PREDICATE": {
+                "LEFT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_W_ID",
+                        "COLUMN_IDX": 1,
+                        "COLUMN_NAME": "S_W_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 1,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 2,
+                        "VALUE_TYPE": "SMALLINT"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "RIGHT": {
+                    "LEFT": {
+                        "COLUMN_ALIAS": "S_I_ID",
+                        "COLUMN_IDX": 0,
+                        "COLUMN_NAME": "S_I_ID",
+                        "TABLE_NAME": "STOCK",
+                        "TYPE": "VALUE_TUPLE",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "RIGHT": {
+                        "PARAM_IDX": 0,
+                        "TYPE": "VALUE_PARAMETER",
+                        "VALUE_SIZE": 4,
+                        "VALUE_TYPE": "INTEGER"
+                    },
+                    "TYPE": "COMPARE_EQUAL",
+                    "VALUE_SIZE": 8,
+                    "VALUE_TYPE": "BIGINT"
+                },
+                "TYPE": "CONJUNCTION_AND",
+                "VALUE_SIZE": 0,
+                "VALUE_TYPE": "BIGINT"
+            },
+            "TARGET_TABLE_NAME": "STOCK"
+        }
+    ]
+}

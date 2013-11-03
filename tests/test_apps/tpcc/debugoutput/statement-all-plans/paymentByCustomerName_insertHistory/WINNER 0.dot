@@ -1,0 +1,15 @@
+digraph name {
+318 [label="318: MATERIALIZE" ];
+317 [label="317: INSERT" ];
+317 -> 318;
+319 [label="319: SEND" fontcolor="white" style="filled" fillcolor="black"];
+319 -> 317;
+320 [label="320: RECEIVE" fontcolor="white" style="filled" fillcolor="black"];
+320 -> 319;
+321 [label="321: AGGREGATE" ];
+321 -> 320;
+322 [label="322: SEND" fontcolor="white" style="filled" fillcolor="black"];
+322 -> 321;
+
+}
+
