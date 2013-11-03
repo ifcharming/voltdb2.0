@@ -298,6 +298,11 @@ public:
                           int colOffset, uint8_t *nullArray);
 
     void freeObjectColumns();
+
+#ifdef ARIES_NIRMESH
+    void freeObjectColumnsOfLogTuple();
+#endif
+
     size_t hashCode(size_t seed) const;
     size_t hashCode() const;
 protected:
@@ -689,6 +694,15 @@ inline void TableTuple::freeObjectColumns() {
         getNValue(m_schema->getUninlinedObjectColumnInfoIndex(ii)).free();
     }
 }
+
+#ifdef ARIES_NIRMESH
+inline void TableTuple::freeObjectColumnsOfLogTuple() {
+    const uint16_t unlinlinedColumnCount = m_schema->getUninlinedObjectColumnCount();
+    for (int ii = 0; ii < unlinlinedColumnCount; ii++) {
+        getNValue(m_schema->getUninlinedObjectColumnInfoIndex(ii)).freeLogTupleVal();
+    }
+}
+#endif
 
 /**
  * Hasher for use with boost::unordered_map and similar

@@ -95,7 +95,9 @@ if [ -n "${VOLTDB_HEAPSIZE:+x}" ]; then
   #echo "run with heapsize $VOLTDB_HEAPSIZE"
   JAVA_HEAP_MAX="-Xmx""$VOLTDB_HEAPSIZE""m"
 else
-  JAVA_HEAP_MAX="-Xmx1024m"
+  JAVA_HEAP_MAX="-Xmx2048m"  #sigmod13
+  #JAVA_HEAP_MAX="-Xmx2048m"  #vldb12
+  #JAVA_HEAP_MAX="-Xmx1024m"
 fi
 #echo $JAVA_HEAP_MAX
 
@@ -136,6 +138,7 @@ done
 
 # run it
 export CMDVAL="$JAVA -server -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp "
+#export CMDVAL=$CMDVAL"-Xrunjdwp:transport=dt_socket,address=jdbconn,server=y,suspend=y "
 export CMDVAL=$CMDVAL"-XX:-ReduceInitialCardMarks $JAVA_HEAP_MAX $VOLTDB_OPTS "
 export CMDVAL=$CMDVAL"-Dlog4j.configuration=file://${LOG4J_CONFIG_PATH} "
 export CMDVAL=$CMDVAL"-Djava.library.path=${JAVA_LIBRARY_PATH} -classpath $CLASSPATH "

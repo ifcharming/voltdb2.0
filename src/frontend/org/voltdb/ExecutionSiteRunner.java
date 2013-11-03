@@ -34,6 +34,7 @@ public class ExecutionSiteRunner implements Runnable {
     private final String m_serializedCatalog;
     volatile ExecutionSite m_siteObj;
     private final boolean m_recovering;
+    private AriesLog m_ariesLog; //nirmesh
     private final HashSet<Integer> m_failedHostIds;
     private final long m_txnId;
     private final VoltLogger m_hostLog;
@@ -53,6 +54,19 @@ public class ExecutionSiteRunner implements Runnable {
         m_hostLog = hostLog;
     }
 
+    // nirmesh
+    public ExecutionSiteRunner(
+            final int siteId,
+            final CatalogContext context,
+            final String serializedCatalog,
+            boolean recovering,
+            HashSet<Integer> failedHostIds,
+            VoltLogger hostLog,
+            AriesLog ariesLog) {
+    	this(siteId, context, serializedCatalog, recovering, failedHostIds, hostLog);
+    	m_ariesLog = ariesLog;
+    }
+    
     @Override
     public void run() {
         Mailbox mailbox = VoltDB.instance().getMessenger()
@@ -66,7 +80,8 @@ public class ExecutionSiteRunner implements Runnable {
                               null,
                               m_recovering,
                               m_failedHostIds,
-                              m_txnId);
+                              m_txnId, 
+                              m_ariesLog); //nirmesh
         synchronized (this) {
             m_isSiteCreated = true;
             this.notifyAll();

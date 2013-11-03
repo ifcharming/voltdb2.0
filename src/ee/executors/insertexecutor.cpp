@@ -60,7 +60,10 @@
 #include "storage/tablefactory.h"
 #include "storage/temptable.h"
 
-#include <vector>
+#ifdef ARIES_NIRMESH
+#include <glib.h>
+#include "logging/Logrecord.h"
+#endif
 
 using namespace std;
 using namespace voltdb;
@@ -153,6 +156,46 @@ bool InsertExecutor::p_execute(const NValueArray &params) {
         VOLT_TRACE("Inserting tuple '%s' into target table '%s' with table schema: %s",
                    m_tuple.debug(m_targetTable->name()).c_str(), m_targetTable->name().c_str(),
                    m_targetTable->schema()->debug().c_str());
+
+#ifdef ARIES_NIRMESH
+        // add persistency check:
+        PersistentTable* table = dynamic_cast<PersistentTable*>(m_targetTable);
+
+        // only log if we are writing to a persistent table.
+        if (table != NULL) {
+            LogRecord *logrecord = new LogRecord(computeTimeStamp(),
+            		LogRecord::T_INSERT,	// this is an insert record
+            		LogRecord::T_FORWARD,	// the system is running normally
+            		-1, 			// XXX: prevLSN must be fetched from table!
+            	    ExecutorContext::getExecutorContext()->currentTxnId(), // xid
+            	    m_engine->getSiteId(),		// which execution site
+            		m_targetTable->name(),		// the table affected
+            		NULL,		// insert, no primary key
+            		-1, 		// inserting, all columns affected
+            		NULL,		// insert, don't care about modified cols
+            		NULL, // no before image
+            		&m_tuple // after image
+            		);
+
+			size_t logrecordEstLength = logrecord->getEstimatedLength();
+			char *logrecordBuffer = new char[logrecordEstLength];
+
+			FallbackSerializeOutput output;
+			output.initializeWithPosition(logrecordBuffer, logrecordEstLength, 0);
+
+			logrecord->serializeTo(output);
+
+			const Logger *logger = LogManager::getThreadLogger(LOGGERID_MM_ARIES);
+			// output.position() indicates the actual number of bytes written out
+			logger->log(LOGLEVEL_INFO, output.data(), output.position());
+
+			delete[] logrecordBuffer;
+			logrecordBuffer = NULL;
+
+			delete logrecord;
+			logrecord = NULL;
+        }
+#endif
 
         // if there is a partition column for the target table
         if (m_partitionColumn != -1) {

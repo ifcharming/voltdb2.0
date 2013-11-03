@@ -278,9 +278,23 @@ public class MultiPartitionParticipantTxnState extends TransactionState {
         }
 
         if (m_outstandingAcks.size() == 0)
-        {
+        {        	
             try {
-                m_mbox.send(initiatorSiteId, 0, m_response);
+                /*// nirmesh
+                 * Change this code here so that it doesn't return the message if there is log data, instead have
+                 * it pass the log data to the logger along with the AtomicBoolean, and put into a queue in m_site
+                 * 
+                 * XXX: Even if there is no log data, wouldn't this lead to reads after non-durable
+                 * writes returning?
+                 */
+            	if (m_response.hasAriesLogData()) {
+            		m_site.getAriesLogger().log(m_response.getClientResponseData().getAriesLogData(), m_task.getDurabilityFlag());
+            		
+            		responseToSend = m_response;
+            		m_site.getCompletedTransactionsQueue().add(this);
+            	} else {
+            		m_mbox.send(initiatorSiteId, 0, m_response);
+            	}
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
@@ -701,5 +715,16 @@ public class MultiPartitionParticipantTxnState extends TransactionState {
     public boolean isDurable() {
         return m_durabilityFlag == null ? true : m_durabilityFlag.get();
     }
+
+	@Override
+	public void sendResponse() { // nirmesh
+		// XXX : Seems correct for multi-sites to me
+		// but should confirm with volt folks.
+    	try {
+			m_mbox.send(initiatorSiteId, 0, responseToSend);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

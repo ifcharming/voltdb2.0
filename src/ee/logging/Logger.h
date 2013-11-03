@@ -17,10 +17,15 @@
 
 #ifndef LOGGER_H_
 #define LOGGER_H_
+#include "AriesLogProxy.h"
 #include "LogDefs.h"
 #include "LogProxy.h"
 #include <string>
 #include <assert.h>
+
+#ifndef ARIES_NIRMESH
+#define ARIES_NIRMESH
+#endif
 
 namespace voltdb {
 
@@ -75,6 +80,28 @@ public:
             m_logProxy->log( m_id, level, statement);
         }
     }
+
+#ifdef ARIES_NIRMESH
+    /**
+     * For Aries logging only
+     */
+    inline void log(const voltdb::LogLevel level, const char *data, size_t len) const {
+        assert (level != voltdb::LOGLEVEL_OFF && level != voltdb::LOGLEVEL_ALL); //: "Should never log as ALL or OFF";
+
+    	if (m_id != LOGGERID_MM_ARIES) {
+    		return;
+    	}
+
+    	AriesLogProxy* ariesProxy = const_cast<AriesLogProxy*>(dynamic_cast<const AriesLogProxy*>(m_logProxy));
+
+    	if (ariesProxy == NULL) {
+    		return;
+    	}
+
+    	ariesProxy->logBinaryOutput(data, len);
+    }
+
+#endif
 
 private:
     /**

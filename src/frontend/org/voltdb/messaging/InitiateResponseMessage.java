@@ -171,4 +171,11 @@ public class InitiateResponseMessage extends VoltMessage {
 
         return sb.toString();
     }
+
+	public boolean hasAriesLogData() {
+		if (m_response == null) {
+			return false;
+		}
+		return m_response.hasAriesLogData();
+	}
 }

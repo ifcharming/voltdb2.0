@@ -51,6 +51,7 @@ import org.voltdb.dtxn.DtxnConstants;
 import org.voltdb.dtxn.MultiPartitionParticipantTxnState;
 import org.voltdb.dtxn.RestrictedPriorityQueue;
 import org.voltdb.dtxn.RestrictedPriorityQueue.QueueState;
+import org.voltdb.dtxn.CompletedPriorityQueue;
 import org.voltdb.dtxn.SinglePartitionTxnState;
 import org.voltdb.dtxn.SiteTracker;
 import org.voltdb.dtxn.SiteTransactionConnection;
@@ -103,7 +104,7 @@ public class ExecutionSite
 implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 {
     private VoltLogger m_txnlog;
-    private VoltLogger m_recoveryLog = new VoltLogger("RECOVERY");
+    private final VoltLogger m_recoveryLog = new VoltLogger("RECOVERY");	// nirmesh
     private static final VoltLogger log = new VoltLogger("EXEC");
     private static final VoltLogger hostLog = new VoltLogger("HOST");
     private static final AtomicInteger siteIndexCounter = new AtomicInteger(0);
@@ -127,6 +128,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
     public static final Semaphore m_recoveryPermit = new Semaphore(Integer.MAX_VALUE);
 
     private boolean m_recovering = false;
+	private AriesLog m_ariesLog = null;	// nirmesh
     private boolean m_haveRecoveryPermit = false;
     private long m_recoveryStartTime = 0;
     private static AtomicLong m_recoveryBytesTransferred = new AtomicLong();
@@ -144,6 +146,9 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 
     HashMap<Long, TransactionState> m_transactionsById = new HashMap<Long, TransactionState>();
     private final RestrictedPriorityQueue m_transactionQueue;
+    
+    // nirmesh
+    private final CompletedPriorityQueue m_completedTransactionQueue;
 
     private TransactionState m_currentTransactionState;
 
@@ -401,6 +406,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
                 }
 
                 m_transactionQueue.shutdown();
+                //m_completedTransactionQueue.shutdown(); // nirmesh
 
                 if (hsql != null) {
                     hsql.shutdown();
@@ -514,7 +520,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
                         " after " + ((now - m_recoveryStartTime) / 1000) + " seconds " +
                         " with " + megabytes + " megabytes transferred " +
                         " at a rate of " + megabytesPerSecond + " megabytes/sec");
-            }
+            }            
         }
     };
 
@@ -658,6 +664,8 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
         m_starvationTracker = null;
         m_tableStats = null;
         m_indexStats = null;
+        
+        m_completedTransactionQueue = null; 	// nirmesh
     }
 
     ExecutionSite(VoltDBInterface voltdb, Mailbox mailbox,
@@ -712,6 +720,9 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
         m_transactionQueue =
             (transactionQueue != null) ? transactionQueue : initializeTransactionQueue(siteId);
 
+        // nirmesh
+        m_completedTransactionQueue = new CompletedPriorityQueue();
+        
         loadProcedures(voltdb.getBackendTargetType());
 
         m_snapshotter = new SnapshotSiteProcessor(new Runnable() {
@@ -735,6 +746,16 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
                                        Integer.parseInt(getCorrespondingCatalogSite().getTypeName()),
                                        m_indexStats);
 
+    }
+    
+    //nirmesh
+    ExecutionSite(VoltDBInterface voltdb, Mailbox mailbox,
+            final int siteId, String serializedCatalog,
+            RestrictedPriorityQueue transactionQueue,
+            boolean recovering, HashSet<Integer> failedHostIds,
+            final long txnId, AriesLog ariesLog) {    	
+    	this(voltdb, mailbox, siteId, serializedCatalog, transactionQueue, recovering, failedHostIds, txnId);
+    	m_ariesLog = ariesLog;
     }
 
     private RestrictedPriorityQueue initializeTransactionQueue(final int siteId)
@@ -965,7 +986,6 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
         }
     }
 
-
     /**
      * Primary run method that is invoked a single time when the thread is started.
      * Has the opportunity to do startup config.
@@ -985,8 +1005,14 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
         if (VoltDB.getUseWatchdogs()) {
             m_watchdog.start(Thread.currentThread());
         }
+        
+        // nirmesh
+        if (m_ariesLog != null) {
+        	doAriesRecovery();
+        	waitForAriesLogInit();
+        }
 
-        try {
+        try {       	
             // Only poll messaging layer if necessary. Allow the poll
             // to block if the execution site is truly idle.
             while (m_shouldContinue) {
@@ -1012,7 +1038,26 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
                     }
                 }
 
+                TransactionState completedTxnState = null;
+                
+	            /*// nirmesh
+	             * At this point in the loop, poll the list of completed txns to see
+	             * if the log data has been made durable. Keep polling until you find
+	             * one that isn't durable.
+	             */
+                while (true) {
+                	completedTxnState = (TransactionState)m_completedTransactionQueue.poll();
+                	
+                	if (completedTxnState == null) {
+                		break; 
+                	} else {
+                		// Put send the durable ones on home via the mailbox
+                		completedTxnState.sendResponse();
+                	}
+                }
+                
                 TransactionState currentTxnState = (TransactionState)m_transactionQueue.poll();
+         
                 m_currentTransactionState = currentTxnState;
                 if (currentTxnState == null) {
                     // poll the messaging layer for a while as this site has nothing to do
@@ -1068,6 +1113,57 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
         }
         shutdown();
     }
+    
+    private void waitForAriesLogInit() {
+		// wait for the main thread to complete Aries recovery
+    	// and initialize the log
+		while (!m_ariesLog.isInitialized) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
+    }
+
+	// nirmesh
+	public void waitForAriesRecoveryCompletion() {
+		// wait for other threads to complete Aries recovery
+		// ONLY called from main site.
+		while (!m_ariesLog.isRecoveryCompleted()) {
+			try {
+				// don't sleep too long, shouldn't bias 
+				// numbers
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+    // nirmesh
+	public void doAriesRecovery() {
+		while (!m_ariesLog.isReadyForReplay()) {
+			try {
+				// don't sleep for too long as recovery numbers might get biased
+				Thread.sleep(500);	
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		
+    	if (!m_ariesLog.isRecoveryCompleted()) {
+    		if (!m_ariesLog.isRecoveryCompletedForSite(m_siteId)) {
+				ee.doAriesRecoveryPhase(m_ariesLog.getPointerToReplayLog(), 
+				  m_ariesLog.getReplayLogSize(),
+				  m_ariesLog.getTxnIdToBeginReplay());
+	   			m_ariesLog.setRecoveryCompleted(m_siteId);
+    		}
+        }
+	}
 
     /**
      * Run the execution site execution loop, for tests currently.
@@ -1971,6 +2067,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
                      txnId,
                      lastCommittedTxnId,
                      undo_token);
+        
         ee.releaseUndoToken(undo_token);
         getNextUndoToken();
     }
@@ -2309,4 +2406,37 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
             }
         }
     }
+    
+    // nirmesh
+	public AriesLog getAriesLogger() {
+		return m_ariesLog;
+	}
+	
+	// nirmesh
+	public AriesLog getAriesLoggerSPC() {
+		return m_ariesLog;
+	}
+    
+    // nirmesh
+	public long getArieslogBufferLength() {
+		return ee.getArieslogBufferLength();
+	}
+
+	// nirmesh
+	public void getArieslogData(int bufferLength, byte[] arieslogDataArray) {
+		ee.getArieslogData(bufferLength, arieslogDataArray);
+	}
+	
+	public CompletedPriorityQueue getCompletedTransactionsQueue() {
+		return m_completedTransactionQueue;
+	}
+
+	// nirmesh
+	public long readAriesLogForReplay(long[] size) {
+		return ee.readAriesLogForReplay(size);
+	}
+
+	public void freePointerToReplayLog(long ariesReplayPointer) {
+		ee.freePointerToReplayLog(ariesReplayPointer);		
+	}
 }

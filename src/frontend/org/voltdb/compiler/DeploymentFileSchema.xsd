@@ -46,6 +46,7 @@
       <xs:element name="export" minOccurs="0" maxOccurs="1" type="exportType"/>
       <xs:element name="users" minOccurs="0" maxOccurs="1" type="usersType"/>
       <xs:element name="commandlog" minOccurs="0" maxOccurs="1" type="commandLogType" />
+      <xs:element name="arieslog" minOccurs="0" maxOccurs="1" type="ariesLogType" />
       <xs:element name="systemsettings" minOccurs="0" maxOccurs="1"
                   type="systemSettingsType" />
     </xs:all>
@@ -74,6 +75,8 @@
         <xs:element name="exportoverflow" type="pathEntry" minOccurs="0" maxOccurs="1"/>
         <xs:element name="commandlog" type="pathEntry" minOccurs="0" maxOccurs="1"/>
         <xs:element name="commandlogsnapshot" type="pathEntry" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="arieslog" type="pathEntry" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="arieslogsnapshot" type="pathEntry" minOccurs="0" maxOccurs="1"/>
     </xs:all>
   </xs:complexType>
 
@@ -105,13 +108,28 @@
     <xs:all>
         <xs:element name="frequency" minOccurs="0" maxOccurs="1">
             <xs:complexType>
-                <xs:attribute name="time" type="logFrequencyTimeType" default="200"/>
+                <xs:attribute name="time" type="logFrequencyTimeType" default="16"/>
                 <xs:attribute name="transactions" type="logFrequencyTxnsType" default="2147483647"/>
             </xs:complexType>
         </xs:element>
     </xs:all>
     <xs:attribute name="synchronous" type="xs:boolean" default="false"/>
     <xs:attribute name="enabled" type="xs:boolean" default="true"/>
+    <xs:attribute name="logsize" type="logSizeType" default="1024" />
+  </xs:complexType>
+
+    <!-- <aries log> -->
+  <xs:complexType name="ariesLogType">
+    <xs:all>
+        <xs:element name="frequency" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+                <xs:attribute name="time" type="logFrequencyTimeType" default="16"/>
+            </xs:complexType>
+        </xs:element>
+    </xs:all>
+    <xs:attribute name="synchronous" type="xs:boolean" default="true"/>
+    <xs:attribute name="enabled" type="xs:boolean" default="true"/>
+    <xs:attribute name="logsize" type="logSizeType" default="1024" />
   </xs:complexType>
 
   <!-- <partition-detection>/<snapshot> -->
@@ -136,6 +154,14 @@
       <xs:minInclusive value="1"/>
     </xs:restriction>
   </xs:simpleType>
+
+  <!-- restriction on command log size in megabytes -->
+  <xs:simpleType name="logSizeType">
+   <xs:restriction base="xs:int">
+     <xs:minInclusive value="3" />
+     <xs:maxInclusive value="102400" />
+   </xs:restriction>
+  </xs:simpleType> 
 
   <!-- restriction on command log fsync frequency -->
   <xs:simpleType name="logFrequencyTimeType">

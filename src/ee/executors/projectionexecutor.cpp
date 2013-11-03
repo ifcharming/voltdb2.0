@@ -177,6 +177,10 @@ bool ProjectionExecutor::p_execute(const NValueArray &params) {
     }
 
     //VOLT_TRACE("PROJECTED TABLE: %s\n", output_table->debug().c_str());
+//#ifdef ARIES_NIRMESH
+//        std::string logString = output_table->debug();
+  //      LogManager::getThreadLogger(LOGGERID_MM_ARIES)->log(LOGLEVEL_INFO, ("Table after projection " + logString).c_str());
+//#endif
 
     return (true);
 }

@@ -20,6 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * A rate limiter that monitors execution of a specific procedure to bind the execution rate with the purpose of achieving a specific target latency.
+ *
+ * @author Seb Coursol
+ * @since 2.0
+ */
 public class LatencyLimiter implements IRateLimiter
 {
     private final ClientConnection Connection;
@@ -32,6 +38,15 @@ public class LatencyLimiter implements IRateLimiter
     private long LastCheck;
     private final SimpleDateFormat DateFormat;
     private final long StartTime;
+
+    /**
+     * Creates a new latency-based rate limiter.
+     *
+     * @param connection the connection for which execution will be monitored.  The limiter will actually monitor execution accross all existing connections with the same parameters by querying performance data from the connection pool (not just the provided connection), thus preventing the limiter to fall apart should a specific connection be closed and ensuring performance at a global level within the calling application.
+     * @param procedure the name of the procedure to monitor.
+     * @param targetLatency the desired latency to target (in milliseconds).
+     * @param initialMaxProcessPerSecond the initial maximum number of requests the limiter should allow per second to gather a first batch of monitoring data to act against.
+     */
     public LatencyLimiter(ClientConnection connection, String procedure, double targetLatency, long initialMaxProcessPerSecond)
     {
         this.Connection = connection;
@@ -47,11 +62,20 @@ public class LatencyLimiter implements IRateLimiter
         this.StartTime = System.currentTimeMillis();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void throttle()
     {
         this.throttle(true);
     }
-    public void throttle(boolean showTuningMessages)
+
+    /**
+     * Throttle the execution process and re-adjust the rate requirement on the fly.  The limiter will automatically re-adjust the rate internally by using a basic {@link RateLimiter} after analysis of the latency data gathered from the performance tracking.
+     *
+     * @param verbose the flag indicating whether rate adjustment messages should be displayed.
+     */
+    public void throttle(boolean verbose)
     {
         // Observe latency to adjust the rate to reach target latency
         if (System.currentTimeMillis() - this.LastCheck > 5000l)
@@ -64,15 +88,29 @@ public class LatencyLimiter implements IRateLimiter
                 long[] sl = this.Start.getLatencyBuckets();
                 long ec = this.End.getExecutionCount()-this.Start.getExecutionCount();
 
-                // If most (97%) requests are in the fastest latency bucket, fudge out observed latency to remove accidental outliers that would cause too much oscillation in latency targetting
-                if (((double)(el[0]-sl[0])/(double)ec) > 0.97)
+                long elsum = 0;
+                for (int i = 0; i < 25; i++) {
+                    elsum += el[i];
+                }
+
+                long slsum = 0;
+                for (int i = 0; i < 25; i++) {
+                    slsum += sl[i];
+                }
+
+                // If most (97%) requests are below 25ms, fudge out observed latency to remove accidental outliers that would cause too much oscillation in latency targetting
+                if (((double)(elsum-slsum)/(double)ec) > 0.97)
                 {
                     long outlierExecutionDuration = 0;
                     long outlierExecutionCount = 0;
-                    for(int i=1;i<9;i++)
+                    for(int i=25;i<109;i++)
                     {
                         outlierExecutionCount += (el[i]-sl[i]);
-                        outlierExecutionDuration += (el[i]-sl[i])*25l;
+                        // buckets over 99 cover 50ms each
+                        if (i >= 100)
+                            outlierExecutionDuration += (el[i]-sl[i])*50l;
+                        else
+                            outlierExecutionDuration += (el[i]-sl[i]);
                     }
                     tuningLatency = (double)(this.End.getTotalExecutionDuration()-this.Start.getTotalExecutionDuration()-outlierExecutionDuration)/(double)(this.End.getExecutionCount()-this.Start.getExecutionCount()-outlierExecutionCount);
                 }
@@ -91,7 +129,7 @@ public class LatencyLimiter implements IRateLimiter
                 else if (tuningLatency < this.TargetLatency*0.9)
                     this.Rate = (long)(this.Rate*1.001);
 
-                if (showTuningMessages && oldRate != this.Rate)
+                if (verbose && oldRate != this.Rate)
                     System.out.printf(
                       "%8s | Adjusting %s to:  %,11.1f TPS | Recent Latency :  %7.2f\n"
                     , this.DateFormat.format(new Date(Math.round((System.currentTimeMillis()-this.StartTime)/1000d)*1000l))

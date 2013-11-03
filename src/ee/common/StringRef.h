@@ -50,6 +50,10 @@ namespace voltdb
         /// temporary Pool
         static void destroy(StringRef* sref);
 
+        //#ifdef ARIES_NIRMESH
+        static void destroyLogNval(StringRef* sref);
+		//#endif
+
         char* get();
         const char* get() const;
 

@@ -17,6 +17,7 @@
 
 package org.voltdb;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
 
@@ -82,4 +83,11 @@ public interface SiteProcedureConnection {
     public void simulateExecutePlanFragments(long txnId, boolean readOnly);
 
     public Map<Integer, List<VoltTable>> recursableRun(TransactionState currentTxnState);
+
+ // nirmesh
+	public AriesLog getAriesLoggerSPC(); 
+    
+	public long getArieslogBufferLength();
+
+	public void getArieslogData(int bufferLength, byte[] arieslogDataArray);
 }

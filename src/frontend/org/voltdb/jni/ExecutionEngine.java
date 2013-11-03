@@ -261,6 +261,8 @@ public abstract class ExecutionEngine implements FastDeserializer.Deserializatio
     public abstract int tableStreamSerializeMore(BBContainer c, int tableId, TableStreamType type);
 
     public abstract void processRecoveryMessage( ByteBuffer buffer, long pointer);
+    
+	public abstract void doAriesRecoveryPhase(long replayPointer, long replayLogSize, long replayTxnId); // nirmesh
 
     /** Releases the Engine object. */
     abstract public void release() throws EEException, InterruptedException;
@@ -387,6 +389,18 @@ public abstract class ExecutionEngine implements FastDeserializer.Deserializatio
      */
     public abstract int hashinate(Object value, int partitionCount);
 
+    // nirmesh
+	public abstract long getArieslogBufferLength();
+	
+	// nirmesh
+	public abstract void getArieslogData(int bufferLength, byte[] arieslogDataArray);
+
+	// nirmesh
+	public abstract long readAriesLogForReplay(long[] size);
+	
+	// nirmesh
+	public abstract void freePointerToReplayLog(long ariesReplayPointer);
+	
     /*
      * Declare the native interface. Structurally, in Java, it would be cleaner to
      * declare this in ExecutionEngineJNI.java. However, that would necessitate multiple
@@ -443,7 +457,8 @@ public abstract class ExecutionEngine implements FastDeserializer.Deserializatio
      */
     protected native int nativeSetBuffers(long pointer, ByteBuffer parameter_buffer, int parameter_buffer_size,
                                           ByteBuffer resultBuffer, int result_buffer_size,
-                                          ByteBuffer exceptionBuffer, int exception_buffer_size);
+                                          ByteBuffer exceptionBuffer, int exception_buffer_size, 
+                                          ByteBuffer ariesLogBuffer, int arieslog_buffer_size); // nirmesh
 
     /**
      * Load the system catalog for this engine.
@@ -618,6 +633,13 @@ public abstract class ExecutionEngine implements FastDeserializer.Deserializatio
     protected native void nativeProcessRecoveryMessage(long pointer, long message, int offset, int length);
 
     /**
+     * Start ARIES recovery.
+     * @param pointer Pointer to an engine instance
+     */
+    protected native void nativeDoAriesRecoveryPhase(long pointer, long replayPointer, long replayLogSize, long replayTxnId);
+
+    
+    /**
      * Calculate a hash code for a table.
      * @param pointer Pointer to an engine instance
      * @param tableId table to calculate a hash code for
@@ -654,4 +676,22 @@ public abstract class ExecutionEngine implements FastDeserializer.Deserializatio
      * @return Returns the RSS size in bytes or -1 on error (or wrong platform).
      */
     public native static long nativeGetRSS();
+    
+    // nirmesh
+    /**
+     * Get the amount of data logged by Aries
+     * 
+     * XXX: I don't think static is the way to go,
+     * there's no way for C++ code to know what 
+     * VoltEngine to invoke in case of a static call.
+     * 
+    * @param pointer Pointer to an engine instance
+    */
+    protected native long nativeGetArieslogBufferLength(long pointer);
+    
+	protected native void nativeRewindArieslogBuffer(long pointer);
+	
+	protected native long nativeReadAriesLogForReplay(long pointer, long[] size);
+	
+	protected native void nativeFreePointerToReplayLog(long pointer, long ariesReplayPointer);
 }

@@ -186,6 +186,10 @@ public:
         current_ -= bytes;
     }
 
+    size_t numBytesNotYetRead() {
+    	return (end_ - current_);
+    }
+
 private:
     template <typename T>
     T readPrimitive() {
@@ -501,6 +505,12 @@ public:
 
     /** Expand once to a fallback size, and if that doesn't work abort */
     void expand(size_t minimum_desired);
+
+    // #ifdef ARIES_NIRMESH
+    void reset() {
+        setPosition(0);
+    }
+    // #endif // ARIES_NIRMESH
 private:
     char *fallbackBuffer_;
 };

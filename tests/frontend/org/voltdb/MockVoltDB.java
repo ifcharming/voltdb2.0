@@ -506,4 +506,22 @@ public class MockVoltDB implements VoltDBInterface
 
     @Override
     public void writeNetworkCatalogToTmp(byte[] catalogBytes) {}
+
+	@Override
+	public void ariesRecoveryCompleted() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean doingAriesRecovery() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public AriesLog getAriesLog() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

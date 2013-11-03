@@ -24,7 +24,7 @@ class BuildContext:
         self.LEVEL = "DEBUG"
         self.TARGET = "BUILD"
         self.NM = "/usr/bin/nm"
-        self.NMFLAGS = "-n"    # specialized by platform in build.py
+        self.NMFLAGS = "-n"    # specialized by platforttm in build.py
         self.COVERAGE = False
         self.PROFILE = False
         for arg in [x.strip().upper() for x in args]:
@@ -171,7 +171,7 @@ def buildMakefile(CTX):
     if CTX.TARGET == "CLEAN":
         makefile.write(".PHONY: clean\n")
         makefile.write("clean: \n")
-        makefile.write("\trm -drf *\n")
+        makefile.write("\trm -rf *\n")
         makefile.close()
         return
 

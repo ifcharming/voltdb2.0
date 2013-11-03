@@ -1372,4 +1372,36 @@ public class ExecutionEngineIPC extends ExecutionEngine {
             throw new RuntimeException(e);
         }
     }
+
+	// nirmesh
+	@Override
+	public long getArieslogBufferLength() {
+		// XXX: do nothing, we only implement this for JNI now.
+		return 0;
+	}
+
+	// nirmesh
+	@Override
+	public void getArieslogData(int bufferLength, byte[] arieslogDataArray) {
+		// XXX: do nothing, we only implement this for JNI now.		
+	}
+
+	// nirmesh
+	@Override
+	public void doAriesRecoveryPhase(long replayPointer, long replayLogSize, long replayTxnId) {
+		// XXX: do nothing, we only implement this for JNI now.
+	}
+
+	// nirmesh
+	@Override
+	public void freePointerToReplayLog(long ariesReplayPointer) {
+		// XXX: do nothing, we only implement this for JNI now
+	}
+
+	// nirmesh
+	@Override
+	public long readAriesLogForReplay(long[] size) {
+		// XXX: do nothing, we only implement this for JNI now.
+		return 0;
+	}
 }

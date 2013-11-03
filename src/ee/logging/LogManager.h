@@ -37,7 +37,11 @@ public:
      * Constructor that initializes all the loggers with the specified proxy
      * @param proxy The LogProxy that all the loggers should use
      */
-    LogManager(LogProxy *proxy);
+    LogManager(LogProxy *proxy
+#ifdef ARIES_NIRMESH
+		, VoltDBEngine *engine
+#endif
+    );
 
     /**
      * Retrieve a logger by ID
@@ -49,6 +53,10 @@ public:
             return &m_sqlLogger;
         case LOGGERID_HOST:
             return &m_hostLogger;
+#ifdef ARIES_NIRMESH
+        case LOGGERID_MM_ARIES:
+            return &m_ariesLogger;
+#endif
         default:
             return NULL;
         }
@@ -61,6 +69,10 @@ public:
     inline void setLogLevels(int64_t logLevels) {
         m_sqlLogger.m_level = static_cast<LogLevel>((7 & logLevels));
         m_hostLogger.m_level = static_cast<LogLevel>(((7 << 3) & logLevels) >> 3);
+
+#ifdef ARIES_NIRMESH
+        m_ariesLogger.m_level = static_cast<LogLevel>(LOGLEVEL_TRACE);
+#endif
     }
 
     /**
@@ -70,6 +82,10 @@ public:
     inline const LogProxy* getLogProxy() {
         return m_proxy;
     }
+
+#ifdef ARIES_NIRMESH
+    void setAriesProxyEngine(VoltDBEngine*);
+#endif
 
     /**
      * Frees the log proxy
@@ -97,6 +113,10 @@ private:
     const LogProxy *m_proxy;
     Logger m_sqlLogger;
     Logger m_hostLogger;
+
+#ifdef ARIES_NIRMESH
+    Logger m_ariesLogger;
+#endif
 };
 }
 #endif /* LOGMANAGER_H_ */

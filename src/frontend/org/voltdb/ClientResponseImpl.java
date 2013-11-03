@@ -56,6 +56,9 @@ public class ClientResponseImpl implements FastSerializable, ClientResponse, JSO
 
     /** opaque data optionally provided by and returned to the client */
     private long clientHandle = -1;
+    
+    // nirmesh
+    private byte[] arieslogData = null;
 
     public ClientResponseImpl() {}
 
@@ -275,4 +278,23 @@ public class ClientResponseImpl implements FastSerializable, ClientResponse, JSO
         }
         return js.toString();
     }
+
+	public void setAriesLogData(byte[] arieslogDataArray) {
+		arieslogData = arieslogDataArray;
+	}
+
+	public boolean hasAriesLogData() {
+		if (arieslogData == null || arieslogData.length == 0)
+			return false;
+		
+		return true;
+	}
+	
+	public byte[] getAriesLogData() {
+		if (hasAriesLogData()) {
+			return arieslogData;
+		}
+		
+		return null;
+	}
 }

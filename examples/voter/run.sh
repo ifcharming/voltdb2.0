@@ -10,7 +10,7 @@ LEADER="localhost"
 
 # remove build artifacts
 function clean() {
-    rm -rf obj debugoutput $APPNAME.jar voltdbroot plannerlog.txt voltdbroot
+    rm -rf obj debugoutput $APPNAME.jar log.out voltdbroot plannerlog.txt voltdbroot
 }
 
 # compile the source code for procedures and the client
@@ -36,7 +36,7 @@ function server() {
     # if a catalog doesn't exist, build one
     if [ ! -f $APPNAME.jar ]; then catalog; fi
     # run the server
-    $VOLTDB create catalog $APPNAME.jar deployment deployment.xml \
+    $VOLTDB start catalog $APPNAME.jar deployment deployment.xml \
         license $LICENSE leader $LEADER
 }
 
@@ -55,15 +55,15 @@ function async-benchmark-help() {
 function async-benchmark() {
     srccompile
     java -classpath obj:$CLASSPATH:obj com.AsyncBenchmark \
-        --display-interval=5 \
+        --display-interval=30 \
         --duration=120 \
         --servers=localhost \
         --port=21212 \
         --contestants=6 \
         --max-votes=2 \
         --rate-limit=100000 \
-        --auto-tune=true \
-        --latency-target=10.0
+        --auto-tune=false \
+        --latency-target=50.0
 }
 
 # Multi-threaded synchronous benchmark sample

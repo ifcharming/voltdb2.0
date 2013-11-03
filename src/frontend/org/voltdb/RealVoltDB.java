@@ -64,6 +64,7 @@ import org.voltdb.client.ProcedureCallback;
 import org.voltdb.compiler.deploymentfile.DeploymentType;
 import org.voltdb.compiler.deploymentfile.HeartbeatType;
 import org.voltdb.compiler.deploymentfile.UsersType;
+import org.voltdb.compiler.deploymentfile.AriesLogType.Frequency;
 import org.voltdb.dtxn.TransactionInitiator;
 import org.voltdb.export.ExportManager;
 import org.voltdb.fault.FaultDistributor;
@@ -169,6 +170,8 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
     // by the CL when the truncation snapshot completes
     // and this node is viable for replay
     volatile boolean m_recovering = false;
+    
+    volatile boolean m_ariesRecovery = false; // nirmesh
 
     //Only restrict recovery completion during test
     static Semaphore m_testBlockRecoveryCompletion = new Semaphore(Integer.MAX_VALUE);
@@ -197,13 +200,11 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
     RestoreAgent m_restoreAgent = null;
 
     private volatile boolean m_isRunning = false;
-
-    @Override
-    public boolean recovering() { return m_recovering; }
-
+   
     private long m_recoveryStartTime = System.currentTimeMillis();
 
     CommandLog m_commandLog;
+    AriesLog m_ariesLog;	// nirmesh
 
     private volatile OperationMode m_mode = OperationMode.INITIALIZING;
     OperationMode m_startMode = null;
@@ -223,6 +224,21 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
 
     PeriodicWorkTimerThread fivems;
 
+    @Override
+    public boolean recovering() { return m_recovering; }
+
+    @Override
+    public boolean doingAriesRecovery() // nirmesh
+    {
+    	return m_ariesRecovery;
+    }
+    
+    @Override
+    public void ariesRecoveryCompleted() // nirmesh
+    {
+    	//m_ariesRecovery = false;
+    }
+    
     /**
      * Initialize all the global components, then initialize all the m_sites.
      */
@@ -242,6 +258,7 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
             m_agreementSite = null;
             m_adminListener = null;
             m_commandLog = new DummyCommandLog();
+            m_ariesLog = null;	// nirmesh
             m_deployment = null;
             m_messenger = null;
             m_statsAgent = new StatsAgent();
@@ -338,7 +355,9 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
                                         m_serializedCatalog,
                                         m_recovering,
                                         m_downHosts,
-                                        hostLog);
+                                        hostLog,
+                                        m_ariesRecovery ? m_ariesLog : null);// nirmesh
+                            
                             m_runners.add(runner);
                             Thread runnerThread = new Thread(runner, "Site " + siteId);
                             runnerThread.start();
@@ -365,7 +384,9 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
                                   null,
                                   m_recovering,
                                   m_downHosts,
-                                  m_catalogContext.m_transactionId);
+                                  m_catalogContext.m_transactionId, 
+                                  m_ariesRecovery ? m_ariesLog : null);// nirmesh
+            
             m_localSites.put(Integer.parseInt(siteForThisThread.getTypeName()), siteObj);
             m_currentThreadSite = siteObj;
 
@@ -510,11 +531,28 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
                 }
             }
         }
-
+        
         long depCRC = CatalogUtil.compileDeploymentAndGetCRC(catalog, m_deployment,
                                                              true, true);
         assert(depCRC != -1);
         m_catalogContext = new CatalogContext(0, catalog, null, depCRC, 0, -1);
+        
+        // 	NIRMESH
+        if (m_deployment.getArieslog() != null) {
+        	m_ariesRecovery = m_deployment.getArieslog().isEnabled();
+        	
+        	if (m_deployment.getArieslog().getFrequency() != null) {
+	        	m_ariesLog = new AriesLogNative(m_catalogContext.numberOfExecSites, 
+	        			m_deployment.getArieslog().getLogsize(),
+	        			m_deployment.getArieslog().getFrequency().getTime());
+	        	
+	        	hostLog.info(String.format("Aries log will sync every %d ms", 
+	        			m_deployment.getArieslog().getFrequency().getTime()));
+        	} else {
+        		m_ariesLog = new AriesLogNative(m_catalogContext.numberOfExecSites,
+        				m_deployment.getArieslog().getLogsize());
+        	}
+        }
     }
 
     void collectLocalNetworkMetadata() {
@@ -912,7 +950,7 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
      * Start all the site's event loops. That's it.
      */
     @Override
-    public void run() {
+    public void run() {    	
         // start the separate EE threads
         for (ExecutionSiteRunner r : m_runners) {
             synchronized (r) {
@@ -928,7 +966,7 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
         else {
             onRestoreCompletion(Long.MIN_VALUE);
         }
-
+        
         // start one site in the current thread
         Thread.currentThread().setName("ExecutionSiteAndVoltDB");
         m_isRunning = true;
@@ -1490,6 +1528,11 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
     }
 
     @Override
+    public AriesLog getAriesLog() {		// nirmesh
+    	return m_ariesLog;
+    }
+    
+    @Override
     public OperationMode getMode()
     {
         return m_mode;
@@ -1572,6 +1615,39 @@ public class RealVoltDB implements VoltDBInterface, RestoreAgent.Callback
             // Shouldn't be here, but to be safe
             m_mode = OperationMode.RUNNING;
         }
+        
+        // nirmesh
+        // Run Aries recovery on the main thread here.
+        if (m_ariesLog != null) {
+        	long logReadStartTime = System.currentTimeMillis();
+        	
+        	// define an array so that we can pass to native code by reference
+        	long size[] = new long[1];
+        	long ariesReplayPointer = m_currentThreadSite.readAriesLogForReplay(size);
+        	
+        	System.out.println("java pointer address: " + ariesReplayPointer);
+        	System.out.println("java size of array:" + size[0]);
+        	
+        	long logReadEndTime = System.currentTimeMillis();
+        	
+        	System.out.println("Aries log read in "+ (logReadEndTime - logReadStartTime) + " milliseconds");
+        	
+        	long ariesStartTime = System.currentTimeMillis();
+        	
+        	m_ariesLog.setPointerToReplayLog(ariesReplayPointer, size[0]);
+        	m_ariesLog.setTxnIdToBeginReplay(txnId);
+
+    		m_currentThreadSite.waitForAriesRecoveryCompletion();
+
+    		m_currentThreadSite.freePointerToReplayLog(ariesReplayPointer);
+    		
+    		long ariesEndTime = System.currentTimeMillis();
+    		System.out.println("Aries recovery finished in "+ (ariesEndTime - ariesStartTime) + " milliseconds");
+    
+    		m_ariesLog.init();
+        }
+
+        
         hostLog.l7dlog( Level.INFO, LogKeys.host_VoltDB_ServerCompletedInitialization.name(), null);
     }
 

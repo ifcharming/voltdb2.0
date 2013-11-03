@@ -20,6 +20,7 @@ package org.voltdb.dtxn;
 import java.util.HashMap;
 import java.util.List;
 
+import org.voltdb.AriesLog; 	// nirmesh
 import org.voltdb.VoltTable;
 import org.voltdb.messaging.FragmentResponseMessage;
 import org.voltdb.messaging.InitiateResponseMessage;
@@ -47,4 +48,8 @@ public interface SiteTransactionConnection {
     // Feels like another bad side-effect of the "site invokes txnState"
     // and "txnState invokes Site" relationship.
     public SiteTracker getSiteTracker();
+
+	public AriesLog getAriesLogger(); // nirmesh
+
+	public CompletedPriorityQueue getCompletedTransactionsQueue(); // nirmesh
 }

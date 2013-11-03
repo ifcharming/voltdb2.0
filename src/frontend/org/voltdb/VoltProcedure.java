@@ -35,6 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.voltdb.Expectation.Type;
 import org.voltdb.catalog.Cluster;
@@ -386,6 +387,11 @@ public abstract class VoltProcedure {
             }
         }
 
+        // nirmesh
+    	int bufferLength = 0;
+    	// nirmesh
+    	byte[] arieslogData = null;
+    	
         ClientResponseImpl retval = null;
         boolean error = false;
         boolean abort = false;
@@ -400,6 +406,20 @@ public abstract class VoltProcedure {
                     m_parameterSets = new ParameterSet[MAX_BATCH_SIZE];
                     Object rawResult = m_procMethod.invoke(this, paramList);
                     results = getResultsFromRawResults(rawResult);
+
+                    // nirmesh: if the procedure is not read only,
+                    // ask EE how much data was logged amd pull the data out. 
+                    if (!m_catProc.getReadonly()) {
+                    	bufferLength = (int) m_site.getArieslogBufferLength();
+                    // XXX: hack for artificially writing less (will lead to unrecoverable aries log)
+                //		if (bufferLength > 50) {
+                //			bufferLength = 50;
+                //		}	
+                    	if (bufferLength > 0) {
+                    		arieslogData = new byte[bufferLength];
+                    		m_site.getArieslogData(bufferLength, arieslogData);
+                    	}
+                    }
                 } catch (IllegalAccessException e) {
                     // If reflection fails, invoke the same error handling that other exceptions do
                     throw new InvocationTargetException(e);
@@ -440,6 +460,15 @@ public abstract class VoltProcedure {
                 }
                 else {
                     results = executeQueriesInABatch(1, m_cachedSingleStmt, new Object[][] { paramList } , true);
+                    
+                    if (!m_catProc.getReadonly()) {
+                    	bufferLength = (int) m_site.getArieslogBufferLength();
+                    	
+                    	if (bufferLength > 0) {
+                    		arieslogData = new byte[bufferLength];
+                    		m_site.getArieslogData(bufferLength, arieslogData);
+                    	}
+                    }
                 }
             }
             catch (SerializableException ex) {
@@ -459,6 +488,18 @@ public abstract class VoltProcedure {
                     m_statusString,
                     results,
                     null);
+
+        /*// nirmesh
+         * Since call returns a ClientResponseImpl you can add a field for the log data
+         * that isn't serialized during messaging that is the log data for the txn
+         * 
+         * also check for abort and error
+         */
+        if (!abort && !error) {
+	        if (bufferLength > 0) {
+	    		retval.setAriesLogData(arieslogData);
+	        }
+        }
 
         return retval;
     }
@@ -710,6 +751,20 @@ public abstract class VoltProcedure {
             m_site.loadTable(m_currentTxnState.txnId,
                              clusterName, databaseName,
                              tableName, data);
+            
+            // NIRMESH
+        	byte[] arieslogData = null;
+        	
+        	int bufferLength = (int) m_site.getArieslogBufferLength();
+        	
+        	if (bufferLength > 0) {
+        		arieslogData = new byte[bufferLength];
+        		m_site.getArieslogData(bufferLength, arieslogData);
+        		
+        		// we don't really care much about this atomic boolean here
+        		m_site.getAriesLoggerSPC().log(arieslogData, new AtomicBoolean());
+        	}
+        	// Nirmesh
         }
         catch (EEException e) {
             throw new VoltAbortException("Failed to load table: " + tableName);

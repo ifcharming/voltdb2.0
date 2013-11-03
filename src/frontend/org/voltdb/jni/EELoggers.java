@@ -45,7 +45,8 @@ public class EELoggers {
      */
     public static final VoltLogger loggers[] = new VoltLogger[] {
         new VoltLogger("SQL"),
-        new VoltLogger("HOST")
+        new VoltLogger("HOST"),
+        new VoltLogger("MM_ARIES") //Nirmesh
     };
 
     /**

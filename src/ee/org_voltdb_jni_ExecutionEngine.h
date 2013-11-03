@@ -48,10 +48,10 @@ JNIEXPORT jint JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeInitialize
 /*
  * Class:     org_voltdb_jni_ExecutionEngine
  * Method:    nativeSetBuffers
- * Signature: (JLjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;I)I
+ * Signature: (JLjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;ILjava/nio/ByteBuffer;I)I
  */
 JNIEXPORT jint JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeSetBuffers
-  (JNIEnv *, jobject, jlong, jobject, jint, jobject, jint, jobject, jint);
+  (JNIEnv *, jobject, jlong, jobject, jint, jobject, jint, jobject, jint, jobject, jint);
 
 /*
  * Class:     org_voltdb_jni_ExecutionEngine
@@ -215,6 +215,14 @@ JNIEXPORT void JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeProcessRecovery
 
 /*
  * Class:     org_voltdb_jni_ExecutionEngine
+ * Method:    nativeDoAriesRecoveryPhase
+ * Signature: (JJJJ)V
+ */
+JNIEXPORT void JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeDoAriesRecoveryPhase
+  (JNIEnv *, jobject, jlong, jlong, jlong, jlong);
+
+/*
+ * Class:     org_voltdb_jni_ExecutionEngine
  * Method:    nativeTableHashCode
  * Signature: (JI)J
  */
@@ -244,6 +252,38 @@ JNIEXPORT jlongArray JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeGetUSOFor
  */
 JNIEXPORT jlong JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeGetRSS
   (JNIEnv *, jclass);
+
+/*
+ * Class:     org_voltdb_jni_ExecutionEngine
+ * Method:    nativeGetArieslogBufferLength
+ * Signature: (J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeGetArieslogBufferLength
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_voltdb_jni_ExecutionEngine
+ * Method:    nativeRewindArieslogBuffer
+ * Signature: (J)V
+ */
+JNIEXPORT void JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeRewindArieslogBuffer
+  (JNIEnv *, jobject, jlong);
+
+/*
+ * Class:     org_voltdb_jni_ExecutionEngine
+ * Method:    nativeReadAriesLogForReplay
+ * Signature: (J[J)J
+ */
+JNIEXPORT jlong JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeReadAriesLogForReplay
+  (JNIEnv *, jobject, jlong, jlongArray);
+
+/*
+ * Class:     org_voltdb_jni_ExecutionEngine
+ * Method:    nativeFreePointerToReplayLog
+ * Signature: (JJ)V
+ */
+JNIEXPORT void JNICALL Java_org_voltdb_jni_ExecutionEngine_nativeFreePointerToReplayLog
+  (JNIEnv *, jobject, jlong, jlong);
 
 #ifdef __cplusplus
 }

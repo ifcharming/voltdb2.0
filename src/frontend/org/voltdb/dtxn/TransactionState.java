@@ -27,6 +27,7 @@ import org.voltdb.messaging.CompleteTransactionMessage;
 import org.voltdb.messaging.CompleteTransactionResponseMessage;
 import org.voltdb.messaging.FragmentResponseMessage;
 import org.voltdb.messaging.FragmentTaskMessage;
+import org.voltdb.messaging.InitiateResponseMessage;
 import org.voltdb.messaging.Mailbox;
 import org.voltdb.messaging.TransactionInfoBaseMessage;
 
@@ -47,6 +48,9 @@ public abstract class TransactionState extends OrderableTransaction  {
     protected long m_beginUndoToken;
     protected boolean m_needsRollback = false;
 
+    // nirmesh
+    protected InitiateResponseMessage responseToSend;
+    
     /**
      * Set up the final member variables from the parameters. This will
      * be called exclusively by subclasses.
@@ -178,4 +182,7 @@ public abstract class TransactionState extends OrderableTransaction  {
      * @param failedSites list of execution and initiator sites that have failed
      */
     public abstract void handleSiteFaults(HashSet<Integer> failedSites);
+
+    // nirmesh
+	public abstract void sendResponse();
 }

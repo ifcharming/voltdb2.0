@@ -59,6 +59,20 @@ StringRef::destroy(StringRef* sref)
 #endif
 }
 
+//#ifdef ARIES_NIRMESH
+void
+StringRef::destroyLogNval(StringRef* sref)
+{
+	// XXX: changed to do the thing with well defined semantics
+	destroy(sref);
+
+	//XXX: don't do this because the allocation
+	// was not done in a symmetrical manner.
+	// this will lead to bizzare errors and crashes
+	// delete sref;
+}
+//#endif
+
 StringRef::StringRef(size_t size)
 {
     m_size = size + sizeof(StringRef*);

@@ -40,7 +40,7 @@ CTX = BuildContext(sys.argv)
 # these are the base compile options that get added to every compile step
 # this does not include header/lib search paths or specific flags for
 #  specific targets
-CTX.CPPFLAGS = """-Wall -Wextra -Werror -Woverloaded-virtual -Wconversion
+CTX.CPPFLAGS = """ -Wall -Wextra -Werror -Woverloaded-virtual -Wconversion
             -Wpointer-arith -Wcast-qual -Wcast-align -Wwrite-strings
             -Winit-self -Wno-sign-compare -Wno-unused-parameter
             -pthread
@@ -55,7 +55,7 @@ if CTX.PROFILE:
     CTX.CPPFLAGS += " -fvisibility=default -DPROFILE_ENABLED"
 
 # linker flags
-CTX.LDFLAGS = """ -g3 -rdynamic -ldl"""
+CTX.LDFLAGS = """ -L/opt/local/lib -g3 -rdynamic -ldl -lglib-2.0 -lintl"""
 
 if CTX.COVERAGE:
     CTX.LDFLAGS += " -ftest-coverage -fprofile-arcs"
@@ -64,12 +64,12 @@ if CTX.COVERAGE:
 # which you must have separately built and installed. Take some guesses
 # at the library location (/usr/local/lib).
 if CTX.PROFILE:
-    CTX.LDFLAGS = """  -L/usr/local/lib -g3 -rdynamic -lprofiler -lunwind"""
+    CTX.LDFLAGS = """  -L/opt/local/lib -g3 -rdynamic -lprofiler -lunwind -lglib-2.0 -lrt"""
 
 # this is where the build will look for header files
 # - the test source will also automatically look in the test root dir
 CTX.INCLUDE_DIRS = ['src/ee']
-CTX.SYSTEM_DIRS = ['third_party/cpp']
+CTX.SYSTEM_DIRS = ['third_party/cpp','../../../../../../opt/local/include/glib-2.0','../../../../../../opt/local/lib/glib-2.0/include','../../../../../../opt/local/include']
 
 # extra flags that will get added to building test source
 if CTX.LEVEL == "MEMCHECK":
@@ -310,7 +310,12 @@ CTX.INPUT['stats'] = """
 CTX.INPUT['logging'] = """
  JNILogProxy.cpp
  LogManager.cpp
-"""
+ Logrecord.cpp
+ AriesLogProxy.cpp
+ """
+# AriesLogProxy.cpp
+# Logrecord.cpp
+#"""
 
 # specify the third party input
 

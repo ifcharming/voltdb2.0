@@ -18,6 +18,10 @@
 #ifndef LOGDEFS_H_
 #define LOGDEFS_H_
 
+#ifndef ARIES_NIRMESH
+#define ARIES_NIRMESH
+#endif
+
 namespace voltdb {
 
 /**
@@ -27,6 +31,9 @@ namespace voltdb {
 enum LoggerId {
     LOGGERID_SQL,
     LOGGERID_HOST,
+#ifdef ARIES_NIRMESH
+    LOGGERID_MM_ARIES,
+#endif
     LOGGERID_INVALID
 };
 

@@ -33,6 +33,10 @@ public interface VoltDBInterface
     public AgreementSite getAgreementSite();
 
     public boolean recovering();
+    
+    public boolean doingAriesRecovery(); // nirmesh
+    
+    public void ariesRecoveryCompleted(); // nirmesh
 
     /*
      * Invoked from the command log once this node is marked unfaulted.
@@ -47,6 +51,8 @@ public interface VoltDBInterface
     public void readBuildInfo(String editionTag);
 
     public CommandLog getCommandLog();
+    
+    public AriesLog getAriesLog();		// nirmesh
 
     /**
      * Initialize all the global components, then initialize all the m_sites.
