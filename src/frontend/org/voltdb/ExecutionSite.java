@@ -1217,10 +1217,8 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 				// TODO
 				//hostLog.l7dlog( Level.INFO, "in completeTransaction got master's message", new Object[] { getSiteId(), siteIndex }, null);
 				PhysicalLogUpdateMessage ptask = ((PhysicalLogUpdateTxnState)txnState).getPhysicalLogUpdateMessage();
-				if (((PhysicalLogUpdateTxnState)txnState).hasAriesLogData()) {
-					ptask.setPayload(((PhysicalLogUpdateTxnState)txnState).getAriesLogData());
-					ptask.setResults(((PhysicalLogUpdateTxnState)txnState).getClientResponseData());
-				}
+				assert(((PhysicalLogUpdateTxnState)txnState).hasClientResponseData());
+				ptask.setClientResponseData(((PhysicalLogUpdateTxnState)txnState).getClientResponseData());
 
 				assert(ptask!=null);
 				int[] otherSiteIds = new int[ptask.getOtherSiteCount()];
@@ -1364,7 +1362,11 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 			if (ts == null) {
 				if (info.isSinglePartition()) {
 					if (info instanceof PhysicalLogUpdateMessage) {
-						ts = new PhysicalLogUpdateTxnState(m_mailbox, this, info, 0, ((PhysicalLogUpdateMessage) info).getPayload());
+						if (((PhysicalLogUpdateMessage) info).hasClientResponseData()) {
+							ts = new PhysicalLogUpdateTxnState(m_mailbox, this, info, 0, ((PhysicalLogUpdateMessage) info).getClientResponseData());
+						} else {
+							ts = new PhysicalLogUpdateTxnState(m_mailbox, this, info, 0);
+						}
 					} else {
 						ts = new SinglePartitionTxnState(m_mailbox, this, info);
 					}
@@ -2469,7 +2471,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 		// correct or not???
 		// This is on the slave side.
 		AtomicBoolean durable = new AtomicBoolean();
-		m_ariesLog.log(((PhysicalLogUpdateTxnState)txnState).getAriesLogData(), durable);
+		m_ariesLog.log(((PhysicalLogUpdateTxnState)txnState).getClientResponseData().getAriesLogData(), durable);
 		/*
 		for (int i = 0; i < 10000; i++) {
 			Thread.yield();
@@ -2499,7 +2501,6 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 			TransactionState txnState,
 			final VoltMessage task)
 	{
-		// TODO
 		final PhysicalLogUpdateMessage ptask = (PhysicalLogUpdateMessage)task;
 		final PhysicalLogResponseMessage response = new PhysicalLogResponseMessage(ptask);
 		final VoltProcedure wrapper = procs.get(ptask.getStoredProcedureName());

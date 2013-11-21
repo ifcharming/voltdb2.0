@@ -16,8 +16,6 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 	StoredProcedureInvocation m_invocation;
 	long m_lastSafeTxnID; // this is the largest txn acked by all partitions running the java for it
 	int[] m_otherSiteIds;
-	// TODO(chaomin): delete this, included in m_response
-	byte[] m_payload = null;
 	boolean m_hasResponse;
 	ClientResponseImpl m_response;
 
@@ -41,19 +39,33 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 			long txnId, boolean isReadOnly,
 			boolean isSinglePartition, StoredProcedureInvocation invocation,
 			long lastSafeTxnID,
-			int[] otherSiteIds, byte[] payload) {
+			int[] otherSiteIds) {
 		super(initiatorSiteId, coordinatorSiteId, txnId, isReadOnly);
 
 		m_isSinglePartition = isSinglePartition;
 		m_invocation = invocation;
 		m_lastSafeTxnID = lastSafeTxnID;
 		assert(otherSiteIds != null);
-		assert(payload != null);
 		m_otherSiteIds = otherSiteIds;
-		m_payload = payload;
 		m_hasResponse = false;
 	}
 
+	public PhysicalLogUpdateMessage(int initiatorSiteId, int coordinatorSiteId,
+			long txnId, boolean isReadOnly,
+			boolean isSinglePartition, StoredProcedureInvocation invocation,
+			long lastSafeTxnID,
+			int[] otherSiteIds,
+			ClientResponseImpl response) {
+		super(initiatorSiteId, coordinatorSiteId, txnId, isReadOnly);
+
+		m_isSinglePartition = isSinglePartition;
+		m_invocation = invocation;
+		m_lastSafeTxnID = lastSafeTxnID;
+		assert(otherSiteIds != null);
+		m_otherSiteIds = otherSiteIds;
+		m_hasResponse = true;
+		m_response = response;
+	}
 	@Override
 	public boolean isReadOnly() {
 		return m_isReadOnly;
@@ -75,14 +87,6 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 		return m_otherSiteIds[index];
 	}
 
-	public byte[] getPayload() {
-		return m_payload;
-	}
-
-	public void setPayload(byte[] payload) {
-		m_payload = payload;
-	}
-
 	public ClientResponseImpl getClientResponseData() {
 		if (m_hasResponse) {
 			return m_response;
@@ -91,12 +95,12 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 		}
 	}
 
-	public void setResults(ClientResponseImpl r) {
+	public void setClientResponseData(ClientResponseImpl r) {
 		m_hasResponse = true;
 		m_response = r;
 	}
 
-	public boolean hasResponse() {
+	public boolean hasClientResponseData() {
 		return m_hasResponse;
 	}
 
@@ -114,14 +118,10 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 		ByteBuffer invocationBytes = fs.getBuffer();
 
 		int msgsize = super.getMessageByteCount();
-		// Add the bytes for payload count
-		msgsize += 1 + 8 + 2 + 2 + + invocationBytes.remaining() + 1 ;
+		msgsize += 1 + 8 + 2 + invocationBytes.remaining() + 1 ;
 
 		if (m_otherSiteIds != null) {
 			msgsize += 4 * m_otherSiteIds.length;
-		}
-		if (m_payload != null) {
-			msgsize += m_payload.length;
 		}
 
 		ByteBuffer responseBytes = null;
@@ -160,14 +160,6 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 			}
 		}
 
-		if (m_payload == null) {
-			m_buffer.putShort((short) 0);
-		} else {
-			m_buffer.putShort((short) m_payload.length);
-			for (int i = 0; i < m_payload.length; i++) {
-				m_buffer.put(m_payload[i]);
-			}
-		}
 		m_buffer.put(invocationBytes);
 		m_buffer.put(m_hasResponse ? (byte) 1 : (byte) 0);
 		if(m_hasResponse) {
@@ -189,14 +181,6 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 			m_otherSiteIds = new int[otherSiteCount];
 			for (int i = 0; i < otherSiteCount; i++) {
 				m_otherSiteIds[i] = m_buffer.getInt();
-			}
-		}
-
-		short payloadCount = m_buffer.getShort();
-		if (payloadCount > 0) {
-			m_payload = new byte[payloadCount];
-			for (int i = 0; i < payloadCount; i++) {
-				m_payload[i] = m_buffer.get();
 			}
 		}
 

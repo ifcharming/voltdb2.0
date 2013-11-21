@@ -452,8 +452,7 @@ public class SimpleDtxnInitiator extends TransactionInitiator {
 					txn.isSinglePartition,
 					txn.invocation,
 					newestSafeTxnId,
-					txn.otherSiteIds,
-					"".getBytes());
+					txn.otherSiteIds);
 			try {
 				m_mailbox.send(coordinatorId, 0, workRequest);
 			} catch (MessagingException e) {

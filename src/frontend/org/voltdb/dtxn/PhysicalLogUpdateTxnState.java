@@ -17,17 +17,25 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 
 	PhysicalLogUpdateMessage m_ptask;
 	int m_responseCount;
-	byte[] m_arieslogData;
 	ClientResponseImpl m_response;
 
 	public PhysicalLogUpdateTxnState(Mailbox mbox, ExecutionSite site,
-			TransactionInfoBaseMessage task, int responseCount, byte[] arieslogData) {
+			TransactionInfoBaseMessage task, int responseCount) {
 		super(mbox, site, task);
 		assert(task instanceof PhysicalLogUpdateMessage) :
 			"Creating physical log update txn from invalid membership notice.";
 		m_ptask = (PhysicalLogUpdateMessage)task;
 		m_responseCount = responseCount;
-		m_arieslogData = arieslogData;
+	}
+
+	public PhysicalLogUpdateTxnState(Mailbox mbox, ExecutionSite site,
+			TransactionInfoBaseMessage task, int responseCount, ClientResponseImpl response) {
+		super(mbox, site, task);
+		assert(task instanceof PhysicalLogUpdateMessage) :
+			"Creating physical log update txn from invalid membership notice.";
+		m_ptask = (PhysicalLogUpdateMessage)task;
+		m_responseCount = responseCount;
+		m_response = response;
 	}
 
 	@Override
@@ -36,7 +44,7 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 			m_site.beginNewTxn(this);
 
 			PhysicalLogResponseMessage response;
-			if (m_ptask.hasResponse()) {
+			if (m_ptask.hasClientResponseData()) {
 				response = m_site.processAriesLogData(this, m_ptask);
 			} else {
 				response = m_site.processPhysicalLogUpdate(this, m_ptask);
@@ -57,9 +65,9 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 
 					responseToSend = response;
 					m_site.getCompletedTransactionsQueue().add(this);
-					// TODO(Chaomin):
-					setAriesLogData(response.getClientResponseData().getAriesLogData());
-					setClientResponseData(response.getClientResponseData());
+					// Chaomin
+					m_response = response.getClientResponseData();
+
 				} else {
 					m_mbox.send(response.getCoordinatorSiteId(), 0, response);
 				}
@@ -181,32 +189,15 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 
 	}
 
-	public void setAriesLogData(byte[] arieslogDataArray) {
-		m_arieslogData = arieslogDataArray;
-	}
-
-	public boolean hasAriesLogData() {
-		if (m_arieslogData == null || m_arieslogData.length == 0) {
+	public boolean hasClientResponseData() {
+		if (m_response == null || !m_response.hasAriesLogData()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public byte[] getAriesLogData() {
-		if (hasAriesLogData()) {
-			return m_arieslogData;
-		}
-
-		return null;
-	}
-
 	public ClientResponseImpl getClientResponseData() {
 		return m_response;
 	}
-
-	public void setClientResponseData(ClientResponseImpl r) {
-		m_response = r;
-	}
-
 }
