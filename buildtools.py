@@ -202,17 +202,17 @@ def buildMakefile(CTX):
 
     makefile.write("# main jnilib target\n")
     makefile.write("nativelibs/libvoltdb-%s.$(JNIEXT): " % version + " ".join(jni_objects) + "\n")
-    makefile.write("\t$(LINK.cpp) $(JNILIBFLAGS) -o $@ $^\n")
+    makefile.write("\t$(LINK.cpp) $(JNILIBFLAGS) -o $@ $^ -lrt\n")
     makefile.write("\n")
 
     makefile.write("# voltdb instance that loads the jvm from C++\n")
     makefile.write("prod/voltrun: $(SRC)/voltrun.cpp " + " ".join(static_objects) + "\n")
-    makefile.write("\t$(LINK.cpp) $(JNIBINFLAGS) -o $@ $^\n")
+    makefile.write("\t$(LINK.cpp) $(JNIBINFLAGS) -o $@ $^ -lrt\n")
     makefile.write("\n")
 
     makefile.write("# voltdb execution engine that accepts work on a tcp socket (vs. jni)\n")
     makefile.write("prod/voltdbipc: $(SRC)/voltdbipc.cpp " + " objects/volt.a\n")
-    makefile.write("\t$(LINK.cpp) %s -o $@ $^\n" % CTX.TEST_EXTRAFLAGS)
+    makefile.write("\t$(LINK.cpp) %s -o $@ $^ -lrt\n" % CTX.TEST_EXTRAFLAGS)
     makefile.write("\n")
 
 
@@ -288,7 +288,7 @@ def buildMakefile(CTX):
 
         # link the test
         makefile.write("%s: %s objects/volt.a\n" % (binname, objectname))
-        makefile.write("\t$(LINK.cpp) %s -o %s %s objects/volt.a\n" % (CTX.TEST_EXTRAFLAGS, binname, objectname))
+        makefile.write("\t$(LINK.cpp) %s -o %s %s objects/volt.a -lrt\n" % (CTX.TEST_EXTRAFLAGS, binname, objectname))
         targetpath = OUTPUT_PREFIX + "/" + "/".join(binname.split("/")[:-1])
         os.system("mkdir -p %s" % (targetpath))
 

@@ -19,7 +19,8 @@
     <attribute name="excludes" default=""/>
     <sequential>
         <javac
-            target="1.6"
+            source="1.6"
+            bootclasspath="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/rt.jar"
             srcdir="@{srcdir}"
             destdir="@{destdir}"
             excludes="@{excludes}"
