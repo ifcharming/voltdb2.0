@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <deployment>
-    <cluster hostcount="2" sitesperhost="5" kfactor="1" />
-    <httpd enabled="true">
+    <cluster hostcount="2" sitesperhost="3" kfactor="1" />
+    <httpd enabled="true" port="0">
         <jsonapi enabled="true" />
       </httpd>
       <arieslog enabled="true" logsize="6144" >

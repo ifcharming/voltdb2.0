@@ -24,6 +24,7 @@ import org.voltdb.AriesLog; 	// nirmesh
 import org.voltdb.VoltTable;
 import org.voltdb.messaging.FragmentResponseMessage;
 import org.voltdb.messaging.InitiateResponseMessage;
+import org.voltdb.messaging.PhysicalLogResponseMessage;
 import org.voltdb.messaging.VoltMessage;
 
 /**
@@ -33,23 +34,32 @@ import org.voltdb.messaging.VoltMessage;
 public interface SiteTransactionConnection {
 
 
-    public FragmentResponseMessage processFragmentTask(
-            TransactionState txnState,
-            final HashMap<Integer,List<VoltTable>> dependencies,
-            final VoltMessage task);
+	public FragmentResponseMessage processFragmentTask(
+			TransactionState txnState,
+			final HashMap<Integer,List<VoltTable>> dependencies,
+			final VoltMessage task);
 
-    public InitiateResponseMessage processInitiateTask(
-            TransactionState txnState,
-            final VoltMessage task);
+	public InitiateResponseMessage processInitiateTask(
+			TransactionState txnState,
+			final VoltMessage task);
 
-    public void beginNewTxn(TransactionState txnState);
+	public PhysicalLogResponseMessage processPhysicalLogUpdate(
+			TransactionState txnState,
+			final VoltMessage task);
 
-    // Workunits need topology to duplicate suppress replica responses.
-    // Feels like another bad side-effect of the "site invokes txnState"
-    // and "txnState invokes Site" relationship.
-    public SiteTracker getSiteTracker();
+	public PhysicalLogResponseMessage processAriesLogData(
+			TransactionState txnState,
+			final VoltMessage task);
+
+	public void beginNewTxn(TransactionState txnState);
+
+	// Workunits need topology to duplicate suppress replica responses.
+	// Feels like another bad side-effect of the "site invokes txnState"
+	// and "txnState invokes Site" relationship.
+	public SiteTracker getSiteTracker();
 
 	public AriesLog getAriesLogger(); // nirmesh
 
 	public CompletedPriorityQueue getCompletedTransactionsQueue(); // nirmesh
+
 }

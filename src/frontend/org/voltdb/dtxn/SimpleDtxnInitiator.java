@@ -59,438 +59,492 @@ import org.voltdb.messaging.InitiateTaskMessage;
 import org.voltdb.messaging.MessagingException;
 import org.voltdb.messaging.Messenger;
 import org.voltdb.messaging.MultiPartitionParticipantMessage;
+import org.voltdb.messaging.PhysicalLogUpdateMessage;
 
 /** Supports correct execution of multiple partition transactions by executing them one at a time. */
 public class SimpleDtxnInitiator extends TransactionInitiator {
-    final TransactionIdManager m_idManager;
+	final TransactionIdManager m_idManager;
 
-    private final ExecutorTxnIdSafetyState m_safetyState;
+	private final ExecutorTxnIdSafetyState m_safetyState;
 
-    private static final VoltLogger transactionLog = new VoltLogger("TRANSACTION");
-    private static final VoltLogger hostLog = new VoltLogger("HOST");
+	private static final VoltLogger transactionLog = new VoltLogger("TRANSACTION");
+	private static final VoltLogger hostLog = new VoltLogger("HOST");
 
-    /**
-     * Task to run when a backpressure condition starts
-     */
-    private final Runnable m_onBackPressure;
+	/**
+	 * Task to run when a backpressure condition starts
+	 */
+	private final Runnable m_onBackPressure;
 
-    /**
-     * Task to run when a backpressure condition stops
-     */
-    private final Runnable m_offBackPressure;
+	/**
+	 * Task to run when a backpressure condition stops
+	 */
+	private final Runnable m_offBackPressure;
 
-    /**
-     * Indicates if backpressure has been seen and reported
-     */
-    private AtomicBoolean m_hadBackPressure = new AtomicBoolean(false);
+	/**
+	 * Indicates if backpressure has been seen and reported
+	 */
+	private final AtomicBoolean m_hadBackPressure = new AtomicBoolean(false);
 
-    /*
-     * Whether or not to send heartbeats. It's set to false by default, this
-     * will be set to true once command-log replay has finished.
-     */
-    private volatile boolean m_sendHeartbeats = false;
+	/*
+	 * Whether or not to send heartbeats. It's set to false by default, this
+	 * will be set to true once command-log replay has finished.
+	 */
+	private volatile boolean m_sendHeartbeats = false;
 
-    // If an initiator handles a full node, it processes approximately 50,000 txns/sec.
-    // That's about 50 txns/ms. Try not to keep more than 5 ms of work? Seems like a really
-    // small number. On the other hand, backPressure() is just a hint to the ClientInterface.
-    // CI will submit ClientPort.MAX_READ * clients / bytesPerStoredProcInvocation txns
-    // on average if clients present constant uninterrupted load.
-    public final static int MAX_DESIRED_PENDING_BYTES = 67108864;
-    public final static int MAX_DESIRED_PENDING_TXNS = 5000;
-    private long m_pendingTxnBytes = 0;
-    private int m_pendingTxnCount = 0;
-    private final DtxnInitiatorMailbox m_mailbox;
-    private final int m_siteId;
-    private final int m_hostId;
+	// If an initiator handles a full node, it processes approximately 50,000 txns/sec.
+	// That's about 50 txns/ms. Try not to keep more than 5 ms of work? Seems like a really
+	// small number. On the other hand, backPressure() is just a hint to the ClientInterface.
+	// CI will submit ClientPort.MAX_READ * clients / bytesPerStoredProcInvocation txns
+	// on average if clients present constant uninterrupted load.
+	public final static int MAX_DESIRED_PENDING_BYTES = 67108864;
+	public final static int MAX_DESIRED_PENDING_TXNS = 5000;
+	private long m_pendingTxnBytes = 0;
+	private int m_pendingTxnCount = 0;
+	private final DtxnInitiatorMailbox m_mailbox;
+	private final int m_siteId;
+	private final int m_hostId;
 
-    public SimpleDtxnInitiator(CatalogContext context,
-                               Messenger messenger, int hostId, int siteId,
-                               int initiatorId,
-                               Runnable onBackPressure,
-                               Runnable offBackPressure,
-                               long timestampTestingSalt)
-    {
-        assert(messenger != null);
-        hostLog.info("Initializing initiator ID: " + initiatorId  + ", SiteID: " + siteId);
+	public SimpleDtxnInitiator(CatalogContext context,
+			Messenger messenger, int hostId, int siteId,
+			int initiatorId,
+			Runnable onBackPressure,
+			Runnable offBackPressure,
+			long timestampTestingSalt)
+	{
+		assert(messenger != null);
+		hostLog.info("Initializing initiator ID: " + initiatorId  + ", SiteID: " + siteId);
 
-        m_idManager = new TransactionIdManager(initiatorId, timestampTestingSalt);
-        m_hostId = hostId;
-        m_siteId = siteId;
-        m_safetyState = new ExecutorTxnIdSafetyState(siteId, context.siteTracker);
-        m_mailbox =
-            new DtxnInitiatorMailbox(
-                    siteId,
-                    m_safetyState,
-                    (org.voltdb.messaging.HostMessenger)messenger);
-        messenger.createMailbox(siteId, VoltDB.DTXN_MAILBOX_ID, m_mailbox);
-        m_mailbox.setInitiator(this);
-        m_onBackPressure = onBackPressure;
-        m_offBackPressure = offBackPressure;
-    }
+		m_idManager = new TransactionIdManager(initiatorId, timestampTestingSalt);
+		m_hostId = hostId;
+		m_siteId = siteId;
+		m_safetyState = new ExecutorTxnIdSafetyState(siteId, context.siteTracker);
+		m_mailbox =
+				new DtxnInitiatorMailbox(
+						siteId,
+						m_safetyState,
+						(org.voltdb.messaging.HostMessenger)messenger);
+		messenger.createMailbox(siteId, VoltDB.DTXN_MAILBOX_ID, m_mailbox);
+		m_mailbox.setInitiator(this);
+		m_onBackPressure = onBackPressure;
+		m_offBackPressure = offBackPressure;
+	}
 
 
-    @Override
-    public synchronized void createTransaction(
-                                  final long connectionId,
-                                  final String connectionHostname,
-                                  final boolean adminConnection,
-                                  final StoredProcedureInvocation invocation,
-                                  final boolean isReadOnly,
-                                  final boolean isSinglePartition,
-                                  final boolean isEveryPartition,
-                                  final int partitions[],
-                                  final int numPartitions,
-                                  final Object clientData,
-                                  final int messageSize,
-                                  final long now)
-    {
-        long txnId = m_idManager.getNextUniqueTransactionId();
-        createTransaction(connectionId, connectionHostname, adminConnection, txnId,
-                          invocation, isReadOnly, isSinglePartition, isEveryPartition,
-                          partitions, numPartitions, clientData, messageSize, now);
-    }
+	@Override
+	public synchronized void createTransaction(
+			final long connectionId,
+			final String connectionHostname,
+			final boolean adminConnection,
+			final StoredProcedureInvocation invocation,
+			final boolean isReadOnly,
+			final boolean isSinglePartition,
+			final boolean isEveryPartition,
+			final int partitions[],
+			final int numPartitions,
+			final Object clientData,
+			final int messageSize,
+			final long now)
+	{
+		long txnId = m_idManager.getNextUniqueTransactionId();
+		createTransaction(connectionId, connectionHostname, adminConnection, txnId,
+				invocation, isReadOnly, isSinglePartition, isEveryPartition,
+				partitions, numPartitions, clientData, messageSize, now);
+	}
 
-    @Override
-    public synchronized void createTransaction(
-                                  final long connectionId,
-                                  final String connectionHostname,
-                                  final boolean adminConnection,
-                                  final long txnId,
-                                  final StoredProcedureInvocation invocation,
-                                  final boolean isReadOnly,
-                                  final boolean isSinglePartition,
-                                  final boolean isEveryPartition,
-                                  final int partitions[],
-                                  final int numPartitions,
-                                  final Object clientData,
-                                  final int messageSize,
-                                  final long now)
-    {
-        assert(invocation != null);
-        assert(partitions != null);
-        assert(numPartitions >= 1);
+	@Override
+	public synchronized void createTransaction(
+			final long connectionId,
+			final String connectionHostname,
+			final boolean adminConnection,
+			final long txnId,
+			final StoredProcedureInvocation invocation,
+			final boolean isReadOnly,
+			final boolean isSinglePartition,
+			final boolean isEveryPartition,
+			final int partitions[],
+			final int numPartitions,
+			final Object clientData,
+			final int messageSize,
+			final long now)
+	{
+		assert(invocation != null);
+		assert(partitions != null);
+		assert(numPartitions >= 1);
 
-        if (isSinglePartition || isEveryPartition)
-        {
-            createSinglePartitionTxn(connectionId, connectionHostname, adminConnection,
-                                     txnId, invocation, isReadOnly,
-                                     partitions, clientData, messageSize, now);
-            return;
-        }
-        else
-        {
-            SiteTracker tracker = VoltDB.instance().getCatalogContext().siteTracker;
-            ArrayList<Integer> sitesOnThisHost =
-                tracker.m_hostsToSites.get(m_hostId);
-            int coordinatorId = sitesOnThisHost.get(1);
-            ArrayList<Integer> replicaIds = new ArrayList<Integer>();
-            for (Integer replica : tracker.getAllSitesForPartition(tracker.getPartitionForSite(coordinatorId))) {
-                if (replica != coordinatorId && tracker.getAllLiveSites().contains(replica)) {
-                    replicaIds.add(replica);
-                }
-            }
+		if (isSinglePartition || isEveryPartition)
+		{
+			createSinglePartitionTxn(connectionId, connectionHostname, adminConnection,
+					txnId, invocation, isReadOnly,
+					partitions, clientData, messageSize, now);
+			return;
+		}
+		else
+		{
+			SiteTracker tracker = VoltDB.instance().getCatalogContext().siteTracker;
+			ArrayList<Integer> sitesOnThisHost =
+					tracker.m_hostsToSites.get(m_hostId);
+			int coordinatorId = sitesOnThisHost.get(1);
+			ArrayList<Integer> replicaIds = new ArrayList<Integer>();
+			for (Integer replica : tracker.getAllSitesForPartition(tracker.getPartitionForSite(coordinatorId))) {
+				if (replica != coordinatorId && tracker.getAllLiveSites().contains(replica)) {
+					replicaIds.add(replica);
+				}
+			}
 
-            ArrayList<Integer> otherSiteIds = new ArrayList<Integer>();
+			ArrayList<Integer> otherSiteIds = new ArrayList<Integer>();
 
-            // store only partitions that are NOT the coordinator or coordinator replica
-            // this is a bit too slow
-            int[] allSiteIds =
-                VoltDB.instance().getCatalogContext().
-                siteTracker.getLiveSitesForEachPartition(partitions);
+			// store only partitions that are NOT the coordinator or coordinator replica
+			// this is a bit too slow
+			int[] allSiteIds =
+					VoltDB.instance().getCatalogContext().
+					siteTracker.getLiveSitesForEachPartition(partitions);
 
-            for (int i = 0; i < allSiteIds.length; i++)
-            {
-                // if this site is on the same host as the initiator
-                // then take over as the coordinator
-                if (allSiteIds[i] != coordinatorId && !replicaIds.contains(allSiteIds[i])) {
-                    otherSiteIds.add(allSiteIds[i]);
-                }
-            }
+			for (int i = 0; i < allSiteIds.length; i++)
+			{
+				// if this site is on the same host as the initiator
+				// then take over as the coordinator
+				if (allSiteIds[i] != coordinatorId && !replicaIds.contains(allSiteIds[i])) {
+					otherSiteIds.add(allSiteIds[i]);
+				}
+			}
 
-            int otherSiteIdsArr[] = new int[otherSiteIds.size()];
-            int ii = 0;
-            for (Integer otherSiteId : otherSiteIds) {
-                otherSiteIdsArr[ii++] = otherSiteId;
-            }
+			int otherSiteIdsArr[] = new int[otherSiteIds.size()];
+			int ii = 0;
+			for (Integer otherSiteId : otherSiteIds) {
+				otherSiteIdsArr[ii++] = otherSiteId;
+			}
 
-            InFlightTxnState txn = new InFlightTxnState(txnId,
-                                                        coordinatorId,
-                                                        replicaIds,
-                                                        otherSiteIdsArr,
-                                                        isReadOnly,
-                                                        false,
-                                                        invocation,
-                                                        clientData,
-                                                        messageSize,
-                                                        now,
-                                                        connectionId,
-                                                        connectionHostname,
-                                                        adminConnection);
-            dispatchMultiPartitionTxn(txn);
-        }
-    }
+			InFlightTxnState txn = new InFlightTxnState(txnId,
+					coordinatorId,
+					replicaIds,
+					otherSiteIdsArr,
+					isReadOnly,
+					false,
+					invocation,
+					clientData,
+					messageSize,
+					now,
+					connectionId,
+					connectionHostname,
+					adminConnection);
+			dispatchMultiPartitionTxn(txn);
+		}
+	}
 
-    long m_lastTickTime = 0;
+	long m_lastTickTime = 0;
 
-    @Override
-    public synchronized long tick() {
-        final long txnId = m_idManager.getNextUniqueTransactionId();
-        final long now = m_idManager.getLastUsedTime();
+	@Override
+	public synchronized long tick() {
+		final long txnId = m_idManager.getNextUniqueTransactionId();
+		final long now = m_idManager.getLastUsedTime();
 
-        if (m_sendHeartbeats) {
-            sendHeartbeat(txnId);
-        }
+		if (m_sendHeartbeats) {
+			sendHeartbeat(txnId);
+		}
 
-        m_lastTickTime = now;
-        return now;
-    }
+		m_lastTickTime = now;
+		return now;
+	}
 
-    @Override
-    public void sendHeartbeat(final long txnId) {
-        // SEMI-HACK: this list can become incorrect if there's a node
-        // failure in between here and the Heartbeat transmission loop below.
-        // Rather than add another synchronization point, we'll just make
-        // that a survivable case, see ExecutorTxnIdSafetyState for more info.
-        int[] outOfDateSites =
-            VoltDB.instance().getCatalogContext().
-            //siteTracker.getSitesWhichNeedAHeartbeat(time, interval);
-            siteTracker.getUpExecutionSites();
+	@Override
+	public void sendHeartbeat(final long txnId) {
+		// SEMI-HACK: this list can become incorrect if there's a node
+		// failure in between here and the Heartbeat transmission loop below.
+		// Rather than add another synchronization point, we'll just make
+		// that a survivable case, see ExecutorTxnIdSafetyState for more info.
+		int[] outOfDateSites =
+				VoltDB.instance().getCatalogContext().
+				//siteTracker.getSitesWhichNeedAHeartbeat(time, interval);
+				siteTracker.getUpExecutionSites();
 
-        //long duration = now - m_lastTickTime;
-        //System.out.printf("Sending tick after %d ms pause.\n", duration);
-        //System.out.flush();
+		//long duration = now - m_lastTickTime;
+		//System.out.printf("Sending tick after %d ms pause.\n", duration);
+		//System.out.flush();
 
-        try {
-            // loop over all the sites that need a heartbeat and send one
-            for (int siteId : outOfDateSites) {
-                // tack on the last confirmed seen txn id for all sites with a particular partition
-                long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(siteId);
-                HeartbeatMessage tickNotice = new HeartbeatMessage(m_siteId, txnId, newestSafeTxnId);
-                m_mailbox.send(siteId, VoltDB.DTXN_MAILBOX_ID, tickNotice);
-            }
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+		try {
+			// loop over all the sites that need a heartbeat and send one
+			for (int siteId : outOfDateSites) {
+				// tack on the last confirmed seen txn id for all sites with a particular partition
+				long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(siteId);
+				HeartbeatMessage tickNotice = new HeartbeatMessage(m_siteId, txnId, newestSafeTxnId);
+				m_mailbox.send(siteId, VoltDB.DTXN_MAILBOX_ID, tickNotice);
+			}
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-    @Override
-    public long getMostRecentTxnId() {
-        return m_idManager.getLastTxnId();
-    }
+	@Override
+	public long getMostRecentTxnId() {
+		return m_idManager.getLastTxnId();
+	}
 
-    private void
-    createSinglePartitionTxn(long connectionId,
-                             final String connectionHostname,
-                             boolean adminConnection,
-                             long txnId,
-                             StoredProcedureInvocation invocation,
-                             boolean isReadOnly,
-                             int[] partitions,
-                             Object clientData,
-                             int messageSize,
-                             long now)
-    {
-        ArrayList<Integer> siteIds;
+	private void
+	createSinglePartitionTxn(long connectionId,
+			final String connectionHostname,
+			boolean adminConnection,
+			long txnId,
+			StoredProcedureInvocation invocation,
+			boolean isReadOnly,
+			int[] partitions,
+			Object clientData,
+			int messageSize,
+			long now)
+	{
+		ArrayList<Integer> siteIds;
 
-        // Special case the common 1 partition case -- cheap via SiteTracker
-        if (partitions.length == 1) {
-            siteIds = VoltDB.instance().getCatalogContext().
-            siteTracker.getLiveSitesForPartition(partitions[0]);
-        }
-        // need all sites for a set of partitions -- a little more expensive
-        else {
-            siteIds = VoltDB.instance().getCatalogContext().
-            siteTracker.getLiveSitesForEachPartitionAsList(partitions);
-        }
+		// Special case the common 1 partition case -- cheap via SiteTracker
+		if (partitions.length == 1) {
+			siteIds = VoltDB.instance().getCatalogContext().
+					siteTracker.getLiveSitesForPartition(partitions[0]);
+		}
+		// need all sites for a set of partitions -- a little more expensive
+		else {
+			siteIds = VoltDB.instance().getCatalogContext().
+					siteTracker.getLiveSitesForEachPartitionAsList(partitions);
+		}
 
-        increaseBackpressure(messageSize);
+		increaseBackpressure(messageSize);
 
-        // create and register each replicated transaction with the pending
-        // transaction structure.  do this before transmitting them to avoid
-        // races where we get a reply from a replica before we finish
-        // transmission
+		// create and register each replicated transaction with the pending
+		// transaction structure.  do this before transmitting them to avoid
+		// races where we get a reply from a replica before we finish
+		// transmission
 
-        InFlightTxnState state =
-            new InFlightTxnState(txnId,
-                                 siteIds.get(0),
-                                 null,
-                                 null,
-                                 isReadOnly,
-                                 true,
-                                 invocation.getShallowCopy(),
-                                 clientData,
-                                 messageSize,
-                                 now,
-                                 connectionId,
-                                 connectionHostname,
-                                 adminConnection);
+		if (VoltDB.getUseActivePassive()) {
+			int[] otherSiteIds = new int[siteIds.size() - 1];
+			int count = 0;
+			for (int i = 1; i < siteIds.size(); i++) {
+				otherSiteIds[count++] = siteIds.get(i);
+			}
+			InFlightTxnState state =
+					new InFlightTxnState(txnId,
+							siteIds.get(0),
+							null,
+							otherSiteIds,
+							isReadOnly,
+							true,
+							invocation.getShallowCopy(),
+							clientData,
+							messageSize,
+							now,
+							connectionId,
+							connectionHostname,
+							adminConnection);
 
-        for (int siteId : siteIds) {
-            state.addCoordinator(siteId);
-        }
-        m_mailbox.addPendingTxn(state);
+			for (int siteId : siteIds) {
+				state.addCoordinator(siteId);
+			}
+			m_mailbox.addPendingTxn(state);
 
-        for (int coordId : state.outstandingCoordinators) {
-            sendTransactionToCoordinator(state, coordId);
-        }
-    }
+			for (int coordId : state.outstandingCoordinators) {
+				if (coordId == state.firstCoordinatorId) {
+					sendTransactionToCoordinator(state, coordId);
+				}
+			}
+		} else {
+			InFlightTxnState state =
+					new InFlightTxnState(txnId,
+							siteIds.get(0),
+							null,
+							null,
+							isReadOnly,
+							true,
+							invocation.getShallowCopy(),
+							clientData,
+							messageSize,
+							now,
+							connectionId,
+							connectionHostname,
+							adminConnection);
+			for (int siteId : siteIds) {
+				state.addCoordinator(siteId);
+			}
+			m_mailbox.addPendingTxn(state);
 
-    /**
-     * Notify all participating partitions that they will be
-     * involved in a transaction. This message contains no work,
-     * but allows txnids to get into a site's queue faster, thus
-     * reducing the amount of time when things are blocked.
-     *
-     * @param txn Information about the transaction to send.
-     */
-    private void dispatchMultiPartitionTxn(InFlightTxnState txn)
-    {
-        m_mailbox.addPendingTxn(txn);
-        increaseBackpressure(txn.messageSize);
+			for (int coordId : state.outstandingCoordinators) {
+				sendTransactionToCoordinator(state, coordId);
+			}
+		}
+	}
 
-        MultiPartitionParticipantMessage notice = new MultiPartitionParticipantMessage(
-                m_siteId, txn.firstCoordinatorId, txn.txnId, txn.isReadOnly);
-        try {
-            m_mailbox.send(txn.otherSiteIds, 0, notice);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+	/**
+	 * Notify all participating partitions that they will be
+	 * involved in a transaction. This message contains no work,
+	 * but allows txnids to get into a site's queue faster, thus
+	 * reducing the amount of time when things are blocked.
+	 *
+	 * @param txn Information about the transaction to send.
+	 */
+	private void dispatchMultiPartitionTxn(InFlightTxnState txn)
+	{
+		m_mailbox.addPendingTxn(txn);
+		increaseBackpressure(txn.messageSize);
 
-        // figure out what the safely replicated txnid is for this execution site/partition id
-        // in the multi-part case where we send this initiate task message to replicas of the coordinator,
-        // the safe txn id is the same for all of them because they are all replicas of the same partition
-        long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(txn.firstCoordinatorId);
+		MultiPartitionParticipantMessage notice = new MultiPartitionParticipantMessage(
+				m_siteId, txn.firstCoordinatorId, txn.txnId, txn.isReadOnly);
+		try {
+			m_mailbox.send(txn.otherSiteIds, 0, notice);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 
-        InitiateTaskMessage workRequest = new InitiateTaskMessage(
-                m_siteId,
-                txn.firstCoordinatorId,
-                txn.txnId,
-                txn.isReadOnly,
-                txn.isSinglePartition,
-                txn.invocation,
-                newestSafeTxnId); // this will allow all transactions to run for now
+		// figure out what the safely replicated txnid is for this execution site/partition id
+		// in the multi-part case where we send this initiate task message to replicas of the coordinator,
+		// the safe txn id is the same for all of them because they are all replicas of the same partition
+		long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(txn.firstCoordinatorId);
 
-        /*
-         * Send the transaction to the coordinator as well as his replicas
-         * so it is redudantly logged. The replicas that aren't listed
-         * as the coordinator in the work request will treat it as
-         * a participant notice
-         */
-        try {
-            m_mailbox.send(txn.firstCoordinatorId, 0, workRequest);
-            for (Integer replica : txn.coordinatorReplicas) {
-                newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(replica);
-                workRequest = new InitiateTaskMessage(
-                        m_siteId,
-                        txn.firstCoordinatorId,
-                        txn.txnId,
-                        txn.isReadOnly,
-                        txn.isSinglePartition,
-                        txn.invocation,
-                        newestSafeTxnId); // this will allow all transactions to run for now
-                m_mailbox.send(replica, 0, workRequest);
-            }
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+		InitiateTaskMessage workRequest = new InitiateTaskMessage(
+				m_siteId,
+				txn.firstCoordinatorId,
+				txn.txnId,
+				txn.isReadOnly,
+				txn.isSinglePartition,
+				txn.invocation,
+				newestSafeTxnId); // this will allow all transactions to run for now
 
-    /**
-     * Send the initiation notice to the coordinator for a
-     * transaction. This message does contain work. In the case
-     * of a single-partition transaction, this is all that is
-     * needed to run a transaction. Only used for single parts at this point
-     *
-     * @param txn Information about the transaction to send.
-     */
-    private void sendTransactionToCoordinator(InFlightTxnState txn, int coordinatorId)
-    {
-        // figure out what the newest txnid seen by ALL partitions for this execution
-        //  site id is and tack it on to this message
-        long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(coordinatorId);
+		/*
+		 * Send the transaction to the coordinator as well as his replicas
+		 * so it is redudantly logged. The replicas that aren't listed
+		 * as the coordinator in the work request will treat it as
+		 * a participant notice
+		 */
+		try {
+			m_mailbox.send(txn.firstCoordinatorId, 0, workRequest);
+			for (Integer replica : txn.coordinatorReplicas) {
+				newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(replica);
+				workRequest = new InitiateTaskMessage(
+						m_siteId,
+						txn.firstCoordinatorId,
+						txn.txnId,
+						txn.isReadOnly,
+						txn.isSinglePartition,
+						txn.invocation,
+						newestSafeTxnId); // this will allow all transactions to run for now
+				m_mailbox.send(replica, 0, workRequest);
+			}
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-        InitiateTaskMessage workRequest = new InitiateTaskMessage(
-                m_siteId,
-                coordinatorId,
-                txn.txnId,
-                txn.isReadOnly,
-                txn.isSinglePartition,
-                txn.invocation,
-                newestSafeTxnId); // this will allow all transactions to run for now
+	/**
+	 * Send the initiation notice to the coordinator for a
+	 * transaction. This message does contain work. In the case
+	 * of a single-partition transaction, this is all that is
+	 * needed to run a transaction. Only used for single parts at this point
+	 *
+	 * @param txn Information about the transaction to send.
+	 */
+	private void sendTransactionToCoordinator(InFlightTxnState txn, int coordinatorId)
+	{
+		// figure out what the newest txnid seen by ALL partitions for this execution
+		//  site id is and tack it on to this message
+		long newestSafeTxnId = m_safetyState.getNewestSafeTxnIdForExecutorBySiteId(coordinatorId);
 
-        try {
-            m_mailbox.send(coordinatorId, 0, workRequest);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+		if(VoltDB.getUseActivePassive()) {
+			// if this is active-passive, send PhysicalLogUpdateMessage
+			PhysicalLogUpdateMessage workRequest = new PhysicalLogUpdateMessage(
+					m_siteId,
+					coordinatorId,
+					txn.txnId,
+					txn.isReadOnly,
+					txn.isSinglePartition,
+					txn.invocation,
+					newestSafeTxnId,
+					txn.otherSiteIds,
+					"".getBytes());
+			try {
+				m_mailbox.send(coordinatorId, 0, workRequest);
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
 
-    @Override
-    protected void increaseBackpressure(int messageSize)
-    {
-        m_pendingTxnBytes += messageSize;
-        m_pendingTxnCount++;
-        if (m_pendingTxnBytes > MAX_DESIRED_PENDING_BYTES || m_pendingTxnCount > MAX_DESIRED_PENDING_TXNS) {
-            if (m_hadBackPressure.compareAndSet(false, true)) {
-                transactionLog.trace("DTXN back pressure began");
-                m_onBackPressure.run();
-            }
-        }
-    }
+		} else {
 
-    @Override
-    protected void reduceBackpressure(int messageSize)
-    {
-        m_pendingTxnBytes -= messageSize;
-        m_pendingTxnCount--;
-        if (m_pendingTxnBytes < (MAX_DESIRED_PENDING_BYTES * .8) &&
-            m_pendingTxnCount < (MAX_DESIRED_PENDING_TXNS * .8))
-        {
-            if (m_hadBackPressure.compareAndSet(true, false))
-            {
-                transactionLog.trace("DTXN backpressure ended");
-                m_offBackPressure.run();
-            }
-        }
-    }
+			InitiateTaskMessage workRequest = new InitiateTaskMessage(
+					m_siteId,
+					coordinatorId,
+					txn.txnId,
+					txn.isReadOnly,
+					txn.isSinglePartition,
+					txn.invocation,
+					newestSafeTxnId); // this will allow all transactions to run for now
 
-    @Override
-    public synchronized void notifyExecutionSiteRejoin(ArrayList<Integer> executorSiteIds) {
-        for (int executorSiteId : executorSiteIds) {
-            m_safetyState.addRejoinedState(executorSiteId);
-        }
-    }
+			try {
+				m_mailbox.send(coordinatorId, 0, workRequest);
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
 
-    public void getDumpContents(StringBuilder sb) {
-        List<InFlightTxnState> in_flight_txns = m_mailbox.getInFlightTxns();
-        sb.append("Transactions in Flight (").append(in_flight_txns.size()).append("):\n");
-        for (InFlightTxnState state : in_flight_txns)
-        {
-            if (state != null)
-            {
-                sb.append("emptyfornow\n");
-            }
-        }
-    }
+	@Override
+	protected void increaseBackpressure(int messageSize)
+	{
+		m_pendingTxnBytes += messageSize;
+		m_pendingTxnCount++;
+		if (m_pendingTxnBytes > MAX_DESIRED_PENDING_BYTES || m_pendingTxnCount > MAX_DESIRED_PENDING_TXNS) {
+			if (m_hadBackPressure.compareAndSet(false, true)) {
+				transactionLog.trace("DTXN back pressure began");
+				m_onBackPressure.run();
+			}
+		}
+	}
 
-    @Override
-    public synchronized Map<Long, long[]> getOutstandingTxnStats()
-    {
-        return m_mailbox.getOutstandingTxnStats();
-    }
+	@Override
+	protected void reduceBackpressure(int messageSize)
+	{
+		m_pendingTxnBytes -= messageSize;
+		m_pendingTxnCount--;
+		if (m_pendingTxnBytes < (MAX_DESIRED_PENDING_BYTES * .8) &&
+				m_pendingTxnCount < (MAX_DESIRED_PENDING_TXNS * .8))
+		{
+			if (m_hadBackPressure.compareAndSet(true, false))
+			{
+				transactionLog.trace("DTXN backpressure ended");
+				m_offBackPressure.run();
+			}
+		}
+	}
 
-    @Override
-    public void setSendHeartbeats(boolean val) {
-        m_sendHeartbeats = val;
-    }
+	@Override
+	public synchronized void notifyExecutionSiteRejoin(ArrayList<Integer> executorSiteIds) {
+		for (int executorSiteId : executorSiteIds) {
+			m_safetyState.addRejoinedState(executorSiteId);
+		}
+	}
 
-    @Override
-    public boolean isOnBackPressure() {
-        return m_hadBackPressure.get();
-    }
+	public void getDumpContents(StringBuilder sb) {
+		List<InFlightTxnState> in_flight_txns = m_mailbox.getInFlightTxns();
+		sb.append("Transactions in Flight (").append(in_flight_txns.size()).append("):\n");
+		for (InFlightTxnState state : in_flight_txns)
+		{
+			if (state != null)
+			{
+				sb.append("emptyfornow\n");
+			}
+		}
+	}
 
-    @Override
-    public void removeConnectionStats(long connectionId) {
-        m_mailbox.removeConnectionStats(connectionId);
-    }
+	@Override
+	public synchronized Map<Long, long[]> getOutstandingTxnStats()
+	{
+		return m_mailbox.getOutstandingTxnStats();
+	}
+
+	@Override
+	public void setSendHeartbeats(boolean val) {
+		m_sendHeartbeats = val;
+	}
+
+	@Override
+	public boolean isOnBackPressure() {
+		return m_hadBackPressure.get();
+	}
+
+	@Override
+	public void removeConnectionStats(long connectionId) {
+		m_mailbox.removeConnectionStats(connectionId);
+	}
 }
