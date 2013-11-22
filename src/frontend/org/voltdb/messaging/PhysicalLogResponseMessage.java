@@ -104,7 +104,7 @@ public class PhysicalLogResponseMessage extends VoltMessage {
 	}
 
 	public boolean hasAriesLogData() {
-		if (m_response == null) {
+		if (m_response == null || !m_response.hasAriesLogData()) {
 			return false;
 		}
 		return m_response.hasAriesLogData();
