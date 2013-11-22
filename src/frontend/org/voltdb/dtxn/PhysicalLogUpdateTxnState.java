@@ -56,10 +56,6 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 				//hostLog.l7dlog( Level.INFO, "response="+response.hasAriesLogData(), null);
 			}
 
-			// TODO: Chaomin, maybe evil
-			m_response = response.getClientResponseData();
-			//hostLog.l7dlog( Level.INFO, "hohohoho", null);
-
 			try {
 				/*// nirmesh
 				 * Change this code here so that it doesn't return the message if there is log data, instead have
@@ -72,6 +68,10 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 				if (response.hasAriesLogData()) {
 					// Chaomin: comment this evil line.
 					// m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), m_task.getDurabilityFlag());
+
+					// TODO: Chaomin, maybe evil
+					m_response = response.getClientResponseData();
+					//hostLog.l7dlog( Level.INFO, "hohohoho", null);
 
 					responseToSend = response;
 					m_site.getCompletedTransactionsQueue().add(this);
