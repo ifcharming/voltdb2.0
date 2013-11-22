@@ -1,6 +1,7 @@
 package org.voltdb.dtxn;
 
 import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.voltdb.ClientResponseImpl;
 import org.voltdb.ExecutionSite;
@@ -45,9 +46,11 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 			m_site.beginNewTxn(this);
 
 			PhysicalLogResponseMessage response;
+			boolean inSlave = false;
 			if (hasClientResponseData() && getClientResponseData().hasAriesLogData()) {
 				// slave
 				response = m_site.processAriesLogData(this, m_ptask);
+				inSlave = true;
 				//hostLog.l7dlog( Level.INFO, "slave", null);
 			} else {
 				// master
@@ -63,11 +66,12 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 				 * 
 				 * XXX: Even if there is no log data, wouldn't this lead to reads after non-durable
 				 * writes returning?
-				 * Chaomin: to make it right without NULL pointer error
+				 * Chaomin: to make it right without NULL pointer error?
 				 */
 				if (response.hasAriesLogData()) {
-					// Chaomin: comment this evil line.
-					// m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), m_task.getDurabilityFlag());
+					if (inSlave == false) {
+						m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), new AtomicBoolean());
+					}
 
 					// TODO: Chaomin, maybe evil
 					m_response = response.getClientResponseData();

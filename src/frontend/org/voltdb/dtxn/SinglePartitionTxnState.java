@@ -92,11 +92,10 @@ public class SinglePartitionTxnState extends TransactionState {
 				 * 
 				 * XXX: Even if there is no log data, wouldn't this lead to reads after non-durable
 				 * writes returning?
-				 * Chaomin: to make it right without NULL pointer error
+				 * Chaomin: to make it right without NULL pointer error?
 				 */
 				if (response.hasAriesLogData()) {
-					// Chaomin: comment this evil line.
-					// m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), m_task.getDurabilityFlag());
+					m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), m_task.getDurabilityFlag());
 
 					responseToSend = response;
 					m_site.getCompletedTransactionsQueue().add(this);
