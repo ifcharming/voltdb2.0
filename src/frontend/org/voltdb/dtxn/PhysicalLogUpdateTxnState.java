@@ -190,7 +190,7 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 	@Override
 	public void sendResponse() {
 		try {
-			m_mbox.send(initiatorSiteId, 0, responseToSend);
+			m_mbox.send(((PhysicalLogResponseMessage)responseToSend).getCoordinatorSiteId(), 0, responseToSend);
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
