@@ -63,8 +63,8 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 		m_lastSafeTxnID = lastSafeTxnID;
 		assert(otherSiteIds != null);
 		m_otherSiteIds = otherSiteIds;
-		m_hasResponse = true;
 		m_response = response;
+		m_hasResponse = true;
 	}
 	@Override
 	public boolean isReadOnly() {
@@ -96,8 +96,10 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 	}
 
 	public void setClientResponseData(ClientResponseImpl r) {
-		m_hasResponse = true;
 		m_response = r;
+		if (r != null) {
+			m_hasResponse = true;
+		}
 	}
 
 	public boolean hasClientResponseData() {

@@ -26,6 +26,7 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 			"Creating physical log update txn from invalid membership notice.";
 		m_ptask = (PhysicalLogUpdateMessage)task;
 		m_responseCount = responseCount;
+		m_response = null;
 	}
 
 	public PhysicalLogUpdateTxnState(Mailbox mbox, ExecutionSite site,
@@ -44,11 +45,20 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 			m_site.beginNewTxn(this);
 
 			PhysicalLogResponseMessage response;
-			if (m_ptask.hasClientResponseData()) {
+			if (hasClientResponseData() && getClientResponseData().hasAriesLogData()) {
+				// slave
 				response = m_site.processAriesLogData(this, m_ptask);
+				//hostLog.l7dlog( Level.INFO, "slave", null);
 			} else {
+				// master
 				response = m_site.processPhysicalLogUpdate(this, m_ptask);
+				//hostLog.l7dlog( Level.INFO, "master", null);
+				//hostLog.l7dlog( Level.INFO, "response="+response.hasAriesLogData(), null);
 			}
+
+			// TODO: Chaomin, maybe evil
+			m_response = response.getClientResponseData();
+			//hostLog.l7dlog( Level.INFO, "hohohoho", null);
 
 			try {
 				/*// nirmesh
@@ -65,8 +75,6 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 
 					responseToSend = response;
 					m_site.getCompletedTransactionsQueue().add(this);
-					// Chaomin
-					m_response = response.getClientResponseData();
 
 				} else {
 					m_mbox.send(response.getCoordinatorSiteId(), 0, response);
@@ -190,7 +198,7 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 	}
 
 	public boolean hasClientResponseData() {
-		if (m_response == null || !m_response.hasAriesLogData()) {
+		if (m_response == null) {
 			return false;
 		}
 

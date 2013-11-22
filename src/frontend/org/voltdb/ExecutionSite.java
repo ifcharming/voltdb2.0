@@ -1217,9 +1217,11 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 				// TODO
 				//hostLog.l7dlog( Level.INFO, "in completeTransaction got master's message", new Object[] { getSiteId(), siteIndex }, null);
 				PhysicalLogUpdateMessage ptask = ((PhysicalLogUpdateTxnState)txnState).getPhysicalLogUpdateMessage();
-				assert(((PhysicalLogUpdateTxnState)txnState).hasClientResponseData());
-				ptask.setClientResponseData(((PhysicalLogUpdateTxnState)txnState).getClientResponseData());
-
+				if (((PhysicalLogUpdateTxnState)txnState).hasClientResponseData()
+						&& ((PhysicalLogUpdateTxnState)txnState).getClientResponseData().hasAriesLogData() ) {
+					//hostLog.l7dlog( Level.INFO, "haha - null" + (((PhysicalLogUpdateTxnState)txnState).getClientResponseData() == null), null);
+					ptask.setClientResponseData(((PhysicalLogUpdateTxnState)txnState).getClientResponseData());
+				}
 				assert(ptask!=null);
 				int[] otherSiteIds = new int[ptask.getOtherSiteCount()];
 				for (int i = 0; i < ptask.getOtherSiteCount(); i++) {
