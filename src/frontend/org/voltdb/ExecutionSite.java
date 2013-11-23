@@ -31,7 +31,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -1223,14 +1222,16 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 					ptask.setClientResponseData(((PhysicalLogUpdateTxnState)txnState).getClientResponseData());
 				}
 				assert(ptask!=null);
-				int[] otherSiteIds = new int[ptask.getOtherSiteCount()];
-				for (int i = 0; i < ptask.getOtherSiteCount(); i++) {
-					otherSiteIds[i] = ptask.getOtherSiteIds(i);
-				}
-				try {
-					m_mailbox.send(otherSiteIds, 0, ptask);
-				} catch (MessagingException e) {
-					throw new RuntimeException(e);
+				if (ptask.getOtherSiteCount() > 0) {
+					int[] otherSiteIds = new int[ptask.getOtherSiteCount()];
+					for (int i = 0; i < ptask.getOtherSiteCount(); i++) {
+						otherSiteIds[i] = ptask.getOtherSiteIds(i);
+					}
+					try {
+						m_mailbox.send(otherSiteIds, 0, ptask);
+					} catch (MessagingException e) {
+						throw new RuntimeException(e);
+					}
 				}
 			}
 		}
@@ -2472,6 +2473,7 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 		final PhysicalLogResponseMessage response = new PhysicalLogResponseMessage(ptask);
 		// correct or not???
 		// This is on the slave side.
+		/* TODO(chaomin): disable logging here.
 		AtomicBoolean durable = new AtomicBoolean();
 		m_ariesLog.log(((PhysicalLogUpdateTxnState)txnState).getClientResponseData().getAriesLogData(), durable);
 		/*
@@ -2482,11 +2484,11 @@ implements Runnable, SiteTransactionConnection, SiteProcedureConnection
 		ee.doAriesRecoveryPhase(m_ariesLog.getPointerToReplayLog(),
 				m_ariesLog.getReplayLogSize(),
 				m_ariesLog.getTxnIdToBeginReplay());
-		 */
 		if (m_ariesLog != null) {
 			doAriesRecovery();
 			waitForAriesLogInit();
 		}
+		 */
 
 		//TODO
 		//block until durable bit is set -- means shipped to disk

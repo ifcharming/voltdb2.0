@@ -222,6 +222,7 @@ public class AsyncBenchmark
             );
 
             // 2. Voting results
+            /*
             VoltTable result = Con.execute("Results").getResults()[0];
             String winner = "";
             long winnerVoteCount = 0;
@@ -235,6 +236,7 @@ public class AsyncBenchmark
                 System.out.printf("%s\t\t%,14d\n", result.getString(0), result.getLong(2));
             }
             System.out.printf("\n\nThe Winner is: %s\n-------------------------------------------------------------------------------------\n", winner);
+            */
 
             // 3. Performance statistics (we only care about the Vote procedure that we're benchmarking)
             System.out.println(

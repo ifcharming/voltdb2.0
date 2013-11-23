@@ -46,11 +46,9 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 			m_site.beginNewTxn(this);
 
 			PhysicalLogResponseMessage response;
-			boolean inSlave = false;
 			if (hasClientResponseData() && getClientResponseData().hasAriesLogData()) {
 				// slave
 				response = m_site.processAriesLogData(this, m_ptask);
-				inSlave = true;
 				//hostLog.l7dlog( Level.INFO, "slave", null);
 			} else {
 				// master
@@ -69,13 +67,9 @@ public class PhysicalLogUpdateTxnState extends TransactionState {
 				 * Chaomin: to make it right without NULL pointer error?
 				 */
 				if (response.hasAriesLogData()) {
-					if (inSlave == false) {
-						m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), new AtomicBoolean());
-					}
+					m_site.getAriesLogger().log(response.getClientResponseData().getAriesLogData(), new AtomicBoolean());
 
-					// TODO: Chaomin, maybe evil
 					m_response = response.getClientResponseData();
-					//hostLog.l7dlog( Level.INFO, "hohohoho", null);
 
 					responseToSend = response;
 					m_site.getCompletedTransactionsQueue().add(this);

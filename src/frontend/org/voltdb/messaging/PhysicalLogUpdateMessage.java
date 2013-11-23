@@ -64,7 +64,11 @@ public class PhysicalLogUpdateMessage extends TransactionInfoBaseMessage {
 		assert(otherSiteIds != null);
 		m_otherSiteIds = otherSiteIds;
 		m_response = response;
-		m_hasResponse = true;
+		if (response != null) {
+			m_hasResponse = true;
+		} else {
+			m_hasResponse = false;
+		}
 	}
 	@Override
 	public boolean isReadOnly() {
