@@ -6,7 +6,7 @@ CLASSPATH="$VOLTJAR:../../lib"
 VOLTDB="../../bin/voltdb"
 VOLTCOMPILER="../../bin/voltcompiler"
 LICENSE="../../voltdb/license.xml"
-LEADER="localhost"
+LEADER="128.30.77.80"
 
 # remove build artifacts
 function clean() {
@@ -37,7 +37,7 @@ function server() {
     if [ ! -f $APPNAME.jar ]; then catalog; fi
     # run the server
     $VOLTDB start catalog $APPNAME.jar deployment deployment.xml \
-        license $LICENSE leader $LEADER
+        license $LICENSE leader $LEADER useActivePassive
 }
 
 # run the client that drives the example
@@ -57,13 +57,13 @@ function async-benchmark() {
     java -classpath obj:$CLASSPATH:obj com.AsyncBenchmark \
         --display-interval=30 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2 \
         --rate-limit=100000 \
-        --auto-tune=false \
-        --latency-target=50.0
+        --auto-tune=true \
+        --latency-target=10.0
 }
 
 # Multi-threaded synchronous benchmark sample
@@ -79,7 +79,7 @@ function sync-benchmark() {
         --threads=40 \
         --display-interval=5 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2
@@ -98,7 +98,7 @@ function jdbc-benchmark() {
         --threads=40 \
         --display-interval=5 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2

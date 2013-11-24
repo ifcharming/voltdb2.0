@@ -6,7 +6,7 @@ CLASSPATH="$VOLTJAR:../../lib"
 VOLTDB="../../bin/voltdb"
 VOLTCOMPILER="../../bin/voltcompiler"
 LICENSE="../../voltdb/license.xml"
-LEADER="localhost"
+LEADER="128.30.77.80"
 
 # remove build artifacts
 function clean() {
@@ -57,7 +57,7 @@ function async-benchmark() {
     java -classpath obj:$CLASSPATH:obj com.AsyncBenchmark \
         --display-interval=30 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2 \
@@ -79,7 +79,7 @@ function sync-benchmark() {
         --threads=40 \
         --display-interval=5 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2
@@ -98,7 +98,7 @@ function jdbc-benchmark() {
         --threads=40 \
         --display-interval=5 \
         --duration=120 \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --port=21212 \
         --contestants=6 \
         --max-votes=2

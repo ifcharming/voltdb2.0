@@ -6,7 +6,7 @@ CLASSPATH="$VOLTJAR:../../../lib" #:./obj/com:./obj/com/procedures"
 VOLTDB="../../../bin/voltdb"
 VOLTCOMPILER="../../../bin/voltcompiler"
 LICENSE="../../../voltdb/license.xml"
-LEADER="localhost"
+LEADER="128.30.77.80"
 
 # remove build artifacts
 function clean() {
@@ -37,14 +37,14 @@ function server() {
     if [ ! -f $APPNAME.jar ]; then catalog; fi
     # run the server
     $VOLTDB create catalog $APPNAME.jar deployment deployment.xml \
-        license $LICENSE leader $LEADER
+        license $LICENSE leader $LEADER useActivePassive
 }
 
 # run the client that drives the example
 function client() {
     srccompile
     java -classpath obj:$CLASSPATH:obj com.MyTPCC \
-        --servers=localhost \
+        --servers=128.30.77.80 \
         --duration=180 \
         --warehouses=8 \
         --rate-limit=30000
